@@ -1,0 +1,30 @@
+---
+export interface Props {
+  childClass?: string
+  parentClass?: string
+  accent?: boolean
+}
+
+const { childClass, parentClass, accent } = Astro.props
+---
+
+<section
+  class:list={[
+    parentClass,
+    'min-h-[40rem] sm:min-h-[50rem] flex flex-col items-center h-full w-full p-6 my-10 md:my-16',
+    {
+      'bg-gradient-to-br from-blue-900/40 via-slate-800/80 to-indigo-900/40 rounded-3xl':
+        accent,
+    },
+  ]}
+>
+  <slot name="child" />
+  <div
+    class:list={[
+      childClass,
+      'max-w-4xl flex h-full w-full flex-1 justify-between space-y-12 flex-col items-center text-center',
+    ]}
+  >
+    <slot />
+  </div>
+</section>
