@@ -6,11 +6,11 @@ export interface Props {
 const { class: className, parentClass: parentClassName } = Astro.props
 ---
 
-<li class:list={[parentClassName, 'group relative list-none']}>
+<li class:list={[parentClassName, ' group relative list-none']}>
   <div
     class:list={[
       className,
-      'shadow-slate-900 rounded-xl border border-slate-700/50 bg-slate-800 p-6 flex flex-col items-center justify-center text-center relative  w-full shadow-lg',
+      'shadow-slate-900 rounded-xl border border-slate-700/50 bg-slate-900 p-6 flex flex-col items-center justify-center relative w-full shadow-lg',
     ]}
   >
     <slot />

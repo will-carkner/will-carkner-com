@@ -1,22 +1,62 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Section from '../components/Section.astro'
 import Card from '../components/Card.astro'
+import Section from '../components/Section.astro'
 ---
 
 <Layout title="Will Carkner">
   <!-- BODY -->
   <Section>
-    <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
+    <div class="grid md:grid-cols-2 w-full grid-cols-1 gap-8">
       <!-- ABOUT ME -->
-      <Card>
-        <div class="text-left">
-          <h1>Will</h1>
-          <p class="text-gray-300">I'm a cool guy I promise you</p>
+      <Card class="items-left">
+        <div class="flex-col text-left space-y-4 flex">
+          <img
+            alt="Will Carkner"
+            src="will.jpg"
+            class="rounded-lg w-24 h-24"
+          /><h2>Will Carkner</h2>
+          <p class="text-gray-400 bold-slate-p text-justify">
+            I'm a {
+              Math.abs(
+                new Date(
+                  Date.now() - new Date(2006, 8, 28).getTime()
+                ).getUTCFullYear() - 1970
+              )
+            }{' '}year old <b>full-stack</b> developer and <b
+              >builder of cool things</b
+            >, based in Dublin.
+          </p>
+          <p class="text-gray-400 bold-slate-p text-justify">
+            Currently in Secondary School, I'm <b>self-taught</b> and have a <b
+              >passion</b
+            > for building tech to <b>make an impact</b>.
+          </p>
         </div>
       </Card>
+      <!-- Writing -->
       <Card>
-        <p>test card</p>
+        <h2>My Thoughts</h2>
+      </Card>
+      <!-- Uses -->
+      <Card>
+        <h4 class="text-left">Things I Use</h4>
+        {
+          [
+            {
+              name: 'MacBook Air',
+              class: 'tech',
+            },
+            {
+              name: 'IPhone SE 2',
+              class: 'tech',
+            },
+          ].map((item) => (
+            <ul class="flex items-center space-x-2">
+              <li class="text-gray-400 bold-slate-p">{item.name}</li>
+            </ul>
+          ))
+        }
       </Card>
     </div>
   </Section>

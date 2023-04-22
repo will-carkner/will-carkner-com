@@ -18,7 +18,7 @@ const { title } = Astro.props
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-slate-900">
+  <body class="flex flex-col items-center justify-between">
     <slot />
   </body>
 </html>
@@ -44,7 +44,7 @@ const { title } = Astro.props
 
     html,
     body {
-      @apply w-full;
+      @apply min-h-screen w-full bg-black text-center;
     }
     a {
       @apply underline decoration-2 underline-offset-1 duration-300;
@@ -52,8 +52,8 @@ const { title } = Astro.props
     a:hover {
       @apply underline-offset-4;
     }
-  }
-  .bold-slate-p b {
-    @apply text-slate-300;
+    .bold-slate-p b {
+      @apply text-slate-300;
+    }
   }
 </style>
