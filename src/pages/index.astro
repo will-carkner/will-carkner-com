@@ -139,12 +139,41 @@ const posts = (await getPosts()).slice(0, 3)
         <!-- Projects -->
         <Card class="space-y-4">
           <h4>My Work</h4>
-          <Project
-            title="joinfounders.co"
-            tags={['Astro', 'Tailwind', 'Vercel']}
-            image="astro.png"
-            url="https://joinfounders.co"
-          />
+          {
+            [
+              {
+                title: 'This Site',
+                tags: ['Astro', 'Tailwind', 'Vercel'],
+                image: 'founders.jpg',
+                url: 'https://joinfounders.co',
+              },
+              {
+                title: 'joinfounders.co',
+                tags: ['Astro', 'Tailwind', 'Client Work'],
+                image: 'founders.jpg',
+                url: 'https://joinfounders.co',
+              },
+              {
+                title: 'BloodBox',
+                tags: ['Hardware', 'Research', 'MedTech'],
+                image: 'founders.jpg',
+                url: 'https://bloodbox.info',
+              },
+              {
+                title: 'dotheylike.me',
+                tags: ['NextJS', 'Tailwind', 'GPT-3'],
+                image: 'dotheylike.png',
+                url: 'https://dotheylike.me',
+              },
+            ].map((item) => (
+              <Project
+                title={item.title}
+                tags={item.tags}
+                image={item.image}
+                url={item.url}
+              />
+            ))
+          }
         </Card>
       </div>
     </div>
