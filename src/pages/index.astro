@@ -2,6 +2,10 @@
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 import Section from '../components/Section.astro'
+import ArticleDisplay from '../components/ArticleDisplay.astro'
+import { getPosts } from '../utils/funcs'
+
+const posts = (await getPosts()).slice(0, 3)
 ---
 
 <Layout title="Will Carkner">
@@ -35,28 +39,121 @@ import Section from '../components/Section.astro'
         </div>
       </Card>
       <!-- Writing -->
-      <Card>
-        <h2>My Thoughts</h2>
+      <Card class="space-y-4">
+        <h4>My Thoughts</h4>
+        <ArticleDisplay posts={posts} />
       </Card>
-      <!-- Uses -->
+      <!-- Stack -->
+      <Card class="space-y-2">
+        <h4>My Stack</h4>
+        <p class="text-gray-400">From idea to implementation</p>
+        <div class="grid grid-cols-3 py-3 justify-center items-center gap-4">
+          {
+            [
+              {
+                logo: 'react.png',
+                alt: 'React',
+                href: 'https://reactjs.org',
+              },
+              {
+                logo: 'ts.png',
+                alt: 'TypeScript',
+                href: 'https://typescriptlang.org',
+              },
+              {
+                logo: 'tw.png',
+                alt: 'Tailwind CSS',
+                href: 'https://tailwindcss.com',
+              },
+              {
+                logo: 'next.png',
+                alt: 'NextJS',
+                href: 'https://nextjs.org',
+              },
+              {
+                logo: 'astro.png',
+                alt: 'Astro',
+                href: 'https://astro.build',
+              },
+              {
+                logo: 'vercel.png',
+                alt: 'Vercel',
+                href: 'https://vercel.com',
+              },
+            ].map((item) => (
+              <a href={item.href} target="_blank" class="hover:scale-110">
+                <img class="w-20 h-20" src={item.logo} alt={item.alt} />
+              </a>
+            ))
+          }
+        </div>
+      </Card>
+      <!-- Podcasts -->
+      <Card class="!bg-gradient-to-l from-blue-900 to-violet-900 !border-none">
+        <div class="space-y-4">
+          <h4>Podcasts I Love</h4>
+          <div
+            class="flex flex-row space-x-2 md:space-x-4 items-center justify-center"
+          >
+            {
+              [
+                {
+                  img: 'pods/huberman.jpg',
+                  alt: 'huberman lab',
+                },
+                {
+                  img: 'pods/fridman.jpg',
+                  alt: 'lex fridman',
+                },
+                {
+                  img: 'pods/hours.jpg',
+                  alt: '80,000 hours',
+                },
+                {
+                  img: 'pods/questions.jpg',
+                  alt: 'deep questions',
+                },
+              ].map((item) => (
+                <img
+                  alt={item.alt}
+                  class="w-20 h-20 rounded-lg"
+                  src={item.img}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </Card>
+      <!-- Projects -->
       <Card>
-        <h4 class="text-left">Things I Use</h4>
-        {
-          [
-            {
-              name: 'MacBook Air',
-              class: 'tech',
-            },
-            {
-              name: 'IPhone SE 2',
-              class: 'tech',
-            },
-          ].map((item) => (
-            <ul class="flex items-center space-x-2">
-              <li class="text-gray-400 bold-slate-p">{item.name}</li>
-            </ul>
-          ))
-        }
+        <div class="flex flex-col">
+          {
+            [
+              {
+                title: 'joinfounders.co',
+                tags: ['Astro', 'Tailwind'],
+                link: 'https://joinfounders.co',
+                desc: "A client site for Dogpatch Labs' founders programme",
+              },
+              {
+                title: 'joinfounders.co',
+                tags: ['Astro', 'Tailwind'],
+                link: 'https://joinfounders.co',
+                desc: "A client site for Dogpatch Labs' founders programme",
+              },
+              {
+                title: 'joinfounders.co',
+                tags: ['Astro', 'Tailwind'],
+                link: 'https://joinfounders.co',
+                desc: "A client site for Dogpatch Labs' founders programme",
+              },
+            ].map((item) => (
+              <div>
+                <div>{item.title}</div>
+              </div>
+            ))
+          }
+        </div>
       </Card>
     </div>
   </Section>

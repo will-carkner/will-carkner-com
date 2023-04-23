@@ -1,45 +1,25 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import FormattedDate from '../components/FormattedDate.astro'
+import Section from '../components/Section.astro'
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
 
 type Props = CollectionEntry<'blog'>['data']
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props
+const { title, pubDate } = Astro.props
 ---
 
-<html lang="en">
-  <head>
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
-  </head>
-
-  <body>
-    <main>
-      <article>
-        {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        <h1 class="title">{title}</h1>
-        <FormattedDate date={pubDate} />
-        {
-          updatedDate && (
-            <div class="last-updated-on">
-              Last updated on <FormattedDate date={updatedDate} />
-            </div>
-          )
-        }
-        <hr />
-        <slot />
-      </article>
-    </main>
-  </body>
-</html>
+<Layout title={title}>
+  <Section class="!mt-8">
+    <div class="space-y-2">
+      <h2>{title}</h2>
+      <p class="font-mono text-gray-400">
+        Published on<FormattedDate date={pubDate} />
+      </p>
+    </div>
+    <Card parentClass="w-full">
+      <slot />
+    </Card>
+  </Section>
+</Layout>

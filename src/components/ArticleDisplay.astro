@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import ArticleLink from './ArticleLink.astro'
+
+interface Props {
+  posts: CollectionEntry<'blog'>[]
+}
+
+const { posts } = Astro.props
+---
+
+<div class="w-full divide-y-2 space-y-2">
+  <ul>
+    {posts.map((post) => <ArticleLink post={post} />)}
+  </ul>
+</div>
