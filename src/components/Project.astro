@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string
+  tags: string[]
+  image: string
+  url: string
+}
+
+const { title, tags, image, url } = Astro.props
+---
+
+<a href={url} target="_blank" class="no-underline w-full">
+  <div class="flex flex-row space-x-4">
+    <img src={image} class="h-24 w-24 rounded-lg" alt={title + 'image'} />
+    <div class="flex flex-col space-y-2 text-left">
+      <p class="text-3xl">{title}</p>
+      <div class="flex flex-row space-x-2">
+        {
+          tags.map((tag) => (
+            <span class="bg-slate-600 rounded-xl text-xs p-2">{tag} </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</a>

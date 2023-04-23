@@ -4,6 +4,7 @@ import Card from '../components/Card.astro'
 import Section from '../components/Section.astro'
 import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
+import Project from '../components/Project.astro'
 
 const posts = (await getPosts()).slice(0, 3)
 ---
@@ -11,150 +12,141 @@ const posts = (await getPosts()).slice(0, 3)
 <Layout title="Will Carkner">
   <!-- BODY -->
   <Section>
-    <div class="grid md:grid-cols-2 w-full grid-cols-1 gap-8">
+    <div class="grid w-full grid-cols-1 gap-8 md:flex-row md:flex">
       <!-- ABOUT ME -->
-      <Card class="items-left">
-        <div class="flex-col text-left space-y-4 flex">
-          <img
-            alt="Will Carkner"
-            src="will.jpg"
-            class="rounded-lg w-24 h-24"
-          /><h2>Will Carkner</h2>
-          <p class="text-gray-400 bold-slate-p text-justify">
-            I'm a {
-              Math.abs(
-                new Date(
-                  Date.now() - new Date(2006, 8, 28).getTime()
-                ).getUTCFullYear() - 1970
-              )
-            }{' '}year old <b>full-stack</b> developer and <b
-              >builder of cool things</b
-            >, based in Dublin.
-          </p>
-          <p class="text-gray-400 bold-slate-p text-justify">
-            Currently in Secondary School, I'm <b>self-taught</b> and have a <b
-              >passion</b
-            > for building tech to <b>make an impact</b>.
-          </p>
-        </div>
-      </Card>
-      <!-- Writing -->
-      <Card class="space-y-4">
-        <h4>My Thoughts</h4>
-        <ArticleDisplay posts={posts} />
-      </Card>
-      <!-- Stack -->
-      <Card class="space-y-2">
-        <h4>My Stack</h4>
-        <p class="text-gray-400">From idea to implementation</p>
-        <div class="grid grid-cols-3 py-3 justify-center items-center gap-4">
-          {
-            [
-              {
-                logo: 'react.png',
-                alt: 'React',
-                href: 'https://reactjs.org',
-              },
-              {
-                logo: 'ts.png',
-                alt: 'TypeScript',
-                href: 'https://typescriptlang.org',
-              },
-              {
-                logo: 'tw.png',
-                alt: 'Tailwind CSS',
-                href: 'https://tailwindcss.com',
-              },
-              {
-                logo: 'next.png',
-                alt: 'NextJS',
-                href: 'https://nextjs.org',
-              },
-              {
-                logo: 'astro.png',
-                alt: 'Astro',
-                href: 'https://astro.build',
-              },
-              {
-                logo: 'vercel.png',
-                alt: 'Vercel',
-                href: 'https://vercel.com',
-              },
-            ].map((item) => (
-              <a href={item.href} target="_blank" class="hover:scale-110">
-                <img class="w-20 h-20" src={item.logo} alt={item.alt} />
-              </a>
-            ))
-          }
-        </div>
-      </Card>
-      <!-- Podcasts -->
-      <Card class="!bg-gradient-to-l from-blue-900 to-violet-900 !border-none">
-        <div class="space-y-4">
-          <h4>Podcasts I Love</h4>
-          <div
-            class="flex flex-row space-x-2 md:space-x-4 items-center justify-center"
-          >
+      <div class="md:flex-1 space-y-8">
+        <Card class="items-left">
+          <div class="flex-col text-left space-y-4 flex">
+            <img
+              alt="Will Carkner"
+              src="will.jpg"
+              class="rounded-lg w-24 h-24"
+            /><h2>Will Carkner</h2>
+            <p class="text-gray-400 bold-slate-p text-justify">
+              I'm a {
+                Math.abs(
+                  new Date(
+                    Date.now() - new Date(2006, 8, 28).getTime()
+                  ).getUTCFullYear() - 1970
+                )
+              }{' '}year old <b>full-stack</b> developer and <b
+                >builder of cool things</b
+              >, based in Dublin.
+            </p>
+            <p class="text-gray-400 bold-slate-p text-justify">
+              Currently in Secondary School, I'm <b>self-taught</b> and have a <b
+                >passion</b
+              > for building tech to <b>make an impact</b>.
+            </p>
+          </div>
+        </Card>
+        <!-- Writing -->
+        <Card class="space-y-4">
+          <h4>My Thoughts</h4>
+          <ArticleDisplay posts={posts} />
+        </Card>
+        <!-- Stack -->
+        <Card class="space-y-2">
+          <h4>My Stack</h4>
+          <p class="text-gray-400">From idea to implementation</p>
+          <div class="grid grid-cols-3 py-3 justify-center items-center gap-4">
             {
               [
                 {
-                  img: 'pods/huberman.jpg',
-                  alt: 'huberman lab',
+                  logo: 'react.png',
+                  alt: 'React',
+                  href: 'https://reactjs.org',
                 },
                 {
-                  img: 'pods/fridman.jpg',
-                  alt: 'lex fridman',
+                  logo: 'ts.png',
+                  alt: 'TypeScript',
+                  href: 'https://typescriptlang.org',
                 },
                 {
-                  img: 'pods/hours.jpg',
-                  alt: '80,000 hours',
+                  logo: 'tw.png',
+                  alt: 'Tailwind CSS',
+                  href: 'https://tailwindcss.com',
                 },
                 {
-                  img: 'pods/questions.jpg',
-                  alt: 'deep questions',
+                  logo: 'next.png',
+                  alt: 'NextJS',
+                  href: 'https://nextjs.org',
+                },
+                {
+                  logo: 'astro.png',
+                  alt: 'Astro',
+                  href: 'https://astro.build',
+                },
+                {
+                  logo: 'vercel.png',
+                  alt: 'Vercel',
+                  href: 'https://vercel.com',
                 },
               ].map((item) => (
-                <img
-                  alt={item.alt}
-                  class="w-20 h-20 rounded-lg"
-                  src={item.img}
-                />
+                <a href={item.href} target="_blank" class="hover:scale-110">
+                  <img class="w-20 h-20" src={item.logo} alt={item.alt} />
+                </a>
               ))
             }
           </div>
-        </div>
-      </Card>
-      <!-- Projects -->
-      <Card>
-        <div class="flex flex-col">
-          {
-            [
+        </Card>
+      </div>
+      <!-- Podcasts -->
+      <div class="md:flex-1 space-y-8">
+        <Card
+          class="!bg-gradient-to-l from-blue-900 to-violet-900 !border-none"
+        >
+          <div class="space-y-4">
+            <h4>Podcasts I Love</h4>
+            <div
+              class="flex flex-row space-x-2 md:space-x-4 items-center justify-center"
+            >
               {
-                title: 'joinfounders.co',
-                tags: ['Astro', 'Tailwind'],
-                link: 'https://joinfounders.co',
-                desc: "A client site for Dogpatch Labs' founders programme",
-              },
-              {
-                title: 'joinfounders.co',
-                tags: ['Astro', 'Tailwind'],
-                link: 'https://joinfounders.co',
-                desc: "A client site for Dogpatch Labs' founders programme",
-              },
-              {
-                title: 'joinfounders.co',
-                tags: ['Astro', 'Tailwind'],
-                link: 'https://joinfounders.co',
-                desc: "A client site for Dogpatch Labs' founders programme",
-              },
-            ].map((item) => (
-              <div>
-                <div>{item.title}</div>
-              </div>
-            ))
-          }
-        </div>
-      </Card>
+                [
+                  {
+                    img: 'pods/huberman.jpg',
+                    alt: 'huberman lab',
+                    href: 'https://hubermanlab.com',
+                  },
+                  {
+                    img: 'pods/fridman.jpg',
+                    alt: 'lex fridman',
+                    href: 'https://lexfridman.com/podcast/',
+                  },
+                  {
+                    img: 'pods/hours.jpg',
+                    alt: '80,000 hours',
+                    href: 'https://80000hours.org/podcast/',
+                  },
+                  {
+                    img: 'pods/questions.jpg',
+                    alt: 'deep questions',
+                    href: 'https://www.thedeeplife.com/listen/',
+                  },
+                ].map((item) => (
+                  <a href={item.href} target="_blank" class="hover:scale-110">
+                    <img
+                      alt={item.alt}
+                      class="w-20 h-20 rounded-lg"
+                      src={item.img}
+                    />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </Card>
+        <!-- Projects -->
+        <Card class="space-y-4">
+          <h4>My Work</h4>
+          <Project
+            title="joinfounders.co"
+            tags={['Astro', 'Tailwind', 'Vercel']}
+            image="astro.png"
+            url="https://joinfounders.co"
+          />
+        </Card>
+      </div>
     </div>
   </Section>
 </Layout>
