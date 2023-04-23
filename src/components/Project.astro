@@ -11,7 +11,11 @@ const { title, tags, image, url } = Astro.props
 
 <a href={url} target="_blank" class="no-underline w-full">
   <div class="flex flex-row space-x-4">
-    <img src={image} class="h-24 w-24 rounded-lg" alt={title + 'image'} />
+    <img
+      src={image}
+      class="h-24 w-24 hover-scale-110 rounded-lg"
+      alt={title + 'image'}
+    />
     <div class="flex flex-col space-y-2 text-left">
       <p class="text-3xl">{title}</p>
       <div class="flex flex-row space-x-2">
