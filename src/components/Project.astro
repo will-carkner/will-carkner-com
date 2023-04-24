@@ -4,21 +4,22 @@ interface Props {
   tags: string[]
   image: string
   url: string
+  class?: string
 }
 
-const { title, tags, image, url } = Astro.props
+const { title, tags, image, url, class: className } = Astro.props
 ---
 
 <a href={url} target="_blank" class="no-underline w-full">
   <div class="flex flex-row items-center space-x-4">
     <img
       src={image}
-      class="h-24 w-auto hover-scale-110 rounded-lg"
+      class:list={['h-24 w-auto hover-scale-110 rounded-lg', className]}
       alt={title + 'image'}
     />
     <div class="flex flex-col space-y-2 text-left">
-      <p class="text-3xl font-semibold">{title}</p>
-      <div class="flex flex-row space-x-2">
+      <p class="sm:text-3xl text-2xl font-semibold">{title}</p>
+      <div class="flex flex-row space-x-1 sm:space-x-2">
         {
           tags.map((tag) => (
             <span class="bg-slate-600 h-fit bg-opacity-50 text-xs shadow-lg rounded-md px-2 py-1 text-white ">

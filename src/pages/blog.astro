@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Section from '../components/Section.astro'
+import ArticleDisplay from '../components/ArticleDisplay.astro'
+import Card from '../components/Card.astro'
+import { getPosts } from '../utils/funcs'
+
+const posts = await getPosts()
+---
+
+<Layout title="Blog | Will Carkner">
+  <Section>
+    <h2>My Thoughts</h2>
+    <Card parentClass="w-full">
+      <h3 class="border">My Best</h3>
+      <ArticleDisplay posts={posts} />
+    </Card>
+  </Section>
+</Layout>
