@@ -41,10 +41,7 @@ const posts = (await getPosts()).slice(0, 3)
           </div>
         </Card>
         <!-- Writing -->
-        <Card class="space-y-4">
-          <h4>My Thoughts</h4>
-          <ArticleDisplay posts={posts} />
-        </Card>
+        <ArticleDisplay home={true} title="My Thoughts" posts={posts} />
         <!-- Stack -->
         <Card class="space-y-2">
           <h4>My Stack</h4>

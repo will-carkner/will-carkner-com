@@ -12,7 +12,7 @@ const { post } = Astro.props
 <a href={`/blog/${post.slug}`} class="no-underline">
   <div class="flex-row justify-between flex">
     <div class="flex-col text-left flex">
-      <p class="text-white underline text-xl">{post.data.title}</p>
+      <p class="text-white text-xl">{post.data.title}</p>
       <p class="text-gray-400 font-mono">
         <FormattedDate date={post.data.pubDate} />
       </p>

@@ -1,16 +1,29 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import ArticleLink from './ArticleLink.astro'
+import Card from './Card.astro'
 
 interface Props {
   posts: CollectionEntry<'blog'>[]
+  title: string
+  home?: boolean
 }
 
-const { posts } = Astro.props
+const { posts, title, home } = Astro.props
 ---
 
-<div class="w-full divide-y-2 space-y-2">
-  <ul>
-    {posts.map((post) => <ArticleLink post={post} />)}
-  </ul>
-</div>
+<Card parentClass="w-full" class="space-y-4">
+  <h4>{title}</h4>
+  <div class="w-full divide-y-2 space-y-2">
+    <ul>
+      {posts.map((post) => <ArticleLink post={post} />)}
+    </ul>
+  </div>
+  {
+    home && (
+      <a href="/blog" class="text-blue-700 text-base hover:underline">
+        Read more
+      </a>
+    )
+  }
+</Card>
