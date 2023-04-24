@@ -15,31 +15,34 @@ const posts = (await getPosts()).slice(0, 3)
     <div class="grid w-full grid-cols-1 gap-8 md:flex-row md:flex">
       <!-- ABOUT ME -->
       <div class="md:flex-1 space-y-8">
-        <Card class="items-left">
-          <div class="flex-col text-left space-y-4 flex">
-            <img
-              alt="Will Carkner"
-              src="will.jpg"
-              class="rounded-lg w-24 h-24"
-            /><h2>Will Carkner</h2>
-            <p class="text-gray-400 bold-slate-p text-justify">
-              I'm a {
-                Math.abs(
-                  new Date(
-                    Date.now() - new Date(2006, 8, 28).getTime()
-                  ).getUTCFullYear() - 1970
-                )
-              }{' '}year old <b>full-stack</b> developer and <b
-                >builder of cool things</b
-              >, based in Dublin.
-            </p>
-            <p class="text-gray-400 bold-slate-p text-justify">
-              Currently in Secondary School, I'm <b>self-taught</b> and have a <b
-                >passion</b
-              > for building tech to <b>make an impact</b>.
-            </p>
-          </div>
-        </Card>
+        <div
+          class="rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 p-0.5"
+        >
+          <Card class="items-left !shadow-none">
+            <div class="flex-col text-left space-y-4 flex">
+              <img
+                alt="Will Carkner"
+                src="will.jpg"
+                class="rounded-lg w-24 h-24"
+              /><h2>Will Carkner</h2>
+              <p class="text-gray-400 bold-slate-p text-justify">
+                I'm a {
+                  Math.abs(
+                    new Date(
+                      Date.now() - new Date(2006, 8, 28).getTime()
+                    ).getUTCFullYear() - 1970
+                  )
+                }{' '}year old <b>full-stack</b> developer and <b
+                  >builder of cool things</b
+                >, based in Dublin.
+              </p>
+              <p class="text-gray-400 bold-slate-p text-justify">
+                Currently in Secondary School, I'm <b>self-taught</b> and have a
+                <b>passion</b> for building tech to <b>make an impact</b>.
+              </p>
+            </div>
+          </Card>
+        </div>
         <!-- Writing -->
         <ArticleDisplay home={true} title="My Thoughts" posts={posts} />
         <!-- Stack -->
@@ -90,9 +93,7 @@ const posts = (await getPosts()).slice(0, 3)
       </div>
       <!-- Podcasts -->
       <div class="md:flex-1 space-y-8">
-        <Card
-          class="!bg-gradient-to-l from-blue-900 to-violet-900 !border-none"
-        >
+        <Card>
           <div class="space-y-4">
             <h4>Podcasts I Love</h4>
             <div
