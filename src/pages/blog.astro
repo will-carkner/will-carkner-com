@@ -14,5 +14,9 @@ const shortPosts = posts.slice(0, 3)
     <h2>My Thoughts</h2>
     <ArticleDisplay title="My Best" posts={shortPosts} />
     <ArticleDisplay title="All Posts" posts={posts} />
+    <a
+      class="text-white text-lg hover:text-blue-300 hover:cursor-pointer"
+      href="/blog/rss.xml">View RSS</a
+    >
   </Section>
 </Layout>

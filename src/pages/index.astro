@@ -5,6 +5,7 @@ import Section from '../components/Section.astro'
 import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
 import Project from '../components/Project.astro'
+import { Icon } from 'astro-icon'
 
 const posts = (await getPosts()).slice(0, 3)
 ---
@@ -25,7 +26,7 @@ const posts = (await getPosts()).slice(0, 3)
                 src="will.jpg"
                 class="rounded-lg w-24 h-24"
               /><h2>Will Carkner</h2>
-              <p class="text-gray-400 bold-slate-p text-justify">
+              <p class="text-gray-400 font-mono bold-slate-p text-justify">
                 I'm a {
                   Math.abs(
                     new Date(
@@ -36,7 +37,7 @@ const posts = (await getPosts()).slice(0, 3)
                   >builder of cool things</b
                 >, based in Dublin.
               </p>
-              <p class="text-gray-400 bold-slate-p text-justify">
+              <p class="text-gray-400 font-mono bold-slate-p text-justify">
                 Currently in Secondary School, I'm <b>self-taught</b> and have a
                 <b>passion</b> for building tech to <b>make an impact</b>.
               </p>
@@ -48,7 +49,7 @@ const posts = (await getPosts()).slice(0, 3)
         <!-- Stack -->
         <Card class="space-y-2">
           <h4>My Stack</h4>
-          <p class="text-gray-400">From idea to implementation</p>
+          <p class="text-gray-400 font-mono">From idea to implementation</p>
           <div class="grid grid-cols-3 py-3 justify-center items-center gap-4">
             {
               [
@@ -57,11 +58,7 @@ const posts = (await getPosts()).slice(0, 3)
                   alt: 'React',
                   href: 'https://reactjs.org',
                 },
-                {
-                  logo: 'ts.png',
-                  alt: 'TypeScript',
-                  href: 'https://typescriptlang.org',
-                },
+
                 {
                   logo: 'tw.png',
                   alt: 'Tailwind CSS',
@@ -71,6 +68,7 @@ const posts = (await getPosts()).slice(0, 3)
                   logo: 'next.png',
                   alt: 'NextJS',
                   href: 'https://nextjs.org',
+                  // class: '!aspect-[1/1]',
                 },
                 {
                   logo: 'astro.png',
@@ -81,6 +79,11 @@ const posts = (await getPosts()).slice(0, 3)
                   logo: 'vercel.png',
                   alt: 'Vercel',
                   href: 'https://vercel.com',
+                },
+                {
+                  logo: 'ts.png',
+                  alt: 'TypeScript',
+                  href: 'https://typescriptlang.org',
                 },
               ].map((item) => (
                 <a href={item.href} target="_blank" class="hover:scale-110">
@@ -176,6 +179,42 @@ const posts = (await getPosts()).slice(0, 3)
               />
             ))
           }
+        </Card>
+        <Card class="space-y-2">
+          <h4>Get in Touch</h4>
+          <p class="font-mono text-gray-400 text-sm">
+            If you have any questions, or just would like to chat, I would love
+            to hear from you!
+          </p>
+          <div class="flex flex-row space-x-2">
+            {
+              [
+                {
+                  icon: 'mdi:linkedin',
+                  href: 'https://www.linkedin.com/in/will-carkner-518b77228/',
+                },
+                {
+                  icon: 'mdi:github',
+                  href: 'https://github.com/will-carkner',
+                },
+                {
+                  icon: 'ic:round-email',
+                  href: 'mailto:will@willcarkner.com',
+                },
+              ].map((item) => (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  class="hover:duration-300 hover:scale-110"
+                >
+                  <Icon
+                    class="w-10 h-10 text-gray-300 hover:text-gray-200"
+                    name={item.icon}
+                  />
+                </a>
+              ))
+            }
+          </div>
         </Card>
       </div>
     </div>
