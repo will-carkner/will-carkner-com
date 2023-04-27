@@ -33,13 +33,10 @@ const posts = (await getPosts()).slice(0, 3)
                       Date.now() - new Date(2006, 8, 28).getTime()
                     ).getUTCFullYear() - 1970
                   )
-                }{' '}year old <b>full-stack</b> developer and <b
-                  >builder of cool things</b
-                >, based in Dublin.
-              </p>
-              <p class="text-gray-400 font-mono bold-slate-p text-justify">
-                Currently in Secondary School, I'm <b>self-taught</b> and have a
-                <b>passion</b> for building tech to <b>make an impact</b>.
+                }{' '}
+                old <b>self-taught full-stack developer</b>, based in Dublin. I
+                <b>love</b> to build stuff! Particularly, physical and web products
+                that could have a <b>big impact on the world</b>.
               </p>
             </div>
           </Card>
@@ -141,15 +138,9 @@ const posts = (await getPosts()).slice(0, 3)
         <Card class="space-y-4">
           <h4>My Work</h4>
           <!-- TODO: Add animations -->
+          <!-- TODO: Change design completely -->
           {
             [
-              {
-                title: 'This Site',
-                tags: ['Astro', 'Tailwind', 'Vercel'],
-                image: 'personal.jpg',
-                url: 'https://willcarkner.com',
-                // class: 'aspect-[3/2]',
-              },
               {
                 title: 'Founders Site',
                 tags: ['Astro', 'Tailwind', 'Client Work'],
@@ -164,10 +155,11 @@ const posts = (await getPosts()).slice(0, 3)
                 url: 'https://bloodbox.info',
               },
               {
-                title: 'dotheylike.me',
-                tags: ['NextJS', 'Tailwind', 'GPT-3'],
-                image: 'dotheylike.png',
-                url: 'https://dotheylike.me',
+                title: 'Congestion Pricing',
+                tags: ['Research', 'Economics', 'Data'],
+                image: 'congestion.jpg',
+                class: 'aspect-[3/2]',
+                url: 'https://drive.google.com/file/d/1KlU16SRe7rNavkPd86SrDLHjNzC_nRws/view?usp=sharing',
               },
             ].map((item) => (
               <Project
