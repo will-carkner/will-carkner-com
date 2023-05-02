@@ -19,10 +19,12 @@ const { title, tags, image, url, class: className } = Astro.props
     />
     <div class="flex flex-col space-y-2 text-left">
       <p class="sm:text-3xl text-2xl font-semibold">{title}</p>
-      <div class="flex flex-row space-x-1 sm:space-x-2">
+      <div
+        class="flex flex-col sm:flex-row space-y-1 space-x-0 sm:space-y-0 sm:space-x-2"
+      >
         {
           tags.map((tag) => (
-            <span class="bg-slate-600 h-fit bg-opacity-50 text-xs shadow-lg rounded-md px-2 py-1 text-white ">
+            <span class="bg-slate-600 w-fit h-fit bg-opacity-50 text-xs shadow-lg rounded-md px-2 py-1 text-white ">
               {tag}{' '}
             </span>
           ))
