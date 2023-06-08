@@ -34,11 +34,29 @@ const posts = (await getPosts()).slice(0, 3)
                     ).getUTCFullYear() - 1970
                   )
                 }{' '}
-                year old <b>self-taught full-stack developer</b>, based in
-                Dublin. I
-                <b>love</b> to build stuff! Particularly, physical and web products
-                that could have a <b>big impact on the world</b>.
+                year old <b>full-stack developer</b>, based in Dublin. I
+                <b>love</b> to build stuff!
+              </p><p class="text-gray-400 font-mono bold-slate-p text-justify">
+                I work on physical and web products that could have a <b
+                  >big impact on the world</b
+                >.
               </p>
+              <div
+                class="flex flex-row space-x-1 items-center justify-center w-32 bg-white rounded-2xl p-1"
+              >
+                <Icon
+                  class="w-6 h-6"
+                  name="mdi:github"
+                  color="black"
+                  stroke-width="1.5"
+                />
+                <a
+                  class="text-black text-xs font-bold no-underline"
+                  href="https://github.com/will-carkner"
+                >
+                  FOLLOW ME
+                </a>
+              </div>
             </div>
           </Card>
         </div>
@@ -176,8 +194,7 @@ const posts = (await getPosts()).slice(0, 3)
         <Card class="space-y-2">
           <h4>Get in Touch</h4>
           <p class="font-mono text-gray-400 text-sm">
-            If you have any questions, or just would like to chat, I would love
-            to hear from you!
+            I'm always looking for opportunities and I love meeting new people!
           </p>
           <div class="flex flex-row space-x-2">
             {
