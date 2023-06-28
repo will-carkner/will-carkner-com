@@ -5,17 +5,16 @@ import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
 
 const posts = await getPosts()
-// TODO: make these based on posts I've set favourite = true
-const shortPosts = posts.slice(0, 3)
+// const shortPosts = posts.slice(0, 3)
 ---
 
 <Layout title="Blog | Will Carkner">
   <Section>
     <h2>Writings</h2>
-    <ArticleDisplay title="My Best" posts={shortPosts} />
+    <!-- <ArticleDisplay title="My Best" posts={shortPosts} /> -->
     <ArticleDisplay title="All Posts" posts={posts} />
     <a
-      class="text-white text-lg hover:text-sky-400 hover:cursor-pointer"
+      class="text-gray-400 font-mono text-lg hover:text-sky-400 hover:cursor-pointer"
       href="/blog/rss.xml">View RSS</a
     >
   </Section>

@@ -42,16 +42,16 @@ const posts = (await getPosts()).slice(0, 3)
                 >.
               </p>
               <div
-                class="flex flex-row space-x-1 items-center justify-center w-32 bg-white rounded-2xl p-1"
+                class="flex hover:scale-105 border border-gray-600 flex-row space-x-1 items-center justify-center w-32 bg-black rounded-2xl p-1"
               >
                 <Icon
                   class="w-6 h-6"
                   name="mdi:github"
-                  color="black"
+                  color="white"
                   stroke-width="1.5"
                 />
                 <a
-                  class="text-black text-xs font-bold no-underline"
+                  class="text-white text-xs font-bold no-underline"
                   href="https://github.com/will-carkner"
                 >
                   FOLLOW ME
@@ -144,7 +144,7 @@ const posts = (await getPosts()).slice(0, 3)
                   <a href={item.href} target="_blank" class="hover:scale-110">
                     <img
                       alt={item.alt}
-                      class="w-20 h-20 rounded-lg"
+                      class="w-20 h-20 border border-gray-600 rounded-lg"
                       src={item.img}
                     />
                   </a>
@@ -155,14 +155,12 @@ const posts = (await getPosts()).slice(0, 3)
         </Card>
         <!-- Projects -->
         <Card class="space-y-4">
-          <h4>My Work</h4>
-          <!-- TODO: Add animations -->
-          <!-- TODO: Change design completely -->
+          <h4>Experience</h4>
           {
             [
               {
                 title: 'Founders Site',
-                tags: ['Astro', 'Tailwind', 'Client Work'],
+                tags: ['Astro', 'Tailwind', 'Client'],
                 image: 'founders.jpg',
                 url: 'https://joinfounders.co',
                 class: '',
@@ -172,13 +170,6 @@ const posts = (await getPosts()).slice(0, 3)
                 tags: ['Hardware', 'Research', 'MedTech'],
                 image: 'bloodbox.jpg',
                 url: 'https://bloodbox.info',
-              },
-              {
-                title: 'Congestion Pricing',
-                tags: ['Research', 'Economics', 'Data'],
-                image: 'congestion.jpg',
-                class: 'aspect-[3/2]',
-                url: 'https://drive.google.com/file/d/1KlU16SRe7rNavkPd86SrDLHjNzC_nRws/view?usp=sharing',
               },
             ].map((item) => (
               <Project
@@ -190,12 +181,22 @@ const posts = (await getPosts()).slice(0, 3)
               />
             ))
           }
+          <div class="flex flex-row space-x-4">
+            <a
+              class="no-underline border hover:scale-110 border-gray-600 px-2 py-1 rounded-lg font-mono"
+              href="/cv">Formal CV</a
+            >
+            <a
+              class="no-underline border hover:scale-110 border-gray-600 px-2 py-1 rounded-lg font-mono"
+              href="/blog/what-im-working-on">Current</a
+            >
+          </div>
         </Card>
         <!-- Music -->
         <Card>
           <div class="flex flex-row items-center space-x-4 justify-center">
             <img
-              class="w-20 h-20 rounded-md"
+              class="w-20 h-20 hover:scale-110 hover:cursor-pointer border border-gray-600 rounded-md"
               src="lofi.png"
               alt="star wars lofi album"
             />
@@ -211,42 +212,43 @@ const posts = (await getPosts()).slice(0, 3)
               </p>
             </div>
           </div>
-        </Card>
-        <!-- Contact -->
-        <Card class="space-y-2">
-          <h4>Get in Touch</h4>
-          <p class="font-mono text-gray-400 text-sm">
-            I'm always looking for opportunities and I love meeting new people!
-          </p>
-          <div class="flex flex-row space-x-2">
-            {
-              [
-                {
-                  icon: 'mdi:linkedin',
-                  href: 'https://www.linkedin.com/in/will-carkner-518b77228/',
-                },
-                {
-                  icon: 'mdi:github',
-                  href: 'https://github.com/will-carkner',
-                },
-                {
-                  icon: 'ic:round-email',
-                  href: 'mailto:will@willcarkner.com',
-                },
-              ].map((item) => (
-                <a
-                  href={item.href}
-                  target="_blank"
-                  class="hover:duration-300 hover:scale-110"
-                >
-                  <Icon
-                    class="w-10 h-10 text-gray-300 hover:text-gray-200"
-                    name={item.icon}
-                  />
-                </a>
-              ))
-            }
-          </div>
+          <!-- Contact -->
+          <Card class="space-y-2">
+            <h4>Get in Touch</h4>
+            <p class="font-mono text-gray-400 text-sm">
+              I'm always looking for opportunities and I love meeting new
+              people!
+            </p>
+            <div class="flex flex-row space-x-2">
+              {
+                [
+                  {
+                    icon: 'mdi:linkedin',
+                    href: 'https://www.linkedin.com/in/will-carkner-518b77228/',
+                  },
+                  {
+                    icon: 'mdi:github',
+                    href: 'https://github.com/will-carkner',
+                  },
+                  {
+                    icon: 'ic:round-email',
+                    href: 'mailto:will@willcarkner.com',
+                  },
+                ].map((item) => (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    class="hover:duration-300 hover:scale-110"
+                  >
+                    <Icon
+                      class="w-10 h-10 text-gray-300 hover:text-gray-200"
+                      name={item.icon}
+                    />
+                  </a>
+                ))
+              }
+            </div>
+          </Card>
         </Card>
       </div>
     </div>

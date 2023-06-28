@@ -13,8 +13,10 @@ const { posts, title, home } = Astro.props
 ---
 
 <Card parentClass="w-full" class="space-y-4">
-  <h4>{title}</h4>
-  <div class="w-full divide-y-2 space-y-2">
+  <a class="no-underline" href="/blog">
+    <h4>{title}</h4>
+  </a>
+  <div class="w-full">
     <ul>
       {posts.map((post) => <ArticleLink post={post} />)}
     </ul>
