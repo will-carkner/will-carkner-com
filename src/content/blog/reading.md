@@ -42,7 +42,12 @@ Currently my reading is not as varied as I would like it to be, it has too much 
 Overall, books have had a large impact on my life. Here are some of the books that have served me well:
 
 - [Sapiens](https://www.goodreads.com/book/show/23692271-sapiens) by Yuval Noah Harari
+  - This was such a good read. His style is simple to follow but he still is able to convey complex ideas. I would recommend this to anyone.
 - [A long walk to freedom](https://www.goodreads.com/book/show/318431.Long_Walk_to_Freedom) by Nelson Mandela
+  - A long book, but totally worth it. The story of Mandela's life is somehow saddening, inspiring, motivating, shocking, and interesting all at the same time.
 - [Atomic Habits](https://www.goodreads.com/book/show/40121378-atomic-habits) by James Clear
+  - This should be classified as an essential book for new humans. Bold prediction - my potential children will be reading this in school in place of current classics.
 - [Digital Minimalism](https://www.goodreads.com/book/show/40672036-digital-minimalism) by Cal Newport
+  - What I like about this book is that it gives actionable takeaways. For example, I no longer use social media apps (instead use the browser if I need to check). I also have my phone on complete greyscale, which just makes it much less attractive to my simple mind.
 - [The mom test](https://www.goodreads.com/book/show/52283963-the-mom-test) by Rob Fitzpatrick
+  - If you're trying to know what users think or want, this is basically a full solve. Such a quick read too.

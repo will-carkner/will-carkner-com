@@ -17,14 +17,14 @@ const posts = (await getPosts()).slice(0, 3)
       <!-- ABOUT ME -->
       <div class="md:flex-1 space-y-8">
         <div
-          class="rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 p-0.5"
+          class="rounded-xl bg-gradient-to-r animate-gradient-x from-blue-600 via-purple-600 to-violet-600 p-0.5"
         >
           <Card class="items-left !shadow-none">
             <div class="flex-col text-left space-y-4 flex">
               <img
                 alt="Will Carkner"
                 src="will.jpg"
-                class="rounded-lg w-24 h-24"
+                class="rounded-lg w-24 h-24 border border-gray-600"
               /><h2>Will Carkner</h2>
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
                 I'm a {
@@ -42,7 +42,7 @@ const posts = (await getPosts()).slice(0, 3)
                 >.
               </p>
               <div
-                class="flex hover:scale-105 border border-gray-600 flex-row space-x-1 items-center justify-center w-32 bg-black rounded-2xl p-1"
+                class="flex hover:scale-105 duration-300 border border-gray-600 flex-row space-x-1 items-center justify-center w-32 bg-black rounded-2xl p-1"
               >
                 <Icon
                   class="w-6 h-6"
@@ -167,9 +167,16 @@ const posts = (await getPosts()).slice(0, 3)
               },
               {
                 title: 'BloodBox',
-                tags: ['Hardware', 'Research', 'MedTech'],
+                tags: ['Hardware', 'ML', 'MedTech'],
                 image: 'bloodbox.jpg',
                 url: 'https://bloodbox.info',
+              },
+              {
+                title: 'Research',
+                tags: ['Economics', 'Genomics', 'AI'],
+                image: 'congestion.jpg',
+                url: 'https://willcarkner.com/blog/research',
+                class: 'aspect-[3/2]',
               },
             ].map((item) => (
               <Project
@@ -182,21 +189,32 @@ const posts = (await getPosts()).slice(0, 3)
             ))
           }
           <div class="flex flex-row space-x-4">
-            <a
-              class="no-underline border hover:scale-110 border-gray-600 px-2 py-1 rounded-lg font-mono"
-              href="/cv">Formal CV</a
-            >
-            <a
-              class="no-underline border hover:scale-110 border-gray-600 px-2 py-1 rounded-lg font-mono"
-              href="/blog/what-im-working-on">Current</a
-            >
+            {
+              [
+                {
+                  title: 'Formal CV',
+                  href: '/cv',
+                },
+                {
+                  title: 'Current',
+                  href: '/blog/current',
+                },
+              ].map((item) => (
+                <a
+                  class="no-underline border hover:scale-110 border-gray-600 px-2 py-1 rounded-lg font-mono"
+                  href={item.href}
+                >
+                  {item.title}
+                </a>
+              ))
+            }
           </div>
         </Card>
         <!-- Music -->
         <Card>
           <div class="flex flex-row items-center space-x-4 justify-center">
             <img
-              class="w-20 h-20 hover:scale-110 hover:cursor-pointer border border-gray-600 rounded-md"
+              class="w-20 h-20 hover:scale-110 duration-300 hover:cursor-pointer border border-gray-600 rounded-md"
               src="lofi.png"
               alt="star wars lofi album"
             />
