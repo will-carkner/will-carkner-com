@@ -18,7 +18,7 @@ const { title, pubDate } = Astro.props
         Published on<FormattedDate date={pubDate} />
       </p>
     </div>
-    <Section class="text-justify">
+    <Section class="text-left md:text-justify">
       <article>
         <BlogCard>
           <slot />
@@ -51,10 +51,11 @@ const { title, pubDate } = Astro.props
     h4 {
       @apply pt-1 pb-[0.5] text-base font-bold md:text-lg;
     }
-
-    li,
+    li {
+      @apply p-[0.5];
+    }
     p {
-      @apply font-mono text-slate-300;
+      @apply text-slate-300;
     }
 
     b,
