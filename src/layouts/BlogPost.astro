@@ -10,7 +10,7 @@ type Props = CollectionEntry<'blog'>['data']
 const { title, pubDate } = Astro.props
 ---
 
-<Layout title={title}>
+<Layout show={true} title={title}>
   <Section class="!mt-8">
     <div class="space-y-2">
       <h2>{title}</h2>
