@@ -27,14 +27,11 @@ const posts = (await getPosts()).slice(0, 3)
                 class="rounded-lg w-24 h-24 border border-gray-600"
               /><h2>Will Carkner</h2>
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
-                I'm a {
-                  Math.abs(
-                    new Date(
-                      Date.now() - new Date(2006, 8, 28).getTime()
-                    ).getUTCFullYear() - 1970
-                  )
-                }{' '}
-                year old <b>full-stack developer</b>, based in Dublin. I
+                I'm a
+                {
+                  new Date().getFullYear() -
+                    new Date('August 28, 2006').getFullYear()
+                } year old <b>full-stack developer</b>, based in Dublin. I
                 <b>love</b> to build stuff!
               </p><p class="text-gray-400 font-mono bold-slate-p text-justify">
                 I work on physical and web products that could have a <b
@@ -63,7 +60,7 @@ const posts = (await getPosts()).slice(0, 3)
         <!-- Writing -->
         <ArticleDisplay home={true} title="Writings" posts={posts} />
         <!-- Stack -->
-        <Card class="space-y-2">
+        <!-- <Card class="space-y-2">
           <h4>My Stack</h4>
           <p class="text-gray-400 font-mono">From idea to implementation</p>
           <div class="grid grid-cols-3 py-3 justify-center items-center gap-4">
@@ -107,14 +104,35 @@ const posts = (await getPosts()).slice(0, 3)
                 </a>
               ))
             }
+          </div> -->
+        <!-- </Card> -->
+        <!-- Music -->
+        <Card>
+          <div class="flex flex-row items-center space-x-4 justify-center">
+            <img
+              class="w-20 h-20 hover:scale-110 duration-300 hover:cursor-pointer border border-gray-600 rounded-md"
+              src="lofi.png"
+              alt="star wars lofi album"
+            />
+            <div class="flex flex-col text-left justify-center">
+              <h4 class="mb-1">Music for Focus</h4>
+              <p class="text-gray-400 font-mono bold-slate-p">
+                <b>Star Wars Lofi</b>: May the Force Be with You by
+                <a
+                  class="hover:cursor-pointer"
+                  href="https://music.apple.com/ca/album/star-wars-lofi-may-the-force-be-with-you-collection/1681000433"
+                  >Mik</a
+                >
+              </p>
+            </div>
           </div>
         </Card>
       </div>
       <!-- Podcasts -->
       <div class="md:flex-1 space-y-8">
-        <Card>
+        <!-- <Card>
           <div class="space-y-4">
-            <h4>Podcasts I Love</h4>
+            <h4>Content I Love</h4>
             <div
               class="flex flex-row space-x-2 md:space-x-4 items-center justify-center"
             >
@@ -126,9 +144,9 @@ const posts = (await getPosts()).slice(0, 3)
                     href: 'https://hubermanlab.com',
                   },
                   {
-                    img: 'pods/fridman.jpg',
-                    alt: 'lex fridman',
-                    href: 'https://lexfridman.com/podcast/',
+                    img: 'books',
+                    alt: 'books',
+                    href: '/blog/reading',
                   },
                   {
                     img: 'pods/hours.jpg',
@@ -152,7 +170,7 @@ const posts = (await getPosts()).slice(0, 3)
               }
             </div>
           </div>
-        </Card>
+        </Card> -->
         <!-- Projects -->
         <Card class="space-y-4">
           <h4>Experience</h4>
@@ -210,63 +228,81 @@ const posts = (await getPosts()).slice(0, 3)
             }
           </div>
         </Card>
-        <!-- Music -->
-        <Card>
-          <div class="flex flex-row items-center space-x-4 justify-center">
-            <img
-              class="w-20 h-20 hover:scale-110 duration-300 hover:cursor-pointer border border-gray-600 rounded-md"
-              src="lofi.png"
-              alt="star wars lofi album"
-            />
-            <div class="flex flex-col text-left justify-center">
-              <h4 class="mb-1">Music for Focus</h4>
-              <p class="text-gray-400 font-mono bold-slate-p">
-                <b>Star Wars Lofi</b>: May the Force Be with You by
+        <!-- Contact -->
+        <Card class="space-y-2">
+          <h4>Get in Touch</h4>
+          <p class="font-mono text-gray-400 text-sm bold-slate-p">
+            I'm <b>always</b> looking for opportunities and I <b
+              >love meeting new people</b
+            >!
+          </p>
+          <div class="flex flex-row space-x-2">
+            {
+              [
+                {
+                  icon: 'mdi:twitter',
+                  href: 'https://twitter.com/CarknerWill',
+                },
+                {
+                  icon: 'mdi:github',
+                  href: 'https://github.com/will-carkner',
+                },
+                {
+                  icon: 'ic:round-email',
+                  href: 'mailto:will@willcarkner.com',
+                },
+              ].map((item) => (
                 <a
-                  class="hover:cursor-pointer"
-                  href="https://music.apple.com/ca/album/star-wars-lofi-may-the-force-be-with-you-collection/1681000433"
-                  >Mik</a
+                  href={item.href}
+                  target="_blank"
+                  class="hover:duration-300 hover:scale-110"
                 >
-              </p>
-            </div>
+                  <Icon
+                    class="w-10 h-10 text-gray-300 hover:text-sky-400"
+                    name={item.icon}
+                  />
+                </a>
+              ))
+            }
           </div>
-          <!-- Contact -->
-          <Card class="space-y-2">
-            <h4>Get in Touch</h4>
-            <p class="font-mono text-gray-400 text-sm">
-              I'm always looking for opportunities and I love meeting new
-              people!
-            </p>
-            <div class="flex flex-row space-x-2">
+          <a
+            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
+            href="/blog/contact"
+          >
+            Learn More
+          </a>
+        </Card>
+        <!--PHOTOS -->
+        <Card>
+          <div class="space-y-4">
+            <h4>Recent Photos</h4>
+            <div
+              class="flex flex-row space-x-2 md:space-x-4 items-center justify-center"
+            >
               {
                 [
                   {
-                    icon: 'mdi:linkedin',
-                    href: 'https://www.linkedin.com/in/will-carkner-518b77228/',
+                    img: 'cool-photos/beach.jpeg',
+                    alt: 'Italian Beach',
                   },
                   {
-                    icon: 'mdi:github',
-                    href: 'https://github.com/will-carkner',
+                    img: 'cool-photos/city.jpeg',
+                    alt: 'Matera',
                   },
                   {
-                    icon: 'ic:round-email',
-                    href: 'mailto:will@willcarkner.com',
+                    img: 'cool-photos/town.jpeg',
+                    alt: 'Italian town',
                   },
                 ].map((item) => (
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    class="hover:duration-300 hover:scale-110"
-                  >
-                    <Icon
-                      class="w-10 h-10 text-gray-300 hover:text-gray-200"
-                      name={item.icon}
-                    />
-                  </a>
+                  <img
+                    alt={item.alt}
+                    class="w-30 h-40 border border-gray-600 rounded-lg"
+                    src={item.img}
+                  />
                 ))
               }
             </div>
-          </Card>
+          </div>
         </Card>
       </div>
     </div>

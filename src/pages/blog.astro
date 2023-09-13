@@ -5,7 +5,6 @@ import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
 
 const posts = await getPosts()
-// const shortPosts = posts.slice(0, 3)
 ---
 
 <Layout show={true} title="Blog | Will Carkner">
@@ -14,7 +13,7 @@ const posts = await getPosts()
     <!-- <ArticleDisplay title="My Best" posts={shortPosts} /> -->
     <ArticleDisplay title="All Posts" posts={posts} />
     <a
-      class="text-gray-400 font-mono text-lg hover:text-sky-400 hover:cursor-pointer"
+      class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
       href="/blog/rss.xml">View RSS</a
     >
   </Section>
