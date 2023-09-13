@@ -13,9 +13,6 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^3.1.1
     version: 3.1.1(astro@3.0.13)(tailwindcss@3.3.1)
-  '@splitbee/web':
-    specifier: ^0.3.0
-    version: 0.3.0
   '@tailwindcss/nesting':
     specifier: 0.0.0-insiders.565cd3e
     version: 0.0.0-insiders.565cd3e(postcss@8.4.29)
@@ -928,10 +925,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.29.1
-    dev: false
-
-  /@splitbee/web@0.3.0:
-    resolution: {integrity: sha512-jNPDKg0GQGa4jCaBc6JQsv0NHmBA80WCwZE49nFyhcbo32WF0GyqXeice7ZApy7OUHI16bAUAzm4MOQw3gvxfQ==}
     dev: false
 
   /@tailwindcss/nesting@0.0.0-insiders.565cd3e(postcss@8.4.29):

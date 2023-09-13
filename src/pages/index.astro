@@ -6,9 +6,6 @@ import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
 import Project from '../components/Project.astro'
 import { Icon } from 'astro-icon'
-import splitbee from '@splitbee/web'
-
-splitbee.init()
 
 const posts = (await getPosts()).slice(0, 3)
 ---

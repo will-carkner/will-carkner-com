@@ -8,7 +8,7 @@ const { title, show } = Astro.props
 import Nav from '../components/Nav.astro'
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html
   lang="en"
   class="min-h-screen text-white selection:bg-transparent selection:text-sky-400"
@@ -19,6 +19,7 @@ import Nav from '../components/Nav.astro'
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script async src="https://cdn.splitbee.io/sb.js"></script>
   </head>
   <body class="flex flex-col justify-between items-center">
     <>
