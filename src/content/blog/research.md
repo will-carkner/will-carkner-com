@@ -17,7 +17,7 @@ I like to sample a lot of things right now, such as metagenomics, AI research, b
 
 Intersections are where my ideas, solutions, and greatest intrigue comes from. By blending things that "aren't meant to be blended", you are able to go where none before have gone, and reach novelty.
 
-## Research -> Product
+## Research &rarr; Product
 
 The path from research to a product to improve the world is understated in both its feasibility and importance. In that way, I kind of believe that niche research is the most valuable.
 
@@ -25,8 +25,8 @@ Not only does it allow you to have novelty, it also allows for an easier entranc
 
 ## Takeaway
 
-Solving real-world problems is in my nature. It's part of who I am and what I love to do.
+- Solving real-world problems is in my nature. It's part of who I am and what I love to do.
 
-It's important to have variety in your research, especially when you're young. This allows you to intersect fields.
+- It's important to have variety in your research, especially when you're young. This allows you to intersect fields.
 
-Research can often lead to products. This works best when you research at the midpoint of novelty and importance.
+- Research can often lead to products. This works best when you research at the midpoint of novelty and importance.

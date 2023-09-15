@@ -127,6 +127,51 @@ const posts = (await getPosts()).slice(0, 3)
             </div>
           </div>
         </Card>
+        <!-- Contact -->
+        <Card class="space-y-2">
+          <h4>Get in Touch</h4>
+          <p class="font-mono text-gray-400 text-sm bold-slate-p">
+            I'm <b>always</b> looking for opportunities and I <b
+              >love meeting new people</b
+            >!
+          </p>
+          <div class="flex flex-row space-x-2">
+            {
+              [
+                {
+                  icon: 'mdi:twitter',
+                  href: 'https://twitter.com/CarknerWill',
+                },
+                {
+                  icon: 'mdi:github',
+                  href: 'https://github.com/will-carkner',
+                },
+                {
+                  icon: 'ic:round-email',
+                  href: 'mailto:will@willcarkner.com',
+                },
+              ].map((item) => (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  class="hover:duration-300 hover:scale-110"
+                >
+                  <Icon
+                    class="w-10 h-10 text-gray-300 hover:text-sky-400"
+                    name={item.icon}
+                  />
+                </a>
+              ))
+            }
+          </div>
+          <a
+            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
+            href="/blog/contact"
+          >
+            Learn More
+          </a>
+        </Card>
+ 
       </div>
       <!-- Podcasts -->
       <div class="md:flex-1 space-y-8">
@@ -228,51 +273,38 @@ const posts = (await getPosts()).slice(0, 3)
             }
           </div>
         </Card>
-        <!-- Contact -->
-        <Card class="space-y-2">
-          <h4>Get in Touch</h4>
-          <p class="font-mono text-gray-400 text-sm bold-slate-p">
-            I'm <b>always</b> looking for opportunities and I <b
-              >love meeting new people</b
-            >!
-          </p>
-          <div class="flex flex-row space-x-2">
+        <!-- CORE IDEAS -->
+        <Card class='space-y-2'>
+          <h4>Core Ideas</h4>
+          <ul class="flex flex-row space-x-4">
             {
               [
                 {
-                  icon: 'mdi:twitter',
-                  href: 'https://twitter.com/CarknerWill',
+                  idea: 'Learn',
+                  href: '/blog/learn',
                 },
                 {
-                  icon: 'mdi:github',
-                  href: 'https://github.com/will-carkner',
+                  idea: 'Build',
+                  href: '/blog/build',
                 },
                 {
-                  icon: 'ic:round-email',
-                  href: 'mailto:will@willcarkner.com',
+                  idea: 'Focus',
+                  href: '/blog/impact',
                 },
               ].map((item) => (
-                <a
-                  href={item.href}
-                  target="_blank"
-                  class="hover:duration-300 hover:scale-110"
-                >
-                  <Icon
-                    class="w-10 h-10 text-gray-300 hover:text-sky-400"
-                    name={item.icon}
-                  />
-                </a>
+                <li>
+                  <a href={item.href}>
+                    <div class="font-mono bold-slate-p">
+                      {item.idea}<span class="!no-underline">.</span>
+                    </div>
+                  </a>
+                </li>
               ))
             }
-          </div>
-          <a
-            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
-            href="/blog/contact"
-          >
-            Learn More
-          </a>
+          </ul>
+          <div class="text-gray-400 bold-slate-p">I aim to <b>constantly learn</b>, <b>build tangible things</b>, and <b>focus on impact</b>.</div>
         </Card>
-        <!--PHOTOS -->
+       <!--PHOTOS -->
         <Card>
           <div class="space-y-4">
             <h4>Recent Photos</h4>
@@ -304,7 +336,7 @@ const posts = (await getPosts()).slice(0, 3)
             </div>
           </div>
         </Card>
-      </div>
+              </div>
     </div>
   </Section>
 </Layout>

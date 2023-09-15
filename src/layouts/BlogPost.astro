@@ -56,6 +56,7 @@ const { title, pubDate } = Astro.props
     }
     p {
       @apply text-slate-300;
+      @apply mt-2;
     }
 
     b,
@@ -66,11 +67,8 @@ const { title, pubDate } = Astro.props
     strong,
     em,
     a {
-      @apply !px-0;
-    }
-
-    a {
       @apply text-slate-200;
+      @apply !px-0;
     }
 
     pre {
@@ -79,10 +77,6 @@ const { title, pubDate } = Astro.props
 
     blockquote {
       @apply ml-2 border-l-4 border-slate-200 italic;
-
-      p {
-        @apply text-slate-200;
-      }
     }
 
     table {

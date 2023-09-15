@@ -20,9 +20,10 @@ I'd be really interested to talk to you if you also find some of these interesti
 - What is the defining feature of consciousness?
 - How many calories does it take for an adult man to dig a 500m deep hole?
 - Do humans have an upper limit on lifespan?
-
-I have many more, so let's talk!
+- And many more!
 
 ## How
 
 We can meet in person in Dublin, or if I'm in your city we can meet. I'm also open to meeting online, but I prefer in person.
+
+Reach out to me via twitter or email, and let's talk!
