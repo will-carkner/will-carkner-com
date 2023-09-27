@@ -51,3 +51,40 @@ Overall, books have had a large impact on my life. Here are some of the books th
   - What I like about this book is that it gives actionable takeaways. For example, I no longer use social media apps (instead use the browser if I need to check). I also have my phone on complete greyscale, which just makes it much less attractive to my simple mind.
 - [The mom test](https://www.goodreads.com/book/show/52283963-the-mom-test) by Rob Fitzpatrick
   - If you're trying to know what users think or want, this is basically a full solve. Such a quick read too.
+
+### Full list
+
+Here is a list of books I have read to date, that I have recorded. Italic means that I would/have re-read it, which is my bar for quality right now.
+
+- _Make something wonderful - Steve Jobs_
+- The hitchhiker's guide to the galaxy - Douglas Adams
+- _Outlive - Peter Attia_
+- Second brain - Tiago Forte
+- Snow crash - Neal Stephenson
+- Do epic shit - Ankur Warikoo
+- Looking for alaska - John Green
+- Six easy pieces - Richard Feynman
+- 4000 weeks - Oliver Burkeman
+- _Ego is the enemy - Ryan Holiday_
+- The art of war - Sun Tzu
+- Super forecasting - Dan Gardener
+- _0 to 1 - Peter Thiel_
+- To kill a mockingbird - Harper Lee
+- Skin in the game - Nassim Taleb
+- _Hell yeah or no - Derek Sivers_
+- Surely you're joking, mr. feynmann - Richard Feynman
+- The power of habit - Charles Duhigg
+- _Atomic habits - James Clear_
+- Net positive - Paul Polman
+- _Sapiens - Yuval Noah Harari_
+- Digital minimalism - Cal Newport
+- MAKE - Pieter Levels
+- _Long walk to freedom - Nelson Mandela_
+- _Man's search for meaning = Viktor Frankl_
+- Freakonomics - Stephen Levitt
+- The mom test - Rob Fitzpatrick
+- Doing good better - Will MacAskill
+- The precipice - Toby Ord
+- 80,000 hours - Benjamin Todd
+- _The psychology of money - Morgan Housel_
+- Never split the difference - Chris Voss
