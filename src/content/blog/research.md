@@ -1,7 +1,6 @@
 ---
 title: 'The role of research'
 pubDate: 'Aug 31 2023'
-published: true
 ---
 
 Working on hard problems is the form of mental struggle I actually enjoy. The combination of new ideas, old methods, and ambitious people can lead to incredible outcomes. This seems obvious but is in fact crucial.

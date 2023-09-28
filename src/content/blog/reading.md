@@ -1,7 +1,6 @@
 ---
 title: 'Reading'
 pubDate: 'Jun 29 2023'
-published: true
 ---
 
 ### General Notes

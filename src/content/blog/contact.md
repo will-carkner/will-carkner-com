@@ -1,7 +1,6 @@
 ---
 title: "Let's Talk"
 pubDate: 'Jun 1 2023'
-published: true
 ---
 
 I love meeting new people, getting exposed to new ideas, having a good time, playing sports, and talking about challenging topics.
