@@ -1,6 +1,7 @@
 ---
 title: 'Current endeavours'
 pubDate: 'Jul 15 2023'
+published: true
 ---
 
 ### At the moment
