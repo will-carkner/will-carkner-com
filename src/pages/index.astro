@@ -340,36 +340,61 @@ const posts = (await getPosts()).slice(0, 3)
           </div>
         </Card>
         <!-- WORKOUTS -->
-        <!-- <Card>
+        <Card>
           <div class="space-y-2">
             <h4>Exercise</h4>
-            <p class="text-gray-400">Zone 2 cardio (running, cycling, swimming) and strength + power training</p>
-            <div
-              class="flex flex-row space-x-2 md:space-x-4 items-center justify-center">
+            <p class="text-gray-400">
+              Zone 2 cardio (running, cycling, swimming) and strength + power
+              training
+            </p>
+            <div class="flex flex-col space-y-2 items-left justify-left">
               {
                 [
                   {
                     type: 'Upper Strength',
-                    desc: 'test',
+                    desc: (
+                      <>
+                        <li>push press</li>
+                        <li>bench/incline press</li>
+                        <li>pull up</li>
+                        <li>t bar row</li>
+                      </>
+                    ),
                   },
                   {
                     type: 'Lower Strength',
-                    desc: 'test',
+                    desc: (
+                      <>
+                        <li>hang snatch</li>
+                        <li>bulgarian split squat</li>
+                        <li>back squat</li>
+                        <li>weighted jump</li>
+                      </>
+                    ),
                   },
                   {
                     type: 'Impulse',
-                    desc: 'test',
+                    desc: (
+                      <>
+                        <li>power clean</li>
+                        <li>front squat</li>
+                        <li>nordic hamstring curl</li>
+                        <li>standing calf raise</li>
+                      </>
+                    ),
                   },
                 ].map((item) => (
-                  <div class="flex flex-col space-y-2">
-                    <p class="font-bold">{item.type}</h4>
-                    <p>{item.desc}</p>
+                  <div class="flex flex-col">
+                    <p class="font-bold text-left">{item.type}</p>
+                    <ul class="p-1 px-2 border shadow-slate-900 rounded-xl text-left border-gray-600 grid grid-cols-2">
+                      {item.desc}
+                    </ul>
                   </div>
                 ))
               }
             </div>
           </div>
-        </Card> -->
+        </Card>
       </div>
     </div>
   </Section>
