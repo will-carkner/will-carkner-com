@@ -1,6 +1,4 @@
 import { defineConfig } from 'astro/config'
-import vercel from '@astrojs/vercel/serverless'
-import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 
@@ -8,7 +6,6 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
   site: 'https://willcarkner.com',
   integrations: [
-    mdx(),
     sitemap(),
     tailwind({
       config: {
@@ -16,4 +13,5 @@ export default defineConfig({
       },
     }),
   ],
+  server: { port: 3000, host: true },
 })
