@@ -22,6 +22,36 @@ I sometimes think it sounds egotistical to believe that you can learn faster tha
 
 One of the most important things for any learning is a sense of concrete progress. Too often I feel stuck in what I am doing and this leads to a lack of motivation.
 
+By making small steps to achieve my learning goals, I am able to wire my brain with a reward pipeline that does not get discouraged.
+
+Sometimes small steps are not enough, and you need external markers to give a concrete sense of progress.
+
+### Valuable intent
+
+This sense of progress can come in many forms, but I find that the most potent is valuable intent.
+
+Valuable intent is feedback/advice/comments from individuals that has both value (monetary or otherwise) and relevance. This could be as simple as someone purchasing a product that you have made.
+
 ## Feedback loops
 
+Feedback loops are crucial when I want to learn something myself. This is most true in something like coding where the solution created either works or doesn't, and you are able to find that result extremely quickly. This means that you can learn from what went wrong and iterate quickly.
+
+Through iteration you are able to rapidly increase your proficiency in a topic, and I find that deeper understanding is reached when you have first failed.
+
+Feedback loops can also come in the form of human feedback. This is why tutoring works so well. 1 on 1 time with a knowledgeable person creates practically instantaneous feedback loops, leading to hyper-rapid improvement. Bloom's 2 sigma problem reflects this.
+
 ## Deep dives
+
+Something I have tried recently is the concept of a "deep dive". I pick a topic that interests me, whether that be game theory, supplements, poker, or anything really, and expand on the knowledge I have on the topic.
+
+The way I usually do this is similar to the programming algorithm of depth-first-search. I start with the aspect of the topic that fascinates me, and then this often links into other areas of the field.
+
+Going down a rabbit hole for a few hours or even days is super enjoyable and it creates new links in my brain. If the knowledge is not applicable to me at that instant, I still have good faith that it will become useful in my future.
+
+Here is a link to the deep dive I have done recently on XXXXX: (link goes here when ready)
+
+## Takeaway
+
+- Learning fast is not only possible, it's the way to go in some cases
+- Concrete progress and feedback loops are an expressway to learning
+- Deep dives are an interesting way to learn about something different than what I'm used to
