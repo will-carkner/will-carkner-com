@@ -352,53 +352,47 @@ const posts = (await getPosts()).slice(0, 3)
                 [
                   {
                     type: 'Upper Strength',
-                    desc: (
-                      <>
-                        <li>push press</li>
-                        <li>bench/incline press</li>
-                        <li>pull up</li>
-                        <li>t bar row</li>
-                      </>
-                    ),
+                    desc: [
+                      'push press',
+                      'bench/incline press',
+                      'pull up',
+                      't bar row',
+                    ],
                   },
                   {
                     type: 'Lower Strength',
-                    desc: (
-                      <>
-                        <li>hang snatch</li>
-                        <li>bulgarian split squat</li>
-                        <li>back squat</li>
-                        <li>weighted jump</li>
-                      </>
-                    ),
+                    desc: [
+                      'hang snatch',
+                      'bulgarian split squat',
+                      'back squat',
+                      'weighted jump',
+                    ],
                   },
                   {
                     type: 'Impulse',
-                    desc: (
-                      <>
-                        <li>power clean</li>
-                        <li>front squat</li>
-                        <li>nordic hamstring curl</li>
-                        <li>standing calf raise</li>
-                      </>
-                    ),
+                    desc: [
+                      'power clean',
+                      'front squat',
+                      'nordic hamstring curl',
+                      'standing calf raise',
+                    ],
                   },
                   {
                     type: 'Plyometrics',
-                    desc: (
-                      <>
-                        <li>single to broad jump</li>
-                        <li>core work</li>
-                        <li>pogo jumps</li>
-                        <li>single leg box jump</li>
-                      </>
-                    ),
+                    desc: [
+                      'single to broad jump',
+                      'core work',
+                      'pogo jumps',
+                      'single leg box jump',
+                    ],
                   },
                 ].map((item) => (
                   <div class="flex flex-col">
                     <p class="font-bold text-left">{item.type}</p>
                     <ul class="p-1 px-2 border shadow-slate-900 rounded-xl text-left border-gray-600 grid grid-cols-2">
-                      {item.desc}
+                      {item.desc.map((thing) => (
+                        <li>&bullet; {thing}</li>
+                      ))}
                     </ul>
                   </div>
                 ))
