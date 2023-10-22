@@ -1,7 +1,7 @@
 ---
 title: 'Learn every day'
 pubDate: 'Sep 20 2023'
-published: false
+published: true
 ---
 
 One of the most fun things in life for me is learning. Learning makes me feel alive. New understanding builds on the old and makes me better.
