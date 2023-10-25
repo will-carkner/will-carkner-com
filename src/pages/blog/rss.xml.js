@@ -7,9 +7,11 @@ export async function get(context) {
     title: "Will Carkner's Blog",
     description: "Things I'm learning and thinking about",
     site: context.site,
-    items: posts.map((post) => ({
-      ...post.data,
-      link: `/blog/${post.slug}/`,
-    })),
+    items: posts
+      .filter((info) => info.data.published === true)
+      .map((post) => ({
+        ...post.data,
+        link: `/blog/${post.slug}/`,
+      })),
   })
 }
