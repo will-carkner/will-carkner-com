@@ -127,8 +127,11 @@ const { title, pubDate } = Astro.props
     p:has(> img) {
       @apply flex items-center justify-center;
     }
+    div {
+      @apply flex flex-col;
+    }
     img {
-      @apply w-1/2 rounded-xl;
+      @apply rounded-xl;
     }
   }
   article div *:first-child {
