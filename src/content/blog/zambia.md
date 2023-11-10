@@ -12,13 +12,13 @@ This was made possible because of our win of the "Science for Development" award
 
 I find the feelings I have on this trip pretty hard to grasp my mind around, but this essay attempts to summarize my current thoughts and leave some questions open.
 
-<div>
+<!-- <div>
 
 ![Group photo with ambassador](1.jpeg)
 
 ![University of Zambia](/src/content/blog/images/2.jpeg)
 
-</div>
+</div> -->
 
 # Feelings pre-trip
 
