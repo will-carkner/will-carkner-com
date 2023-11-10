@@ -14,7 +14,7 @@ I find the feelings I have on this trip pretty hard to grasp my mind around, but
 
 <div>
 
-![Group photo with ambassador](/src/content/blog/images/1.jpeg)
+![Group photo with ambassador](1.jpeg)
 
 ![University of Zambia](/src/content/blog/images/2.jpeg)
 
