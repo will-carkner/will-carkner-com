@@ -48,7 +48,7 @@ The way I usually do this is similar to the programming algorithm of depth-first
 
 Going down a rabbit hole for a few hours or even days is super enjoyable and it creates new links in my brain. If the knowledge is not applicable to me at that instant, I still have good faith that it will become useful in my future.
 
-Here is a link to the deep dive I have done recently on XXXXX: (link goes here when ready)
+Here is a link to the deep dive I have done recently on [metagenomics](https://willcarkner.notion.site/Metagenomics-b653d408706d47ce8432d5e8c84436e3?pvs=4)
 
 ## Takeaway
 
