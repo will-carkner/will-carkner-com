@@ -25,4 +25,6 @@ published: false
 
 # Working on hard things
 
-A general heuristic I have for what to work on is whether the work excites me.
+A general heuristic I have for what to work on is whether the work excites me
+
+I've started using a general heuristic to decide what to work on: whether the work excites me. This seems trivial but is in fact quite valuable.
