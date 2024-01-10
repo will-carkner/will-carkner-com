@@ -29,8 +29,14 @@ const posts = (await getPosts()).slice(0, 3)
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
                 I'm a
                 {
-                  new Date().getFullYear() -
-                    new Date('August 28, 2006').getFullYear()
+                  (
+                    (new Date().getTime() - new Date(2006, 8, 28).getTime()) /
+                    1000 /
+                    60 /
+                    60 /
+                    24 /
+                    365.2425
+                  ).toFixed(0)
                 } year old <b>full-stack developer</b>, based in Dublin. I
                 <b>love</b> to build stuff!
               </p><p class="text-gray-400 font-mono bold-slate-p text-justify">
