@@ -4,4 +4,104 @@ import Layout from '../layouts/Layout.astro'
 
 <Layout show={true} title="Photos">
   <h2 class="pt-3">2023</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
+    <div class="grid gap-4">
+      {
+        [
+          {
+            image: '/cool-photos/beach.jpeg',
+            alt: 'Image 1',
+          },
+          {
+            image: '/cool-photos/vedh-will.jpeg',
+            alt: 'Image 2',
+          },
+          {
+            image: '/cool-photos/town.jpeg',
+            alt: 'Image 3',
+            ratio: '3/2',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="grid gap-4">
+      {
+        [
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg',
+            alt: 'Image 1',
+          },
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg',
+            alt: 'Image 2',
+          },
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg',
+            alt: 'Image 3',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="grid gap-4">
+      {
+        [
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg',
+            alt: 'Image 1',
+          },
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg',
+            alt: 'Image 2',
+          },
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg',
+            alt: 'Image 3',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="grid gap-4">
+      {
+        [
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg',
+            alt: 'Image 1',
+          },
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg',
+            alt: 'Image 2',
+          },
+          {
+            image:
+              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg',
+            alt: 'Image 3',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </Layout>
