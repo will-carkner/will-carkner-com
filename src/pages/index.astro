@@ -301,58 +301,58 @@ const posts = (await getPosts()).slice(0, 3)
                 ))
               }
             </div>
+            <div>
+              <a
+                class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
+                href="/photos"
+              >
+                View More
+              </a>
+            </div>
           </div>
         </Card>
         <!-- WORKOUTS -->
         <Card>
           <div class="space-y-2">
             <h4>Exercise</h4>
-            <p class="text-gray-400">
-              Zone 2 cardio (running, cycling, swimming) and strength + power
-              training
-            </p>
+            <p class="text-gray-400">Strength + Cardio</p>
             <div class="flex flex-col space-y-2 items-left justify-left">
               {
                 [
                   {
-                    type: 'Upper Strength',
+                    type: 'Upper Strength 💪',
+                    desc: ['Push press', 'Bench press', 'Pull up', 'T bar row'],
+                  },
+                  {
+                    type: 'Lower Strength 🦵',
                     desc: [
-                      'push press',
-                      'bench/incline press',
-                      'pull up',
-                      't bar row',
+                      'Hang snatch',
+                      'Bulgarian split squat',
+                      'Back squat',
+                      'Calf raise',
                     ],
                   },
                   {
-                    type: 'Lower Strength',
+                    type: 'Impulse 🏋️‍♂️',
                     desc: [
-                      'hang snatch',
-                      'bulgarian split squat',
-                      'back squat',
-                      'weighted jump',
+                      'Power clean',
+                      'Front squat',
+                      'Nordic curl',
+                      'Standing calf raise',
                     ],
                   },
                   {
-                    type: 'Impulse',
+                    type: 'Plyometrics 🏃‍♂️',
                     desc: [
-                      'power clean',
-                      'front squat',
-                      'nordic hamstring curl',
-                      'standing calf raise',
-                    ],
-                  },
-                  {
-                    type: 'Plyometrics',
-                    desc: [
-                      'single to broad jump',
-                      'core work',
-                      'pogo jumps',
-                      'single leg box jump',
+                      'Broad jump',
+                      'Core work',
+                      'Pogo jumps',
+                      'Single leg box jump',
                     ],
                   },
                 ].map((item) => (
                   <div class="flex flex-col">
-                    <p class="font-bold text-left">{item.type}</p>
+                    <p class="font-bold text-center pb-1">{item.type}</p>
                     <ul class="p-1 px-2 border shadow-slate-900 rounded-xl text-left border-gray-600 grid grid-cols-2">
                       {item.desc.map((thing) => (
                         <li>&bullet; {thing}</li>

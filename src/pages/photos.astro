@@ -19,7 +19,10 @@ import Layout from '../layouts/Layout.astro'
           {
             image: '/cool-photos/town.jpeg',
             alt: 'Image 3',
-            ratio: '3/2',
+          },
+          {
+            image: '/cool-photos/sf.jpeg',
+            alt: 'Image 4',
           },
         ].map(({ image, alt }) => (
           <div>
@@ -29,6 +32,28 @@ import Layout from '../layouts/Layout.astro'
       }
     </div>
     <div class="grid gap-4">
+      {
+        [
+          {
+            image: '/cool-photos/weird.jpeg',
+            alt: 'Image 1',
+          },
+          {
+            image: '/cool-photos/dublin.jpeg',
+            alt: 'Image 2',
+          },
+          {
+            image: '/cool-photos/howth.jpeg',
+            alt: 'Image 3',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="grid gap-2">
       {
         [
           {
@@ -58,43 +83,15 @@ import Layout from '../layouts/Layout.astro'
       {
         [
           {
-            image:
-              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg',
+            image: '/cool-photos/spain.jpeg',
             alt: 'Image 1',
           },
           {
-            image:
-              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg',
+            image: '/cool-photos/gytis.jpeg',
             alt: 'Image 2',
           },
           {
-            image:
-              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg',
-            alt: 'Image 3',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-4">
-      {
-        [
-          {
-            image:
-              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg',
-            alt: 'Image 1',
-          },
-          {
-            image:
-              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg',
-            alt: 'Image 2',
-          },
-          {
-            image:
-              'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg',
+            image: '/cool-photos/italy.jpeg',
             alt: 'Image 3',
           },
         ].map(({ image, alt }) => (
