@@ -1,5 +1,5 @@
 ---
-title: 'making an impact with my life'
+title: 'Making an impact with my life'
 pubDate: 'Dec 5 2023'
 published: false
 ---
