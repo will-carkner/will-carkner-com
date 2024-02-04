@@ -32,6 +32,7 @@ const { title, pubDate } = Astro.props
   article {
     * {
       @apply px-2;
+      @apply font-serif;
     }
     h1,
     h2,
@@ -53,9 +54,10 @@ const { title, pubDate } = Astro.props
     }
     li {
       @apply p-[0.5];
+      @apply text-gray-400;
     }
     p {
-      @apply text-slate-300;
+      @apply text-gray-400;
       @apply mt-2;
     }
 
@@ -76,7 +78,7 @@ const { title, pubDate } = Astro.props
     }
 
     blockquote {
-      @apply ml-2 border-l-4 border-slate-200 italic;
+      @apply ml-2 border-l-2 border-slate-200 italic my-2;
     }
 
     table {
@@ -118,7 +120,8 @@ const { title, pubDate } = Astro.props
     }
 
     ul > li > ul > li {
-      @apply text-sm text-slate-400;
+      @apply text-sm text-gray-400;
+      @apply list-['-'] pl-3;
     }
     ul > li > ul > li > ul > li {
       @apply text-slate-500;

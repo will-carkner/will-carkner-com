@@ -8,7 +8,7 @@ published: true
 
 Last week, [Vedh](https://vedhkannan.com) and I visited Zambia on a full travel bursary from the Irish government's aid org, Irish Aid. It was an unforgettable experience.
 
-This was made possible because of our win of the "Science for Development" award at Ireland's national science competition, with our project [BloodBox](https://bloodbox.info).
+This was made possible because of our win of the _"Science for Development"_ award at Ireland's national science competition, with our project [BloodBox](https://bloodbox.info).
 
 I find the feelings I have on this trip pretty hard to grasp my mind around, but this essay attempts to summarize my current thoughts and leave some questions open.
 

@@ -38,7 +38,7 @@ Feedback loops are crucial when I want to learn something myself. This is most t
 
 Through iteration you are able to rapidly increase your proficiency in a topic, and I find that deeper understanding is reached when you have first failed.
 
-Feedback loops can also come in the form of human feedback. This is why tutoring works so well. 1 on 1 time with a knowledgeable person creates practically instantaneous feedback loops, leading to hyper-rapid improvement. Bloom's 2 sigma problem reflects this.
+Feedback loops can also come in the form of human feedback. This is why tutoring works so well. 1 on 1 time with a knowledgeable person creates practically instantaneous feedback loops, leading to hyper-rapid improvement. [Bloom's 2 sigma problem](https://en.wikipedia.org/wiki/Bloom%27s_2_sigma_problem) reflects this.
 
 ## Deep dives
 
@@ -48,7 +48,7 @@ The way I usually do this is similar to the programming algorithm of depth-first
 
 Going down a rabbit hole for a few hours or even days is super enjoyable and it creates new links in my brain. If the knowledge is not applicable to me at that instant, I still have good faith that it will become useful in my future.
 
-Here is a link to the deep dive I have done recently on [metagenomics](https://willcarkner.notion.site/Metagenomics-b653d408706d47ce8432d5e8c84436e3?pvs=4)
+As an example, here is a link to the deep dive I have done recently on [metagenomics](https://willcarkner.notion.site/Metagenomics-b653d408706d47ce8432d5e8c84436e3?pvs=4).
 
 ## Takeaway
 
