@@ -4,10 +4,6 @@ pubDate: 'Dec 5 2023'
 published: false
 ---
 
-- work on ambitious, hard work
-  - I find it exciting and added benefit of it being pos for humanity
-  - brings humanity forward
-  - keeps me mentally stimulated (say it in cleaner words)
 - reference why you should build hardware
   - work where work isn't being done
   - physical world -> physical things needed
@@ -27,10 +23,22 @@ published: false
 
 A general heuristic I have for what to work on is whether the work _excites me_. Often in life I have been told that "you gotta do what you gotta do" and while this may be good advice for some, it's not great for me. I want to put my life into a position where what I work on is not dictated by what I _"gotta do"_ and instead by what I _"get to do"_.
 
-Part of this means that I will be naturally drawn to working on hard things. Human nature leads us to believe that the easy way out is the right way, and it takes significant conscious thought to break out of that trap.
+> The north wind made the Vikings! - _Scandinavian saying_
 
-Another derived benefit of working on hard things is the (usually) positive net result it has for humanity. As someone who wants to see a great future for our species, I
+To me this proverb is not only historically accurate but it also translates into my modern life. Pushing through difficulty and not lounging on the available dopamine luxuries I have at my finger tips is the long-sighted way to live, and therefore the stronger argument for what to do with time.
 
-# Hard → Hardware?
+The natural progression of avoiding the easy leads me to working on things that are difficult. Attempting to solve major technical challenges or alleviating suffering are by definition extremely hard but necessarily good.
 
-Is the reason why it's called hardware because it's difficult? Maybe.
+Another derived benefit of working on hard things is the (usually) positive net result it has for humanity. As someone who wants to see a great future for our species, I am appreciative of the fact that working on hard things can make a prosperous future happen.
+
+# Hard → hardware?
+
+Is the reason why it's called hardware because it's hard? _Maybe._
+
+Notwithstanding the challenges of hardware, I truly find it exciting to work on things that effect the physical world and improve on inefficiencies that are all around us.
+
+# Impact others
+
+# Efficiency in impact
+
+# Impact over everything?
