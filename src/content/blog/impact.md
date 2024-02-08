@@ -39,6 +39,10 @@ Notwithstanding the challenges of hardware, I truly find it exciting to work on 
 
 # Impact others
 
+The luxuries I experience on the daily are the product of 50 billion+ people that have come before me.
+
 # Efficiency in impact
+
+I have a natural drive towards efficiency in what I do.
 
 # Impact over everything?
