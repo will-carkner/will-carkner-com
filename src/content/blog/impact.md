@@ -1,23 +1,8 @@
 ---
 title: 'Making an impact with my life'
-pubDate: 'Dec 5 2023'
-published: false
+pubDate: 'Feb 17 2024'
+published: true
 ---
-
-- reference why you should build hardware
-  - work where work isn't being done
-  - physical world -> physical things needed
-- directly impact the development of others
-  - younger people a step behind
-  - cascade effect
-  - exciting
-- efficiency with impact
-  - efficiency is appreciated but not always needed
-  - sometimes uneffecient things have great
-- friendship impacts
-  - link back to other impact
-- impact over everything?
-  - not necessarily -> exciting over everything, but that links to impact
 
 # Working on hard things
 
@@ -35,14 +20,33 @@ Another derived benefit of working on hard things is the (usually) positive net 
 
 Is the reason why it's called hardware because it's hard? _Maybe._
 
-Notwithstanding the challenges of hardware, I truly find it exciting to work on things that effect the physical world and improve on inefficiencies that are all around us.
+Notwithstanding the challenges of hardware, I truly find it exciting to work on things that effect the physical world and improve on inefficiencies that are all around us. We live in a physical world where we interact with physical things and so I feel it's important to keep some amount of focus on smoothing the rough edges of world processes.
+
+Med-tech, manufacturing, energy production, and exploration are all areas where I feel that significant progress can be made in my life-time. _I'm here to make some of that progress happen._
 
 # Impact others
 
 The luxuries I experience on the daily are the product of 50 billion+ people that have come before me.
 
+Building and improving the future for the ones to come drives me, but also motivates me to do my best work. Knowing that if I make true change I will have contributed to the compounding nature of progress is exciting and really helps get me out of bed.
+
+> "Is this the purpose of my creation, to lie here under the blankets and keep myself warm?...  
+> I am rising for the work of man” - _Marcus Aurelius_
+
+To do the work of man means to make an impact on some aspect of your life, and that means affecting the lives of others. _It's crucial to do that well._
+
+As well, a way to impact others is through mentorship. Helping people who are one step behind on the staircase of life creates a cascading effect that accelerates personal development and by derivative global progress.
+
 # Efficiency in impact
 
-I have a natural drive towards efficiency in what I do.
+I have a natural drive towards efficiency in what I do. Agency, efficiency, and impact go hand in hand and when I can be efficient I try to be.
+
+There is however a limit. Uneffecient things can also be beautiful and the skill of finding a balance between both perspectives is truly difficult.
+
+_I will update this section when I find how to do this better. - stay tuned :)_
 
 # Impact over everything?
+
+An important caveat to all this is the question of whether impact has supreme importance when deciding what to do with life.
+
+To me, I choose excitement as a prime decision factor. Seemingly illogical, focusing on the exciting _from my own perspective_ encompasses other goals I have for my work. This heuristic of excitement also usually _intersects with impact_ and I am therefore able to indirectly satisfy my yearning for making a dense in the beautiful universe we get to call home.
