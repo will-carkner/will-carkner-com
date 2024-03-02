@@ -203,16 +203,31 @@ const posts = (await getPosts()).slice(0, 3)
                 url: 'https://willcarkner.com/blog/research',
                 class: 'aspect-[3/2]',
               },
-            ].map((item) => (
-              <Project
-                title={item.title}
-                tags={item.tags}
-                image={item.image}
-                url={item.url}
-                class={item.class}
-              />
-            ))
+              {
+                title: 'MLTCC Site',
+                tags: ['Landing Page', 'Client'],
+                image: 'mltcc.jpg',
+                url: 'https://mltcc.com',
+                class: 'aspect-[3/2]',
+                hidden: true,
+              },
+            ]
+              .filter((item) => item.hidden !== true)
+              .map((item) => (
+                <Project
+                  title={item.title}
+                  tags={item.tags}
+                  image={item.image}
+                  url={item.url}
+                  class={item.class}
+                />
+              ))
           }
+          <button
+            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
+          >
+            See More
+          </button>
           <div class="flex flex-row space-x-4">
             {
               [
