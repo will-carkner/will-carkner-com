@@ -21,11 +21,13 @@ const posts = (await getPosts()).slice(0, 3)
         >
           <Card class="items-left !shadow-none">
             <div class="flex-col text-left space-y-4 flex">
-              <img
-                alt="Will Carkner"
-                src="/cool-photos/will.jpg"
-                class="rounded-lg w-24 h-auto border border-gray-600"
-              /><h2>Will Carkner</h2>
+              <div class="flex flex-row space-x-4">
+                <img alt="Will Carkner" src="will-c.jpg" class="w-24 h-auto" />
+                <div class="flex flex-col justify-end text-left">
+                  <h2>Will</h2>
+                  <h2>Carkner</h2>
+                </div>
+              </div>
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
                 I'm a
                 {
