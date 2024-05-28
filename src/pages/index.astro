@@ -24,7 +24,11 @@ const posts = (await getPosts()).slice(0, 3)
           <Card class="items-left !shadow-none">
             <div class="flex-col text-left space-y-4 flex">
               <div class="flex flex-row space-x-4">
-                <img alt="Will Carkner" src="will-c.jpg" class="w-24 h-auto" />
+                <img
+                  alt="Will Carkner"
+                  src="will-c.jpg"
+                  class="w-24 h-auto rounded-lg"
+                />
                 <div class="flex flex-col justify-end text-left">
                   <h2>Will</h2>
                   <h2>Carkner</h2>
@@ -40,7 +44,7 @@ const posts = (await getPosts()).slice(0, 3)
                     60 /
                     24 /
                     365.2425
-                  ).toFixed(0)
+                  ).toFixed(1)
                 } year old <b>full-stack developer</b>, based in Dublin. I
                 <b>love</b> to build stuff!
               </p><p class="text-gray-400 font-mono bold-slate-p text-justify">
@@ -275,10 +279,7 @@ const posts = (await getPosts()).slice(0, 3)
               ].map((item) => (
                 <li>
                   <a href={item.href}>
-                    <div class="font-mono bold-slate-p">
-                      {item.idea}
-                      <span class="!no-underline">.</span>
-                    </div>
+                    <div class="font-mono bold-slate-p">{item.idea}.</div>
                   </a>
                 </li>
               ))
@@ -331,19 +332,18 @@ const posts = (await getPosts()).slice(0, 3)
           </div>
         </Card>
         <!-- WORKOUTS -->
-        <Card>
+        <!-- <Card>
           <div class="space-y-2">
             <h4>Exercise</h4>
-            <p class="text-gray-400">Strength + Cardio</p>
             <div class="flex flex-col space-y-2 items-left justify-left">
               {
                 [
                   {
-                    type: 'Upper Strength 💪',
+                    type: 'Upper Strength',
                     desc: ['Push press', 'Bench press', 'Pull up', 'T bar row'],
                   },
                   {
-                    type: 'Lower Strength 🦵',
+                    type: 'Lower Strength',
                     desc: [
                       'Hang snatch',
                       'Bulgarian split squat',
@@ -352,7 +352,7 @@ const posts = (await getPosts()).slice(0, 3)
                     ],
                   },
                   {
-                    type: 'Impulse 🏋️‍♂️',
+                    type: 'Impulse',
                     desc: [
                       'Power clean',
                       'Front squat',
@@ -361,7 +361,7 @@ const posts = (await getPosts()).slice(0, 3)
                     ],
                   },
                   {
-                    type: 'Plyometrics 🏃‍♂️',
+                    type: 'Plyometrics',
                     desc: [
                       'Broad jump',
                       'Core work',
@@ -382,7 +382,7 @@ const posts = (await getPosts()).slice(0, 3)
               }
             </div>
           </div>
-        </Card>
+        </Card> -->
       </div>
     </div>
   </Section>
