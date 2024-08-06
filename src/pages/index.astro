@@ -6,6 +6,7 @@ import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
 import Project from '../components/Project.astro'
 import { Icon } from 'astro-icon'
+import { Image } from 'astro:assets'
 
 export const prerender = false
 
@@ -55,15 +56,10 @@ const posts = (await getPosts()).slice(0, 3)
               <div
                 class="flex hover:scale-105 duration-300 border border-gray-600 flex-row space-x-1 items-center justify-center w-32 bg-black rounded-2xl p-1"
               >
-                <Icon
-                  class="w-6 h-6"
-                  name="mdi:github"
-                  color="white"
-                  stroke-width="1.5"
-                />
+                <img src="x-logo.png" alt="x.com logo" class="w-4 h-4" />
                 <a
                   class="text-white text-xs font-bold no-underline"
-                  href="https://github.com/will-carkner"
+                  href="https://x.com/carknerwill"
                 >
                   FOLLOW ME
                 </a>
