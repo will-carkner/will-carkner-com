@@ -5,7 +5,6 @@ import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
 
 const posts = await getPosts()
-export const prerender = true
 ---
 
 <Layout show={true} title="Blog | Will Carkner">
