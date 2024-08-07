@@ -15,7 +15,6 @@ I am open to new things and love trying out something I haven't tried before, an
 
 I'd be really interested to talk to you if you also find some of these interesting. Also, I appreciate people with their own questions.
 
-- Why does stoicism not have more of a hold on our society?
 - What aspects of human dreaming can we bring forward to artificial neural networks in order to come closer to achieving AGI?
 - What is the defining feature of consciousness?
 - How many calories does it take for an adult man to dig a 500m deep hole?
@@ -26,4 +25,4 @@ I'd be really interested to talk to you if you also find some of these interesti
 
 We can meet in person in Dublin, or if I'm in your city we can meet. I'm also open to meeting online, but I prefer in person.
 
-Reach out to me via [twitter](https://x.com/carknerwill) or _will [at] willcarkner [ dot ] com_, and let's talk!
+Reach out to me via [twitter](https://x.com/carknerwill) or _will_ [at] _willcarkner_ [dot] _com_, and let's talk!
