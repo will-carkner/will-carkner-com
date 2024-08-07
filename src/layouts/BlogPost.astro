@@ -7,137 +7,146 @@ import BlogCard from '../components/BlogCard.astro'
 
 type Props = CollectionEntry<'blog'>['data']
 
-const { title, pubDate } = Astro.props
+const { title, pubDate, updatedDate } = Astro.props
 ---
 
 <Layout show={true} title={title}>
   <Section class="!mt-8">
     <div class="space-y-2">
       <h2>{title}</h2>
-      <p class="font-mono text-gray-400">
-        Published <FormattedDate date={pubDate} />
-      </p>
+      <div class="flex flex-row items-center justify-center space-x-4">
+        <p class="font-mono text-gray-400">
+          Published <FormattedDate date={pubDate} />
+        </p>
+        {
+          updatedDate && (
+            <p class="font-mono text-gray-400">
+              Last Updated <FormattedDate date={updatedDate} />
+            </p>
+          )
+        }
+      </div>
+      <Section class="text-left md:text-justify">
+        <article>
+          <BlogCard>
+            <slot />
+          </BlogCard>
+        </article>
+      </Section>
     </div>
-    <Section class="text-left md:text-justify">
-      <article>
-        <BlogCard>
-          <slot />
-        </BlogCard>
-      </article>
-    </Section>
   </Section>
-</Layout>
 
-<style is:global>
-  article {
-    * {
-      @apply px-2;
-      @apply font-serif;
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      @apply !px-0 text-slate-200;
-    }
-    h1,
-    h2 {
-      @apply pt-3 pb-2 text-3xl font-bold md:text-4xl;
-    }
-    h3 {
-      @apply pt-2 pb-1 text-xl font-bold md:text-2xl;
-    }
-    h4 {
-      @apply pt-1 pb-[0.5] text-base font-bold md:text-lg;
-    }
-    li {
-      @apply p-[0.5];
-      @apply text-gray-400;
-    }
-    p {
-      @apply text-gray-400;
-      @apply mt-2;
-    }
+  <style is:global>
+    article {
+      * {
+        @apply px-2;
+        @apply font-serif;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        @apply !px-0 text-slate-200;
+      }
+      h1,
+      h2 {
+        @apply pt-3 pb-2 text-3xl font-bold md:text-4xl;
+      }
+      h3 {
+        @apply pt-2 pb-1 text-xl font-bold md:text-2xl;
+      }
+      h4 {
+        @apply pt-1 pb-[0.5] text-base font-bold md:text-lg;
+      }
+      li {
+        @apply p-[0.5];
+        @apply text-gray-400;
+      }
+      p {
+        @apply text-gray-400;
+        @apply mt-2;
+      }
 
-    b,
-    strong {
-      @apply text-slate-200;
-    }
-    b,
-    strong,
-    em,
-    a {
-      @apply text-slate-200;
-      @apply !px-0;
-    }
+      b,
+      strong {
+        @apply text-slate-200;
+      }
+      b,
+      strong,
+      em,
+      a {
+        @apply text-slate-200;
+        @apply !px-0;
+      }
 
-    pre {
-      @apply rounded-xl border border-slate-200/10 px-4 py-3;
-    }
+      pre {
+        @apply rounded-xl border border-slate-200/10 px-4 py-3;
+      }
 
-    blockquote {
-      @apply ml-2 border-l-2 border-slate-200 italic my-2;
-    }
+      blockquote {
+        @apply ml-2 border-l-2 border-slate-200 italic my-2;
+      }
 
-    table {
-      @apply mx-2 border-collapse border border-slate-200/10;
-    }
+      table {
+        @apply mx-2 border-collapse border border-slate-200/10;
+      }
 
-    th,
-    td {
-      @apply border border-slate-200/10 p-2 text-slate-300;
-    }
+      th,
+      td {
+        @apply border border-slate-200/10 p-2 text-slate-300;
+      }
 
-    th {
-      @apply bg-slate-300/20;
-    }
+      th {
+        @apply bg-slate-300/20;
+      }
 
-    tr {
-      @apply odd:bg-slate-200/5 even:bg-slate-200/10;
-    }
+      tr {
+        @apply odd:bg-slate-200/5 even:bg-slate-200/10;
+      }
 
-    ul {
-      @apply list-['•'] pl-6;
       ul {
-        @apply pl-2;
+        @apply list-['•'] pl-6;
+        ul {
+          @apply pl-2;
+        }
       }
-    }
 
-    ol {
-      @apply pl-6;
+      ol {
+        @apply pl-6;
+        li::marker {
+          content: counter(list-item) '.';
+        }
+      }
+
+      li {
+        padding-left: 1ch;
+      }
       li::marker {
-        content: counter(list-item) '.';
+        @apply text-base font-bold;
+      }
+
+      ul > li > ul > li {
+        @apply text-sm text-gray-400;
+        @apply list-['-'] pl-3;
+      }
+      ul > li > ul > li > ul > li {
+        @apply text-slate-500;
+      }
+
+      p:has(> img) {
+        @apply flex items-center justify-center;
+      }
+      div {
+        @apply flex flex-col;
+      }
+      img {
+        @apply rounded-xl;
       }
     }
-
-    li {
-      padding-left: 1ch;
+    article div *:first-child {
+      @apply !pt-0;
     }
-    li::marker {
-      @apply text-base font-bold;
-    }
-
-    ul > li > ul > li {
-      @apply text-sm text-gray-400;
-      @apply list-['-'] pl-3;
-    }
-    ul > li > ul > li > ul > li {
-      @apply text-slate-500;
-    }
-
-    p:has(> img) {
-      @apply flex items-center justify-center;
-    }
-    div {
-      @apply flex flex-col;
-    }
-    img {
-      @apply rounded-xl;
-    }
-  }
-  article div *:first-child {
-    @apply !pt-0;
-  }
-</style>
+  </style>
+</Layout>
