@@ -26,4 +26,8 @@ I'd be really interested to talk to you if you also find some of these interesti
 
 We can meet in person in Dublin, or if I'm in your city we can meet. I'm also open to meeting online, but I prefer in person.
 
-Reach out to me via [twitter](https://x.com/carknerwill) or _will_ [at] _willcarkner_ [dot] _com_, and let's talk!
+Reach out to me via [x](https://x.com/carknerwill) or _will_ [at] _willcarkner_ [dot] _com_, and let's talk!
+
+## Want to hire me?
+
+I'm open to work! Feel free to reach out with your request.

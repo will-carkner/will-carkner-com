@@ -6,11 +6,8 @@ import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
 import Project from '../components/Project.astro'
 import { Icon } from 'astro-icon'
-import { Image } from 'astro:assets'
 
 export const prerender = false
-
-// const reveal = false
 
 const posts = (await getPosts()).slice(0, 3)
 ---
@@ -38,86 +35,36 @@ const posts = (await getPosts()).slice(0, 3)
                 </div>
               </div>
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
-                I'm a
-                {
-                  (
-                    (new Date().getTime() - new Date(2006, 8, 28).getTime()) /
-                    1000 /
-                    60 /
-                    60 /
-                    24 /
-                    365.2425
-                  ).toFixed(1)
-                } year old <b>full-stack developer</b>, based in Dublin. I
+                I'm an 18 year old <b>full-stack developer</b>, based in Dublin.
+                I
                 <b>love</b> to build stuff!
               </p><p class="text-gray-400 font-mono bold-slate-p text-justify">
-                I work on physical and web products that could have a <b
+                I work on physical and web projects that could have a <b
                   >big impact on the world</b
                 >.
               </p>
-              <div
-                class="flex hover:scale-105 duration-300 border border-gray-600 flex-row space-x-1 items-center justify-center w-32 bg-black rounded-2xl p-1"
-              >
-                <img src="x-logo.png" alt="x.com logo" class="w-4 h-4" />
-                <a
-                  class="text-white text-xs font-bold no-underline"
-                  href="https://x.com/carknerwill"
+              <div class="flex flex-row space-x-4">
+                <div
+                  class="flex hover:scale-105 duration-300 border border-gray-600 flex-row space-x-1 items-center justify-center w-32 bg-black rounded-2xl p-1"
                 >
-                  FOLLOW ME
-                </a>
+                  <img src="x-logo.png" alt="x.com logo" class="w-4 h-4" />
+                  <a
+                    class="text-white text-xs font-bold no-underline"
+                    href="https://x.com/carknerwill"
+                  >
+                    FOLLOW ME
+                  </a>
+                </div>
+                <a
+                  class="font-mono underline text-slate-300"
+                  href="/blog/contact">Contact</a
+                >
               </div>
             </div>
           </Card>
         </div>
         <!-- Writing -->
-        <ArticleDisplay home={true} title="Writings" posts={posts} />
-        <!-- Stack -->
-        <!-- <Card class="space-y-2">
-          <h4>My Stack</h4>
-          <p class="text-gray-400 font-mono">From idea to implementation</p>
-          <div class="grid grid-cols-3 py-3 justify-center items-center gap-4">
-            {
-              [
-                {
-                  logo: 'react.png',
-                  alt: 'React',
-                  href: 'https://reactjs.org',
-                },
-
-                {
-                  logo: 'tw.png',
-                  alt: 'Tailwind CSS',
-                  href: 'https://tailwindcss.com',
-                },
-                {
-                  logo: 'next.png',
-                  alt: 'NextJS',
-                  href: 'https://nextjs.org',
-                  // class: '!aspect-[1/1]',
-                },
-                {
-                  logo: 'astro.png',
-                  alt: 'Astro',
-                  href: 'https://astro.build',
-                },
-                {
-                  logo: 'vercel.png',
-                  alt: 'Vercel',
-                  href: 'https://vercel.com',
-                },
-                {
-                  logo: 'ts.png',
-                  alt: 'TypeScript',
-                  href: 'https://typescriptlang.org',
-                },
-              ].map((item) => (
-                <a href={item.href} target="_blank" class="hover:scale-110">
-                  <img class="w-20 h-20" src={item.logo} alt={item.alt} />
-                </a>
-              ))
-            }
-          </div> -->
-        <!-- </Card> -->
+        <ArticleDisplay home={true} title="Writing" posts={posts} />
         <!-- Music -->
         <Card>
           <div class="flex flex-row items-center space-x-4 justify-center">
@@ -151,10 +98,6 @@ const posts = (await getPosts()).slice(0, 3)
             {
               [
                 {
-                  icon: 'mdi:twitter',
-                  href: 'https://twitter.com/CarknerWill',
-                },
-                {
                   icon: 'mdi:github',
                   href: 'https://github.com/will-carkner',
                 },
@@ -169,7 +112,7 @@ const posts = (await getPosts()).slice(0, 3)
                   class="hover:duration-300 hover:scale-110"
                 >
                   <Icon
-                    class="w-10 h-10 text-gray-300 hover:text-sky-400"
+                    class="w-8 h-8 text-gray-300 hover:text-sky-400"
                     name={item.icon}
                   />
                 </a>
@@ -211,21 +154,19 @@ const posts = (await getPosts()).slice(0, 3)
                   class: 'aspect-[3/2]',
                 },
                 {
-                  title: 'MLTCC Site',
+                  title: 'MLTCC Tennis',
                   tags: ['Landing Page', 'Client'],
                   image: 'mltcc.jpg',
                   url: 'https://mltcc.com',
                   class: 'aspect-[3/2]',
                 },
-                // {
-                //   title: 'Aircraft Geofencing',
-                //   tags: ['Bespoke', 'Web-App'],
-                // }
-                // {
-                //   title: 'TCD Hist Site',
-                //   tags: ['Landing Page', 'Client'],
-
-                // }
+                {
+                  title: 'TCD Hist Club',
+                  tags: ['Landing Page', 'Client'],
+                  image: 'hist-club.png',
+                  url: 'https://tcdhistclub.com',
+                  class: 'aspect-[3/2]',
+                },
               ].map((item, i) => (
                 <div
                   id={`project-${i}`}
@@ -271,8 +212,12 @@ const posts = (await getPosts()).slice(0, 3)
                   href: '/cv.pdf',
                 },
                 {
-                  title: 'Current',
+                  title: 'Current Work',
                   href: '/blog/current',
+                },
+                {
+                  title: 'Hire Me',
+                  href: '/blog/contact',
                 },
               ].map((item) => (
                 <a
@@ -297,17 +242,18 @@ const posts = (await getPosts()).slice(0, 3)
                 },
                 {
                   idea: 'Build',
-                  href: '/blog/build',
+                  href: '/blog/current',
                 },
                 {
-                  idea: 'Focus',
+                  idea: 'Impact',
                   href: '/blog/impact',
                 },
               ].map((item) => (
-                <li>
+                <li class="flex flex-row">
                   <a href={item.href}>
-                    <div class="font-mono bold-slate-p">{item.idea}.</div>
+                    <div class="font-mono bold-slate-p">{item.idea}</div>
                   </a>
+                  {item.idea !== 'Impact' ? <p class="pl-3">|</p> : ''}
                 </li>
               ))
             }
@@ -342,7 +288,7 @@ const posts = (await getPosts()).slice(0, 3)
                 ].map((item) => (
                   <img
                     alt={item.alt}
-                    class="w-30 h-40 border border-gray-600 rounded-lg"
+                    class="w-20 h-30 sm:w-40 sm:h-32 border border-gray-600 rounded-lg"
                     src={item.img}
                   />
                 ))

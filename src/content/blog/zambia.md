@@ -1,5 +1,5 @@
 ---
-title: 'Reflections on zambia'
+title: 'Reflections on Zambia'
 pubDate: 'Nov 9 2023'
 published: true
 ---
