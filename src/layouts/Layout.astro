@@ -33,39 +33,39 @@ import Nav from '../components/Nav.astro'
       </div>
     </>
   </body>
+
+  <style is:global>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer base {
+      h1 {
+        @apply text-5xl font-bold sm:text-6xl;
+      }
+      h2 {
+        @apply text-4xl font-bold sm:text-5xl;
+      }
+      h3 {
+        @apply text-3xl font-bold sm:text-4xl;
+      }
+      h4 {
+        @apply text-2xl font-bold sm:text-3xl;
+      }
+
+      html,
+      body {
+        @apply min-h-screen w-full bg-black text-center;
+      }
+      a {
+        @apply underline decoration-2 underline-offset-1 duration-300;
+      }
+      a:hover {
+        @apply underline-offset-4;
+      }
+      .bold-slate-p b {
+        @apply text-slate-300;
+      }
+    }
+  </style>
 </html>
-
-<style is:global>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-
-  @layer base {
-    h1 {
-      @apply text-5xl font-bold sm:text-6xl;
-    }
-    h2 {
-      @apply text-4xl font-bold sm:text-5xl;
-    }
-    h3 {
-      @apply text-3xl font-bold sm:text-4xl;
-    }
-    h4 {
-      @apply text-2xl font-bold sm:text-3xl;
-    }
-
-    html,
-    body {
-      @apply min-h-screen w-full bg-black text-center;
-    }
-    a {
-      @apply underline decoration-2 underline-offset-1 duration-300;
-    }
-    a:hover {
-      @apply underline-offset-4;
-    }
-    .bold-slate-p b {
-      @apply text-slate-300;
-    }
-  }
-</style>
