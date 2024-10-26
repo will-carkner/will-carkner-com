@@ -12,7 +12,7 @@ const { title, pubDate, updatedDate } = Astro.props
 
 <Layout show={true} title={title}>
   <Section class="!mt-8">
-    <div class="space-y-2">
+    <div class="space-y-4">
       <h2>{title}</h2>
       <div class="flex flex-row items-center justify-center space-x-4">
         <p class="font-mono text-gray-400">
@@ -20,6 +20,7 @@ const { title, pubDate, updatedDate } = Astro.props
         </p>
         {
           updatedDate && (
+            <p class="font-mono text-gray-400"> | </p>
             <p class="font-mono text-gray-400">
               Last Updated <FormattedDate date={updatedDate} />
             </p>

@@ -87,43 +87,65 @@ const posts = (await getPosts()).slice(0, 3)
           </div>
         </Card>
         <!-- Contact -->
-        <Card class="space-y-2">
-          <h4>Get in Touch</h4>
-          <p class="font-mono text-gray-400 text-sm bold-slate-p">
-            I'm <b>always</b> looking for opportunities and I <b
-              >love meeting new people</b
-            >!
-          </p>
-          <div class="flex flex-row space-x-2">
-            {
-              [
-                {
-                  icon: 'mdi:github',
-                  href: 'https://github.com/will-carkner',
-                },
-                {
-                  icon: 'ic:round-email',
-                  href: 'mailto:will@willcarkner.com',
-                },
-              ].map((item) => (
-                <a
-                  href={item.href}
-                  target="_blank"
-                  class="hover:duration-300 hover:scale-110"
-                >
-                  <Icon
-                    class="w-8 h-8 text-gray-300 hover:text-sky-400"
-                    name={item.icon}
-                  />
-                </a>
-              ))
-            }
-          </div>
+        <div
+          class="rounded-xl bg-gradient-to-r animate-gradient-x from-blue-600 via-purple-600 to-violet-600 p-0.5"
+        >
+          <Card class="space-y-2 !shadow-none">
+            <h4>Contact</h4>
+            <p class="font-mono text-gray-400 bold-slate-p">
+              I'm <b>always</b> looking for opportunities and I <b
+                >love meeting new people</b
+              >!
+            </p>
+            <div class="flex flex-row space-x-2">
+              {
+                [
+                  {
+                    icon: 'mdi:github',
+                    href: 'https://github.com/will-carkner',
+                  },
+                  {
+                    icon: 'ic:round-email',
+                    href: 'mailto:will@willcarkner.com',
+                  },
+                ].map((item) => (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    class="hover:duration-300 hover:scale-110"
+                  >
+                    <Icon
+                      class="w-8 h-8 text-gray-300 hover:text-sky-400"
+                      name={item.icon}
+                    />
+                  </a>
+                ))
+              }
+            </div>
+            <a
+              class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
+              href="/blog/contact"
+            >
+              Learn More
+            </a>
+          </Card>
+        </div>
+        <!-- Reading -->
+        <Card class="space-y-4">
+          <h4>Reading</h4>
+
+          <ul
+            class="text-left font-mono list-disc text-gray-400 bold-slate-p pl-2"
+          >
+            <li>The Daily Stoic | <b>Ryan Holiday</b></li>
+            <li>Steve Jobs | <b>Walter Isaacson</b></li>
+            <li>Storm of Steel | <b>Ernst Jünger</b></li>
+          </ul>
           <a
             class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
             href="/blog/contact"
           >
-            Learn More
+            My Notes
           </a>
         </Card>
       </div>
@@ -232,7 +254,7 @@ const posts = (await getPosts()).slice(0, 3)
         </Card>
         <!-- CORE IDEAS -->
         <Card class="space-y-2">
-          <h4>Core Ideas</h4>
+          <h4>Principles</h4>
           <ul class="flex flex-row space-x-4">
             {
               [
@@ -258,7 +280,7 @@ const posts = (await getPosts()).slice(0, 3)
               ))
             }
           </ul>
-          <div class="text-gray-400 bold-slate-p">
+          <div class="text-gray-400 font-mono bold-slate-p">
             I aim to <b>constantly learn</b>, <b>build tangible things</b>, and <b
               >focus on impact</b
             >.
@@ -267,7 +289,7 @@ const posts = (await getPosts()).slice(0, 3)
         <!--PHOTOS -->
         <Card>
           <div class="space-y-4">
-            <h4>Recent Photos</h4>
+            <h4>Photos</h4>
             <div
               class="flex flex-row space-x-2 md:space-x-4 items-center justify-center"
             >
@@ -359,14 +381,21 @@ const posts = (await getPosts()).slice(0, 3)
         <Card>
           <div class="space-y-2">
             <h4>Thought</h4>
-            <p class="text-gray-400 font-mono text-left">
-              Fall in love and stay in love. Explode. Don't intellectualize. Get
-              passionate about ideas. Cram your head full of images. Stay in the
-              library. Stay off the internet and all that crap. Read all the
-              great books. Read all the great poetry. See all the great films.
-              Fill your life with metaphors. And then explode.
+            <p class="text-gray-400 font-mono bold-slate-p text-left">
+              Fall in love and <b>stay in love</b>. Explode. Don't
+              intellectualize. Get passionate about ideas. Cram your head full
+              of images. Stay in the library. Stay off the internet and all that
+              crap. <b>Read all the great books</b>. Read all the great poetry.
+              See all the great films. Fill your life with metaphors. <b
+                >And then explode.</b
+              >
             </p>
-            <p class="text-gray-400 font-mono">- Ray Bradbury</p>
+            <div class="flex flex-row space-x-2">
+              <p class="text-gray-400 font-mono">- Ray Bradbury</p>
+              <p class="text-sm font-mono text-gray-500 translate-y-px">
+                (emphasis my own)
+              </p>
+            </div>
           </div>
         </Card>
       </div>
