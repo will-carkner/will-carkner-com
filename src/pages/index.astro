@@ -160,7 +160,7 @@ const posts = (await getPosts()).slice(0, 3)
                 {
                   title: 'Research',
                   tags: ['Economics', 'Genomics', 'AI'],
-                  image: 'congestion.jpg',
+                  image: 'research.jpeg',
                   url: 'https://willcarkner.com/blog/research',
                   class: 'aspect-[3/2]',
                 },
@@ -186,7 +186,7 @@ const posts = (await getPosts()).slice(0, 3)
                   <Project
                     title={item.title}
                     tags={item.tags}
-                    image={item.image}
+                    image={'projects/' + item.image}
                     url={item.url}
                     class={item.class}
                   />
