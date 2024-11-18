@@ -35,31 +35,13 @@ const posts = (await getPosts()).slice(0, 3)
                 </div>
               </div>
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
-                I'm an 18 year old <b>full-stack developer</b>, based in Dublin.
+                I'm an 18 year old <b>engineering student</b>, based in Dublin.
                 I
                 <b>love</b> to build stuff!
               </p><p class="text-gray-400 font-mono bold-slate-p text-justify">
-                I work on physical and web projects that could have a <b
-                  >big impact on the world</b
-                >.
+                I work on physical and web projects and am always <b>learning</b
+                > something new.
               </p>
-              <div class="flex flex-row space-x-4">
-                <div
-                  class="flex hover:scale-105 duration-300 border border-gray-600 flex-row space-x-1 items-center justify-center w-32 bg-black rounded-2xl p-1"
-                >
-                  <img src="x-logo.png" alt="x.com logo" class="w-4 h-4" />
-                  <a
-                    class="text-white text-xs font-bold no-underline"
-                    href="https://x.com/carknerwill"
-                  >
-                    FOLLOW ME
-                  </a>
-                </div>
-                <a
-                  class="font-mono underline text-slate-300"
-                  href="/blog/contact">Contact</a
-                >
-              </div>
             </div>
           </Card>
         </div>
@@ -138,7 +120,7 @@ const posts = (await getPosts()).slice(0, 3)
             class="text-left font-mono list-disc text-gray-400 bold-slate-p pl-2"
           >
             <li>The Daily Stoic | <b>Ryan Holiday</b></li>
-            <li>Steve Jobs | <b>Walter Isaacson</b></li>
+            <li>Learning to Learn | <b>Richard Hamming</b></li>
             <li>Storm of Steel | <b>Ernst Jünger</b></li>
           </ul>
           <a
@@ -205,12 +187,13 @@ const posts = (await getPosts()).slice(0, 3)
               ))
             }
           </div>
-          <button
+
+          <a
+            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:cursor-pointer hover:underline"
             id="more-projects"
-            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
           >
-            See More
-          </button>
+            View More
+          </a>
           <script>
             const moreProjects = document.getElementById('more-projects')!
             const projects = document.querySelectorAll('[id^="project-"]')

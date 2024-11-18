@@ -3,6 +3,105 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout show={true} title="Photos">
+  <h2 class="pt-3">2024</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
+    <div class="grid gap-4">
+      {
+        [
+          {
+            image: '/cool-photos/mullaghmore.jpeg',
+            alt: 'Image 1',
+          },
+          {
+            image: '/cool-photos/math.jpeg',
+            alt: 'Image 2',
+          },
+          {
+            image: '/cool-photos/brothers.jpeg',
+            alt: 'Image 3',
+          },
+          {
+            image: '/cool-photos/sandwiches.jpeg',
+            alt: 'Image 4',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="grid gap-4">
+      {
+        [
+          {
+            image: '/cool-photos/bot.jpeg',
+            alt: 'Image 1',
+          },
+          {
+            image: '/cool-photos/beach-new.jpeg',
+            alt: 'Image 2',
+          },
+          {
+            image: '/cool-photos/lake.jpeg',
+            alt: 'Image 3',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="grid gap-2">
+      {
+        [
+          {
+            image: '/cool-photos/shoes.jpeg',
+            alt: 'Image 1',
+          },
+          {
+            image: '/cool-photos/boat.jpeg',
+            alt: 'Image 2',
+          },
+          {
+            image: '/cool-photos/france.jpeg',
+            alt: 'Image 3',
+          },
+          {
+            image: '/cool-photos/kiara.jpeg',
+            alt: 'Image 4',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+    <div class="grid gap-4">
+      {
+        [
+          {
+            image: '/cool-photos/borsht.jpeg',
+            alt: 'Image 1',
+          },
+          {
+            image: '/cool-photos/oscar.jpeg',
+            alt: 'Image 2',
+          },
+          {
+            image: '/cool-photos/bridge.jpeg',
+            alt: 'Image 3',
+          },
+        ].map(({ image, alt }) => (
+          <div>
+            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
   <h2 class="pt-3">2023</h2>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
     <div class="grid gap-4">
@@ -57,7 +156,7 @@ import Layout from '../layouts/Layout.astro'
       {
         [
           {
-            image: '/cool-photos/will.jpg',
+            image: '/cool-photos/will.jpeg',
             alt: 'Image 1',
           },
           {
@@ -65,7 +164,7 @@ import Layout from '../layouts/Layout.astro'
             alt: 'Image 2',
           },
           {
-            image: '/cool-photos/tower.jpg',
+            image: '/cool-photos/tower.jpeg',
             alt: 'Image 3',
           },
           {
