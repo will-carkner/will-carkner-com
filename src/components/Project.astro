@@ -26,11 +26,18 @@ const { title, tags, image, url, class: className } = Astro.props
         {title}
       </p>
       <div
-        class="flex flex-col xs:flex-row space-x-0 space-y-2 xs:space-y-0 xs:space-x-2"
+        class="flex flex-wrap xs:flex-nowrap xs:flex-row xs:space-y-0 items-center justify-start space-x-2"
       >
         {
           tags.map((tag) => (
-            <span class="bg-slate-600 w-fit bg-opacity-50 text-xs shadow-lg rounded-md px-2 py-1 text-white ">
+            <span
+              class:list={[
+                'bg-slate-600 w-fit bg-opacity-50 text-xs shadow-lg rounded-md px-2 py-1 text-white',
+                tags.indexOf(tag) === tags.length - 1
+                  ? 'mt-2 xs:mt-0 -translate-x-2 xs:translate-x-0'
+                  : '',
+              ]}
+            >
               {tag}
             </span>
           ))
