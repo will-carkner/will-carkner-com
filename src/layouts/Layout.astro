@@ -6,6 +6,7 @@ export interface Props {
 
 const { title, show } = Astro.props
 import Nav from '../components/Nav.astro'
+import TopBanner from '../components/TopBanner.astro'
 ---
 
 <!doctype html>
@@ -22,6 +23,9 @@ import Nav from '../components/Nav.astro'
   </head>
   <body class="flex flex-col justify-between items-center">
     <>
+      <TopBanner
+        message="In SF May - August, introducing <a href='https://docs.google.com/document/d/1MWhfsJZBV5eqaOaZsn8dq9ZVt5Q2vBjFfVl9Xo4Ct2c/edit?tab=t.0'>internville</a>, a hacker house for ambitious summer interns"
+      />
       <slot />
       <div class="my-2">
         {show && <Nav />}
