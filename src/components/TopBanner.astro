@@ -1,13 +1,9 @@
 ---
 interface Props {
-  message: string
   id?: string // Unique ID for localStorage
 }
 
-const {
-  message = "In SF! Working at Lumindt - get in <a href='/blog/contact'>touch</a> if you're also here!",
-  id = 'top-banner',
-} = Astro.props
+const { id = 'top-banner' } = Astro.props
 ---
 
 <div
@@ -18,7 +14,10 @@ const {
     <div></div>
     <!-- Empty div for flex alignment -->
     <p class="text-center text-sm font-medium text-indigo-200">
-      <span set:html={message} />
+      <span
+        >Back in Dublin! Studying RF Engineering & working on side projects.
+        More to come soon :)</span
+      >
     </p>
     <button
       aria-label="Dismiss banner"

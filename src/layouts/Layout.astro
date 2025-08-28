@@ -23,10 +23,7 @@ import TopBanner from '../components/TopBanner.astro'
   </head>
   <body class="flex flex-col justify-between items-center">
     <>
-      <TopBanner
-        message="In SF! Working at Lumindt - get in <a href='/blog/contact'>touch</a> if you're also here!"
-        ,
-      />
+      <TopBanner />
       <slot />
       <div class="my-2">
         {show && <Nav />}
