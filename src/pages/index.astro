@@ -35,13 +35,11 @@ const posts = (await getPosts()).slice(0, 3)
                 </div>
               </div>
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
-                I'm an 18 year old <b>engineering student</b>, based in SF right
-                now. I
+                I'm a 19 year old <b> engineering</b> student, based in Dublin. I
                 <b>love</b> to build stuff!
               </p><p class="text-gray-400 font-mono bold-slate-p text-justify">
-                I currently work on <b>hardware</b> at <a
-                  href="https://lumindt.com">Lumindt</a
-                >, an energy storage co.
+                I currently am teaching myself <b>RF electronics</b> and am fascinated
+                by power systems + energy abundance.
               </p>
             </div>
           </Card>
@@ -53,16 +51,17 @@ const posts = (await getPosts()).slice(0, 3)
           <div class="flex flex-row items-center space-x-4 justify-center">
             <img
               class="w-20 h-20 hover:scale-110 duration-300 hover:cursor-pointer border border-gray-600 rounded-md"
-              src="pink.png"
-              alt="pink floyd album"
+              src="dyer-maker.jpg"
+              alt="dyer maker album cover"
             />
             <div class="flex flex-col text-left justify-center">
               <h4 class="mb-1">Music</h4>
               <p class="text-gray-400 font-mono bold-slate-p">
-                <b>Wish You Were Here</b> by
+                <b>D'yer Mak'er</b> by
                 <a
                   class="hover:cursor-pointer"
-                  href="https://en.wikipedia.org/wiki/Pink_Floyd">Pink Floyd</a
+                  href="https://www.youtube.com/watch?app=desktop&v=xje-1sw3T0s&t=0s"
+                  >Led Zepplin</a
                 >
               </p>
             </div>
@@ -75,9 +74,8 @@ const posts = (await getPosts()).slice(0, 3)
           <Card class="space-y-2 !shadow-none">
             <h4>Contact</h4>
             <p class="font-mono text-gray-400 bold-slate-p">
-              I'm <b>always</b> looking for opportunities and I <b
-                >love meeting new people</b
-              >!
+              If any of what you see here seems interesting, I'd <b>love</b> to hear
+              from you!
             </p>
             <div class="flex flex-row space-x-2">
               {
@@ -87,8 +85,12 @@ const posts = (await getPosts()).slice(0, 3)
                     href: 'https://github.com/will-carkner',
                   },
                   {
-                    icon: 'ic:round-email',
+                    icon: 'mdi:email',
                     href: 'mailto:will@willcarkner.com',
+                  },
+                  {
+                    icon: 'mdi:instagram',
+                    href: 'https://www.instagram.com/_willcarkner/',
                   },
                 ].map((item) => (
                   <a
@@ -119,13 +121,15 @@ const posts = (await getPosts()).slice(0, 3)
           <ul
             class="text-left font-mono list-disc text-gray-400 bold-slate-p pl-2"
           >
-            <li>The Daily Stoic | <b>Ryan Holiday</b></li>
-            <li>Learning to Learn | <b>Richard Hamming</b></li>
+            <li>
+              RF Electronics Handbook | <b>American Radio Relay League</b>
+            </li>
+            <li>The Big Score | <b>Michael S. Malone</b></li>
             <li>Storm of Steel | <b>Ernst Jünger</b></li>
           </ul>
           <a
             class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
-            href="/blog/contact"
+            href="/blog/reading"
           >
             My Notes
           </a>
@@ -139,10 +143,18 @@ const posts = (await getPosts()).slice(0, 3)
             {
               [
                 {
+                  title: 'Lumindt',
+                  tags: ['Hardware', 'Energy', 'EE'],
+                  image: 'lumindt.png',
+                  url: 'https://lumindt.com',
+                  class: 'aspect-[3/2]',
+                },
+                {
                   title: 'Founders Site',
                   tags: ['Astro', 'Tailwind', 'Client'],
                   image: 'founders.jpg',
                   url: 'https://joinfounders.co',
+                  class: 'aspect-[3/2]',
                 },
                 {
                   title: 'BloodBox',
@@ -176,7 +188,6 @@ const posts = (await getPosts()).slice(0, 3)
                   tags: ['Hardware', 'Robotics'],
                   image: 'bot.jpeg',
                   url: '',
-                  // class: 'aspect-[3/2]',
                 },
                 {
                   title: 'TCD Hist Club',
