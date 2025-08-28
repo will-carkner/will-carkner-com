@@ -1,5 +1,5 @@
 ---
-title: 'Try from the buffet'
+title: 'Sample from the buffet'
 pubDate: '8 Feb 2024'
 published: false
 ---
@@ -8,7 +8,7 @@ Let's talk about buffets. Usually they are _"a meal consisting of several dishes
 
 # The buffet of life
 
-What do I mean when I say the buffet of life? I mean that life is a sea of diversity in the things, places, and people you can experience. Much like the ocean of metal trays heated by
+What do I mean when I say the buffet of life? I mean that life is a sea of diversity in the things, places, and people you can experience. Much like the ocean of metal trays heated by small propane flames, the possibilities in life seem endless when you're young.
 
 # Buffets going out of style
 
@@ -21,6 +21,8 @@ buffets are going out of style -> talk about how everyone is becoming more speci
 # Don't fill up on salad
 
 In my experience at buffets, there's one hard and fast rule that has always rung through my head when attending these establishments: _don't fill up on salad_.
+
+The first thing one sees when arriving at the buffet is often the salad line.
 
 don't fill up on salad -> the first thing you see/choose is not always the best
 
