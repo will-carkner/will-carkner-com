@@ -1,7 +1,7 @@
 ---
 title: 'Current endeavours'
 pubDate: 'Jul 15 2023'
-updatedDate: 'Oct 4 2024'
+updatedDate: 'Aug 28 2025'
 published: true
 ---
 
@@ -9,13 +9,11 @@ published: true
 
 Currently, I am working on three main things, and they are:
 
-- [BloodBox](https://bloodbox.info). A diagnostic tool for malaria.
+- College. Studying Engineering at Trinity College Dublin, 2nd year.
 
-- College. Studying Engineering at Trinity College Dublin, 1st year.
+- RF Electronics. Self-teaching the AARL Handbook and building mini projects.
 
-- Real Analysis. Self-teaching "Understanding Analysis" by Stephen Abott.
-
-I have found that by recording what I am working on, I am actually able to see what needs to be at the front of my mind versus on the back-burner.
+- Rowing. Training a lot and racing on the TCD rowing team.
 
 ### 3 at a time
 
