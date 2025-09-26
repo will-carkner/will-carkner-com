@@ -21,7 +21,7 @@ const posts = (await getPosts()).slice(0, 3)
         <div
           class="rounded-xl bg-gradient-to-r animate-gradient-x from-blue-600 via-purple-600 to-violet-600 p-0.5"
         >
-          <Card class="items-left !shadow-none">
+          <Card class="items-left !border-none !shadow-none">
             <div class="flex-col text-left space-y-4 flex">
               <div class="flex flex-row space-x-4">
                 <img
@@ -38,8 +38,15 @@ const posts = (await getPosts()).slice(0, 3)
                 I'm a 19 year old <b> engineering</b> student, based in Dublin. I
                 <b>love</b> to build stuff!
               </p><p class="text-gray-400 font-mono bold-slate-p text-justify">
-                I am currently teaching myself <b>RF electronics</b> and am fascinated
-                by power systems + energy abundance.
+                I am currently <b>teaching myself</b> RF electronics and building
+                a few fun side projects.
+              </p>
+              <p class="text-gray-400 font-mono bold-slate-p text-justify">
+                I believe energy is the <b
+                  >most important resource of our time.
+                </b> I'm currently thinking about how the global grid <b
+                  >evolves</b
+                > to meet demand.
               </p>
             </div>
           </Card>
@@ -74,7 +81,7 @@ const posts = (await getPosts()).slice(0, 3)
         <div
           class="rounded-xl bg-gradient-to-r animate-gradient-x from-blue-600 via-purple-600 to-violet-600 p-0.5"
         >
-          <Card class="space-y-2 !shadow-none">
+          <Card class="space-y-2 !border-none !shadow-none">
             <h4>Contact</h4>
             <p class="font-mono text-gray-400 bold-slate-p">
               If any of what you see here seems interesting, I'd <b>love</b> to hear
