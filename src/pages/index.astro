@@ -44,9 +44,8 @@ const posts = (await getPosts()).slice(0, 3)
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
                 I believe energy is the <b
                   >most important resource of our time.
-                </b> I'm currently thinking about how the global grid <b
-                  >evolves</b
-                > to meet demand.
+                </b> I'm thinking about how the global grid <b>evolves</b> to meet
+                demand.
               </p>
             </div>
           </Card>
@@ -63,15 +62,18 @@ const posts = (await getPosts()).slice(0, 3)
               src="dyer-maker.jpg"
               alt="dyer maker album cover"
             />
-            <div class="flex flex-col text-left justify-center">
-              <h4 class="mb-1">Music</h4>
-              <p class="text-gray-400 font-mono bold-slate-p">
-                <b>D'yer Mak'er</b> by
+            <div class="flex flex-col text-left justify-center space-y-2">
+              <!-- <h4 class="mb-1">Music</h4> -->
+              <p class="text-gray-400 font-mono">
+                <b class="text-white">D'yer Mak'er</b> by
                 <a
                   class="hover:cursor-pointer"
                   href="https://www.youtube.com/watch?app=desktop&v=xje-1sw3T0s&t=0s"
                   >Led Zepplin</a
                 >
+              </p>
+              <p class="font-mono text-gray-400 font-bold">
+                my (current) favourite music
               </p>
             </div>
           </div>
@@ -82,7 +84,6 @@ const posts = (await getPosts()).slice(0, 3)
           class="rounded-xl bg-gradient-to-r animate-gradient-x from-blue-600 via-purple-600 to-violet-600 p-0.5"
         >
           <Card class="space-y-2 !border-none !shadow-none">
-            <h4>Contact</h4>
             <p class="font-mono text-gray-400 bold-slate-p">
               If any of what you see here seems interesting, I'd <b>love</b> to hear
               from you!
@@ -120,14 +121,14 @@ const posts = (await getPosts()).slice(0, 3)
               class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
               href="/blog/contact"
             >
-              Learn More
+              learn more
             </a>
           </Card>
         </div>
 
         <!-- Reading -->
         <Card class="space-y-4">
-          <h4>Reading</h4>
+          <!-- <h4>Reading</h4> -->
 
           <ul
             class="text-left font-mono list-disc text-gray-400 bold-slate-p pl-2"
@@ -142,14 +143,14 @@ const posts = (await getPosts()).slice(0, 3)
             class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
             href="/blog/reading"
           >
-            My Notes
+            view my notes
           </a>
         </Card>
       </div>
       <div class="md:flex-1 space-y-8">
         <!-- Projects -->
         <Card class="space-y-4">
-          <h4>Work</h4>
+          <!-- <h4>Work</h4> -->
           <div class="flex flex-col space-y-4 justify-end">
             {
               [
@@ -228,7 +229,7 @@ const posts = (await getPosts()).slice(0, 3)
             class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:cursor-pointer hover:underline"
             id="more-projects"
           >
-            View More
+            view all work
           </a>
           <script>
             const moreProjects = document.getElementById('more-projects')!
@@ -272,8 +273,7 @@ const posts = (await getPosts()).slice(0, 3)
           </div> -->
         </Card>
         <!-- CORE IDEAS -->
-        <Card class="space-y-2">
-          <h4>Principles</h4>
+        <!-- <Card class="space-y-2">
           <ul class="flex flex-row space-x-4">
             {
               [
@@ -305,10 +305,11 @@ const posts = (await getPosts()).slice(0, 3)
             >.
           </div>
         </Card>
+ -->
         <!--PHOTOS -->
         <Card>
           <div class="space-y-4">
-            <h4>Photos</h4>
+            <!-- <h4>Photos</h4> -->
             <div
               class="flex flex-row space-x-2 md:space-x-4 items-center justify-center"
             >
@@ -340,66 +341,15 @@ const posts = (await getPosts()).slice(0, 3)
                 class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
                 href="/photos"
               >
-                View More
+                view my photos
               </a>
             </div>
           </div>
         </Card>
-        <!-- WORKOUTS -->
-        <!-- <Card>
-          <div class="space-y-2">
-            <h4>Exercise</h4>
-            <div class="flex flex-col space-y-2 items-left justify-left">
-              {
-                [
-                  {
-                    type: 'Upper Strength',
-                    desc: ['Push press', 'Bench press', 'Pull up', 'T bar row'],
-                  },
-                  {
-                    type: 'Lower Strength',
-                    desc: [
-                      'Hang snatch',
-                      'Bulgarian split squat',
-                      'Back squat',
-                      'Calf raise',
-                    ],
-                  },
-                  {
-                    type: 'Impulse',
-                    desc: [
-                      'Power clean',
-                      'Front squat',
-                      'Nordic curl',
-                      'Standing calf raise',
-                    ],
-                  },
-                  {
-                    type: 'Plyometrics',
-                    desc: [
-                      'Broad jump',
-                      'Core work',
-                      'Pogo jumps',
-                      'Single leg box jump',
-                    ],
-                  },
-                ].map((item) => (
-                  <div class="flex flex-col">
-                    <p class="font-bold text-center pb-1">{item.type}</p>
-                    <ul class="p-1 px-2 border shadow-slate-900 rounded-xl text-left border-gray-600 grid grid-cols-2">
-                      {item.desc.map((thing) => (
-                        <li>&bullet; {thing}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </Card> -->
+
+        <!-- Quote-->
         <Card>
           <div class="space-y-2">
-            <h4>Thought</h4>
             <p class="text-gray-400 font-mono bold-slate-p text-left">
               Fall in love and <b>stay in love</b>. Explode. Don't
               intellectualize. Get passionate about ideas. Cram your head full
@@ -410,10 +360,25 @@ const posts = (await getPosts()).slice(0, 3)
               >
             </p>
             <div class="flex flex-row space-x-2">
-              <p class="text-gray-400 font-mono">- Ray Bradbury</p>
+              <p class="text-gray-400 font-mono">- ray bradbury</p>
               <p class="text-sm font-mono text-gray-500 translate-y-px">
                 (emphasis my own)
               </p>
+            </div>
+          </div>
+        </Card>
+
+        <Card>
+          <div class="space-y-2">
+            <img
+              alt="antibes by claude monet"
+              class="w-full h-auto border border-gray-600 rounded-lg"
+              src="antibes.jpg"
+            />
+            <div
+              class="flex flex-row items-center justify-center text-center space-x-2"
+            >
+              <p class="text-gray-400 font-mono">antibes by claude monet</p>
             </div>
           </div>
         </Card>
