@@ -25,7 +25,7 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }} # add in repo Settings → Secrets
           X_USER_ID: ${{ secrets.X_USER_ID }} # set to 1320872444236865542
           X_USER_HANDLE: ArtGuide_db # or store as a repo Variable if you prefer
-        run: node .github/scripts/once_today.mjs
+        run: node .github/scripts/art_scraper.mjs
 
       - name: Commit & push if changed
         run: |
