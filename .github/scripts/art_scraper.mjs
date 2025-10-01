@@ -63,9 +63,16 @@ function pickBestPhoto(resp) {
       .map((k) => mediaByKey.get(k))
       .find((m) => m && m.type === 'photo' && (m.url || m.preview_image_url))
     if (photo) {
+      // Extract painting name and artist from the tweet text, remove URLs, and lowercase
+      // Extract "Artist Name Artwork Title, Year" before the URL, lowercase
+      const cleanedText = (t.text || '')
+        .replace(/https?:\/\/\S+/g, '') // Remove URLs
+        .replace(/\s+$/, '') // Remove trailing spaces
+        .toLowerCase()
+        .trim()
       return {
         tweetId: t.id,
-        text: t.text || '',
+        text: cleanedText,
         created_at: t.created_at,
         photoUrl: photo.url || photo.preview_image_url,
       }

@@ -5,7 +5,8 @@ import Section from '../components/Section.astro'
 import ArticleDisplay from '../components/ArticleDisplay.astro'
 import { getPosts } from '../utils/funcs'
 import Project from '../components/Project.astro'
-import { Icon } from 'astro-icon'
+
+import artData from '../../public/daily-art.json'
 
 export const prerender = false
 
@@ -396,14 +397,15 @@ const posts = (await getPosts()).slice(0, 3)
         <Card>
           <div class="space-y-2">
             <img
-              alt="antibes by claude monet"
-              class="w-full h-auto border border-gray-600 rounded-lg"
-              src="antibes.jpg"
+              alt={artData.text}
+              class="w-full h-full border border-gray-600 rounded-lg"
+              src={artData.imageUrl}
             />
+
             <div
               class="flex flex-row items-center justify-center text-center space-x-2"
             >
-              <p class="text-gray-400 font-mono">antibes by claude monet</p>
+              <p class="text-gray-400 font-mono italic">"{artData.text}"</p>
             </div>
           </div>
         </Card>
