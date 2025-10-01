@@ -7,6 +7,15 @@ import { getPosts } from '../utils/funcs'
 import Project from '../components/Project.astro'
 
 import artData from '../../public/daily-art.json'
+const cachedDate = new Date(artData.cachedAt)
+const now = new Date()
+const diffMs = now.getTime() - cachedDate.getTime()
+const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+
+const lastUpdated =
+  diffHours < 1
+    ? 'last changed less than an hour ago'
+    : `last changed ${diffHours} hour${diffHours === 1 ? '' : 's'} ago`
 
 export const prerender = false
 
@@ -393,7 +402,6 @@ const posts = (await getPosts()).slice(0, 3)
           </div>
         </Card>
 
-        <!-- TODO MAKE THIS DYNAMIC FROM X.COM ACCOUNT -->
         <Card>
           <div class="space-y-2">
             <img
@@ -403,9 +411,10 @@ const posts = (await getPosts()).slice(0, 3)
             />
 
             <div
-              class="flex flex-row items-center justify-center text-center space-x-2"
+              class="flex flex-col items-center justify-center text-center space-y-2"
             >
               <p class="text-gray-400 font-mono italic">"{artData.text}"</p>
+              <p class="text-gray-400 font-mono">{lastUpdated}</p>
             </div>
           </div>
         </Card>
