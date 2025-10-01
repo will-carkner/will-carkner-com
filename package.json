@@ -13,6 +13,7 @@
     "@astrojs/rss": "^4.0.9",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.2",
+    "@iconify-json/simple-icons": "^1.2.53",
     "@tailwindcss/nesting": "0.0.0-insiders.565cd3e",
     "@vercel/analytics": "^1.4.0",
     "astro-icon": "^0.8.2",

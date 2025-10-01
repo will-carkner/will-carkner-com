@@ -88,31 +88,28 @@ const posts = (await getPosts()).slice(0, 3)
               If any of what you see here seems interesting, I'd <b>love</b> to hear
               from you!
             </p>
-            <div class="flex flex-row space-x-2">
+            <div class="flex flex-row space-x-4">
               {
                 [
                   {
-                    icon: 'mdi:github',
+                    text: '/github',
                     href: 'https://github.com/will-carkner',
                   },
                   {
-                    icon: 'mdi:email',
-                    href: 'mailto:will@willcarkner.com',
+                    text: '/x',
+                    href: 'https://x.com/carknerwill',
                   },
                   {
-                    icon: 'mdi:instagram',
+                    text: '/insta',
                     href: 'https://www.instagram.com/_willcarkner/',
                   },
                 ].map((item) => (
                   <a
                     href={item.href}
                     target="_blank"
-                    class="hover:duration-300 hover:scale-110"
+                    class="hover:duration-300 font-mono no-underline hover:underline hover:scale-110"
                   >
-                    <Icon
-                      class="w-8 h-8 text-gray-300 hover:text-sky-400"
-                      name={item.icon}
-                    />
+                    {item.text}
                   </a>
                 ))
               }
