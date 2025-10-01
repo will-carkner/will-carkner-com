@@ -1,0 +1,36 @@
+name: Daily Art (X API → JSON)
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # 06:00 UTC daily (~07:00 Dublin in summer, 06:00 in winter)
+  workflow_dispatch: # lets you run it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-daily-art:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Runs the minimal script that makes ONE X API call and updates public/daily-art.json if needed
+      - name: Fetch latest art
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }} # add in repo Settings → Secrets
+          X_USER_ID: ${{ secrets.X_USER_ID }} # set to 1320872444236865542
+          X_USER_HANDLE: ArtGuide_db # or store as a repo Variable if you prefer
+        run: node .github/scripts/once_today.mjs
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/daily-art.json
+          git diff --cached --quiet && echo "No changes" || git commit -m "chore: update daily art"
+          git push
