@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install dependencies
+        run: pnpm install
+
       # Runs the minimal script that makes ONE X API call and updates public/daily-art.json if needed
       - name: Fetch latest art
         env:
