@@ -2,7 +2,7 @@ name: Daily Art (X API → JSON)
 
 on:
   schedule:
-    - cron: '0 6 * * *' # 06:00 UTC daily (~07:00 Dublin in summer, 06:00 in winter)
+    - cron: '30 2 */2 * *'
   workflow_dispatch: # lets you run it manually from the Actions tab
 
 permissions:
