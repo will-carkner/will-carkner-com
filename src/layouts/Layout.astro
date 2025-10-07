@@ -12,7 +12,7 @@ import TopBanner from '../components/TopBanner.astro'
 <!doctype html>
 <html
   lang="en"
-  class="min-h-screen text-white selection:bg-transparent selection:text-sky-400"
+  class="min-h-screen text-white font-light selection:bg-transparent selection:text-sky-400"
 >
   <head>
     <meta charset="UTF-8" />
@@ -27,10 +27,8 @@ import TopBanner from '../components/TopBanner.astro'
       <slot />
       <div class="my-2">
         {show && <Nav />}
-        <p class="text-gray-400 font-mono text-sm mt-4">
+        <p class="text-gray-400 font-mono mb-4 text-sm mt-4">
           &copy {new Date().getFullYear()} Will Carkner
-        </p><p class="text-gray-400 font-mono text-sm my-1">
-          Built in Ireland.
         </p>
         <!-- <p class="text-gray-400 font-mono text-sm my-1">
           <a href="https://china.willcarkner.com">easter egg</a>
@@ -70,6 +68,7 @@ import TopBanner from '../components/TopBanner.astro'
       }
       .bold-slate-p b {
         @apply text-slate-300;
+        @apply font-medium;
       }
     }
   </style>

@@ -139,8 +139,6 @@ const posts = (await getPosts()).slice(0, 3)
 
         <!-- Reading -->
         <Card class="space-y-4">
-          <!-- <h4>Reading</h4> -->
-
           <ul
             class="text-left font-mono list-disc text-gray-400 bold-slate-p pl-2"
           >
@@ -170,14 +168,50 @@ const posts = (await getPosts()).slice(0, 3)
               Because their words had forked no lightning they <br />
               Do not go gentle into that good night.
             </p>
-            <div class="flex flex-row space-x-2">
-              <!-- TODO MAKE THIS EXPAND THE CARD SO THAT FULL POEM CAN BE READ -->
-              <p class="text-gray-400 font-mono">
-                - dylan thomas (<a
-                  href="https://poets.org/poem/do-not-go-gentle-good-night"
-                  >full poem</a
-                >)
+            <div id="full-poem-text" class="hidden space-y-4">
+              <p class="text-gray-400 font-mono bold-slate-p text-left">
+                Good men, the last wave by, crying how bright <br />
+                Their frail deeds might have danced in a green bay,<br />
+                Rage, rage against the dying of the light.
               </p>
+              <p class="text-gray-400 font-mono bold-slate-p text-left">
+                Wild men who caught and sang the sun in flight,<br />
+                And learn, too late, they grieved it on its way,<br />
+                Do not go gentle into that good night.
+              </p>
+              <p class="text-gray-400 font-mono bold-slate-p text-left">
+                Grave men, near death, who see with blinding sight<br />
+                Blind eyes could blaze like meteors and be gay,<br />
+                Rage, rage against the dying of the light.
+              </p>
+              <p class="text-gray-400 font-mono bold-slate-p text-left">
+                And you, my father, there on the sad height,<br />
+                Curse, bless, me now with your fierce tears, I pray.<br />
+                Do not go gentle into that good night.<br />
+                Rage, rage against the dying of the light.
+              </p>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <p class="text-gray-400 font-mono text-left">- dylan thomas</p>
+              <a
+                class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:cursor-pointer hover:underline"
+                id="full-poem"
+              >
+                view full poem
+              </a>
+              <script>
+                const fullPoem = document.getElementById('full-poem')!
+                const fullPoemText = document.getElementById('full-poem-text')!
+                let hidden = true
+                fullPoem.addEventListener('click', () => {
+                  hidden = !hidden
+                  fullPoemText.classList.toggle('hidden', hidden)
+                  fullPoemText.classList.toggle('visible', !hidden)
+                  fullPoem.innerText = hidden
+                    ? 'view full poem'
+                    : 'hide full poem'
+                })
+              </script>
             </div>
           </div>
         </Card>
@@ -280,7 +314,9 @@ const posts = (await getPosts()).slice(0, 3)
                 project.classList.toggle('visible', !hidden)
                 project.classList.toggle('hidden', hidden)
               })
-              moreProjects.innerText = hidden ? 'See More' : 'See Less'
+              moreProjects.innerText = hidden
+                ? 'view all work'
+                : 'view less work'
             })
           </script>
           <!-- <div class="flex flex-row space-x-4">
