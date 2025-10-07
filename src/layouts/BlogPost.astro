@@ -12,142 +12,192 @@ const { title, pubDate, updatedDate } = Astro.props
 
 <Layout show={true} title={title}>
   <Section class="!mt-8">
-    <div class="space-y-4">
-      <h2>{title}</h2>
-      <div class="flex flex-row items-center justify-center space-x-4">
-        <p class="font-mono text-gray-400">
-          Published <FormattedDate date={pubDate} />
-        </p>
-        {
-          updatedDate && (
-            <p class="font-mono text-gray-400"> | </p>
-            <p class="font-mono text-gray-400">
-              Last Updated <FormattedDate date={updatedDate} />
-            </p>
-          )
-        }
+    <div class="space-y-8 max-w-4xl mx-auto">
+      <div class="text-center space-y-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-white">{title}</h1>
+        <div
+          class="flex flex-row items-center justify-center space-x-4 text-sm"
+        >
+          <p class="font-mono text-gray-400">
+            Published <FormattedDate date={pubDate} />
+          </p>
+          {
+            updatedDate && (
+              <>
+                <p class="font-mono text-gray-400"> | </p>
+                <p class="font-mono text-gray-400">
+                  Updated <FormattedDate date={updatedDate} />
+                </p>
+              </>
+            )
+          }
+        </div>
       </div>
-      <Section class="text-left md:text-justify">
-        <article>
-          <BlogCard>
-            <slot />
-          </BlogCard>
-        </article>
-      </Section>
+
+      <article class="blog-content">
+        <slot />
+      </article>
     </div>
   </Section>
 
   <style is:global>
-    article {
-      * {
-        @apply px-2;
-        @apply font-serif;
-      }
+    .blog-content {
+      @apply text-left space-y-6;
+      font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+      line-height: 1.6;
+
+      /* Headings */
       h1,
       h2,
       h3,
       h4,
       h5,
       h6 {
-        @apply !px-0 text-slate-200;
+        @apply text-white font-bold mt-8 mb-4 first:mt-0;
       }
-      h1,
+
+      h1 {
+        @apply text-3xl md:text-4xl;
+      }
       h2 {
-        @apply pt-3 pb-2 text-3xl font-bold md:text-4xl;
+        @apply text-2xl md:text-3xl;
+        @apply border-b border-gray-700 pb-2 mb-6;
       }
       h3 {
-        @apply pt-2 pb-1 text-xl font-bold md:text-2xl;
+        @apply text-xl md:text-2xl;
       }
       h4 {
-        @apply pt-1 pb-[0.5] text-base font-bold md:text-lg;
+        @apply text-lg md:text-xl;
       }
-      li {
-        @apply p-[0.5];
-        @apply text-gray-400;
+      h5 {
+        @apply text-base md:text-lg;
       }
+      h6 {
+        @apply text-sm md:text-base;
+      }
+
+      /* Paragraphs */
       p {
-        @apply text-gray-400;
-        @apply mt-2;
+        @apply text-gray-400 text-base md:text-lg leading-relaxed mb-4;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
       }
 
-      b,
-      strong {
-        @apply text-slate-200;
-      }
-      b,
+      /* Text emphasis */
       strong,
+      b {
+        @apply text-slate-300 font-semibold;
+      }
+
       em,
+      i {
+        @apply text-slate-300 italic;
+      }
+
+      /* Links */
       a {
-        @apply text-slate-200;
-        @apply !px-0;
+        @apply text-sky-400 hover:text-sky-300 underline decoration-sky-400/60;
+        @apply transition-colors duration-200;
       }
 
-      pre {
-        @apply rounded-xl border border-slate-200/10 px-4 py-3;
-      }
-
-      blockquote {
-        @apply ml-2 border-l-2 border-slate-200 italic my-2;
-      }
-
-      table {
-        @apply mx-2 border-collapse border border-slate-200/10;
-      }
-
-      th,
-      td {
-        @apply border border-slate-200/10 p-2 text-slate-300;
-      }
-
-      th {
-        @apply bg-slate-300/20;
-      }
-
-      tr {
-        @apply odd:bg-slate-200/5 even:bg-slate-200/10;
+      /* Lists */
+      ul,
+      ol {
+        @apply space-y-2 mb-6 text-gray-400;
       }
 
       ul {
-        @apply list-['•'] pl-6;
-        ul {
-          @apply pl-2;
-        }
+        @apply list-disc pl-6;
       }
 
       ol {
-        @apply pl-6;
-        li::marker {
-          content: counter(list-item) '.';
-        }
+        @apply list-decimal pl-6;
       }
 
       li {
-        padding-left: 1ch;
+        @apply text-base md:text-lg leading-relaxed;
       }
+
       li::marker {
-        @apply text-base font-bold;
+        @apply text-sky-400;
       }
 
-      ul > li > ul > li {
-        @apply text-sm text-gray-400;
-        @apply list-['-'] pl-3;
-      }
-      ul > li > ul > li > ul > li {
-        @apply text-slate-500;
+      /* Nested lists */
+      ul ul,
+      ol ol,
+      ul ol,
+      ol ul {
+        @apply mt-2 mb-2;
       }
 
-      p:has(> img) {
-        @apply flex items-center justify-center;
+      /* Code */
+      code {
+        @apply bg-slate-800 text-sky-300 px-2 py-1 rounded text-sm font-mono;
+        @apply border border-slate-700;
       }
-      div {
-        @apply flex flex-col;
+
+      pre {
+        @apply bg-slate-900 border border-slate-700 rounded-lg p-4 mb-6;
+        @apply overflow-x-auto text-sm;
       }
+
+      pre code {
+        @apply bg-transparent border-0 p-0 text-gray-300;
+      }
+
+      /* Blockquotes */
+      blockquote {
+        @apply border-l-4 border-sky-400 pl-6 py-2 my-6;
+        @apply text-gray-300 italic bg-slate-900/20 rounded-r;
+      }
+
+      /* Tables */
+      table {
+        @apply w-full border-collapse border border-slate-700 rounded-lg mb-6;
+        @apply overflow-hidden;
+      }
+
+      th {
+        @apply bg-slate-800 text-white font-semibold px-4 py-3 text-left;
+        @apply border-b border-slate-700;
+      }
+
+      td {
+        @apply text-gray-400 px-4 py-3 border-b border-slate-700/50;
+      }
+
+      tr:last-child td {
+        @apply border-b-0;
+      }
+
+      tr:hover {
+        @apply bg-slate-800/30;
+      }
+
+      /* Images */
       img {
-        @apply rounded-xl;
+        @apply rounded-lg max-w-full h-auto mb-6;
+        @apply shadow-lg border border-slate-700/50;
       }
-    }
-    article div *:first-child {
-      @apply !pt-0;
+
+      /* Horizontal rule */
+      hr {
+        @apply border-slate-700 my-8;
+      }
+
+      /* First/last element spacing */
+      > *:first-child {
+        @apply !mt-0;
+      }
+
+      > *:last-child {
+        @apply !mb-0;
+      }
     }
   </style>
 </Layout>

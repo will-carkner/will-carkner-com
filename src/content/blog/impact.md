@@ -4,7 +4,7 @@ pubDate: 'Feb 17 2024'
 published: true
 ---
 
-# Working on hard things
+## Working on hard things
 
 A general heuristic I have for what to work on is whether the work _excites me_. Often in life I have been told that "you gotta do what you gotta do" and while this may be good advice for some, it's not great for me. I want to put my life into a position where what I work on is not dictated by what I _"gotta do"_ and instead by what I _"get to do"_.
 
@@ -18,7 +18,7 @@ The natural progression of avoiding the easy leads me to working on things that 
 
 Another derived benefit of working on hard things is the (usually) positive net result it has for humanity. As someone who wants to see a great future for our species, I realise that working on hard things can make a prosperous future happen.
 
-# Hard → hardware?
+## Hard → hardware?
 
 Is the reason why it's called hardware because it's hard? _Maybe._
 
@@ -26,7 +26,7 @@ Notwithstanding the challenges of hardware, I truly find it exciting to work on 
 
 Med-tech, manufacturing, energy production, and exploration are all areas where I feel that significant progress can be made in my life-time. _I'm here to make some of that progress happen._
 
-# Impact others
+## Impact others
 
 The luxuries I experience daily are the product of 50 billion+ people that have come before me.
 
@@ -39,7 +39,7 @@ To do the work of man means to make an impact on some aspect of your life for th
 
 As well, a way to impact others is through mentorship. Helping people who are one step behind on the staircase of life creates a cascading effect that accelerates personal development and by derivative global progress.
 
-# Efficiency in impact
+## Efficiency in impact
 
 I have a natural drive towards efficiency in what I do. Agency, efficiency, and impact go hand in hand and when I can be efficient I try to be.
 

@@ -4,7 +4,7 @@ pubDate: 'Jun 29 2023'
 published: true
 ---
 
-### General Notes
+## General Notes
 
 Reading serves two purposes for me; learning and entertainment. When these two aspects are combined into one book it is a great feeling.
 
@@ -18,7 +18,7 @@ I also read plenty of articles/blogs, with the [Reeder App](reeder.app). A few o
 
 I have not yet read enough to develop a proper rating system for the books I have read, but I will update this if I create something I think is worth sharing.
 
-### Recent
+## Recent
 
 All of the below books I have read with a book club based in Dogpatch Labs. [Thomas Forbes](https://thomasforbes.com) and I set this up and it has been very beneficial for accountability and discussion.
 
@@ -29,7 +29,7 @@ We create somewhat comprehensive notes on each book, and if you want any of thes
 - [The Art of War](https://www.goodreads.com/book/show/10534.The_Art_of_War) by Sun Tzu
 - [Never split the difference](https://www.goodreads.com/book/show/26156469-never-split-the-difference) by Chris Voss
 
-### Current
+## Current
 
 Currently my reading is not as varied as I would like it to be, it has too much of a lean on non-fiction. That being said, I am currently reading:
 
@@ -38,7 +38,7 @@ Currently my reading is not as varied as I would like it to be, it has too much 
 - [Ego is the Enemy](https://www.goodreads.com/book/show/27036528-ego-is-the-enemy) by Ryan Holiday
 - [To kill a mockingbird](https://www.goodreads.com/book/show/2657.To_Kill_a_Mockingbird) by Harper Lee
 
-### All Time
+## All Time
 
 Overall, books have had a large impact on my life. Here are some of the books that have served me well:
 
@@ -53,7 +53,7 @@ Overall, books have had a large impact on my life. Here are some of the books th
 - [The mom test](https://www.goodreads.com/book/show/52283963-the-mom-test) by Rob Fitzpatrick
   - If you're trying to know what users think or want, this is basically a full solve. Such a quick read too.
 
-### Full list
+## Full list
 
 Here is a list of books I have read to date, that I have recorded. Italic means that I would/have re-read it, which is my bar for quality right now.
 
