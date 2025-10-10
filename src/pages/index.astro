@@ -7,6 +7,7 @@ import { getPosts } from '../utils/funcs'
 import Project from '../components/Project.astro'
 
 import artData from '../../public/daily-art.json'
+
 const cachedDate = new Date(artData.cachedAt)
 const now = new Date()
 const diffMs = now.getTime() - cachedDate.getTime()
@@ -456,7 +457,10 @@ const posts = (await getPosts()).slice(0, 3)
             <div
               class="flex flex-col items-center justify-center text-center space-y-2"
             >
-              <p class="text-gray-400 font-mono italic">"{artData.text}"</p>
+              <p
+                class="text-gray-400 font-mono italic whitespace-pre-line"
+                set:html={artData.text}
+              />
               <p class="text-gray-400 font-mono">{lastUpdated}</p>
             </div>
           </div>
