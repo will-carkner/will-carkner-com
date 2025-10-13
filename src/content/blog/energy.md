@@ -54,7 +54,7 @@ Now for the fun part. To put my money in. As an experiment, I've created a simpl
 **Backbone**:
 
 - Siemens Energy (ENR) 25%
-- GE Veranova (GEV) 25%
+- GE Vernova (GEV) 25%
 
 **Moonshot:**
 
