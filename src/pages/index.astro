@@ -448,11 +448,85 @@ const posts = (await getPosts()).slice(0, 3)
 
         <Card>
           <div class="space-y-2">
-            <img
-              alt={artData.text}
-              class="w-full h-full border border-gray-600 rounded-lg"
-              src={artData.imageUrl}
-            />
+            <div class="relative group">
+              <img
+                id="art-image"
+                alt={artData.text}
+                class="w-full h-full border border-gray-600 rounded-lg hover:cursor-zoom-in"
+                src={artData.imageUrl}
+              />
+              <button
+                id="open-art-modal"
+                aria-label="View full screen"
+                class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40 hover:bg-black/60 text-white rounded-md px-2 py-1 text-sm"
+              >
+                <span class="-translate-y-50">⤢</span>
+              </button>
+            </div>
+
+            <div
+              id="art-modal"
+              class="fixed -top-3 left-0 w-screen h-screen bg-black/95 hidden opacity-0 transition-opacity duration-200 items-center justify-center"
+            >
+              <button
+                id="close-art-modal"
+                aria-label="Close"
+                class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl"
+              >
+                ×
+              </button>
+              <img
+                alt={artData.text}
+                src={artData.imageUrl}
+                class="max-w-[90vw] max-h-[90vh] rounded-lg border border-gray-700"
+              />
+            </div>
+
+            <script>
+              const openBtn = document.getElementById('open-art-modal')!
+              const modal = document.getElementById('art-modal')!
+              const closeBtn = document.getElementById('close-art-modal')!
+
+              const openModal = () => {
+                modal.classList.remove('hidden')
+                modal.classList.add('flex')
+                // ensure transition runs
+                requestAnimationFrame(() => {
+                  modal.classList.add('opacity-100')
+                  modal.classList.remove('opacity-0')
+                })
+                document.documentElement.classList.add('overflow-hidden')
+              }
+              const closeModal = () => {
+                modal.classList.add('opacity-0')
+                modal.classList.remove('opacity-100')
+                const onEnd = (e) => {
+                  if (e.target !== modal) return
+                  modal.removeEventListener('transitionend', onEnd)
+                  modal.classList.add('hidden')
+                  modal.classList.remove('flex')
+                  document.documentElement.classList.remove('overflow-hidden')
+                }
+                modal.addEventListener('transitionend', onEnd)
+              }
+
+              openBtn.addEventListener('click', (e) => {
+                e.stopPropagation()
+                openModal()
+              })
+              closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation()
+                closeModal()
+              })
+              // Close when clicking the backdrop (but not the image)
+              modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal()
+              })
+              // Esc to close
+              document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal()
+              })
+            </script>
 
             <div
               class="flex flex-col items-center justify-center text-center space-y-2"
