@@ -1,0 +1,612 @@
+---
+export const prerender = true
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>Happy Birthday Kiara</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        background: #faf8f5;
+        color: #2e2a26;
+        overflow-x: hidden;
+      }
+
+      /* Hero */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        background: linear-gradient(160deg, #e8ddd0 0%, #f2e6d8 30%, #dce8e8 70%, #eee8df 100%);
+      }
+
+      .hero-content {
+        padding: 2rem;
+        animation: fadeUp 1.2s ease-out;
+      }
+
+      .subtitle {
+        font-weight: 400;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #b8836f;
+        margin-bottom: 1.2rem;
+      }
+
+      .title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(3.5rem, 10vw, 7rem);
+        font-weight: 700;
+        line-height: 1;
+        background: linear-gradient(135deg, #2e2a26 20%, #8b5e4b 80%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .scroll-hint {
+        position: absolute;
+        bottom: 2.5rem;
+        animation: bounce 2s ease-in-out infinite;
+        color: #b8836f;
+        font-size: 1.2rem;
+        opacity: 0.5;
+        text-decoration: none;
+      }
+
+      /* Sections */
+      .section {
+        max-width: 580px;
+        margin: 0 auto;
+        padding: 3.5rem 1.5rem;
+        text-align: center;
+      }
+
+      .section-label {
+        font-weight: 500;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        font-size: 0.65rem;
+        color: #b8836f;
+        margin-bottom: 1.2rem;
+      }
+
+      .section h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+        color: #2e2a26;
+      }
+
+      .section p {
+        color: #6b6158;
+        line-height: 1.8;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+      }
+
+      /* Divider */
+      .divider {
+        width: 40px;
+        height: 2px;
+        background: linear-gradient(90deg, #d4a088, #7fb5b0);
+        margin: 2rem auto;
+        border-radius: 1px;
+      }
+
+      /* Destinations */
+      .destinations {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      @media (min-width: 500px) {
+        .destinations {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .destination-card {
+        border: 1px solid #e2d8cc;
+        border-radius: 14px;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        background: #fff;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .destination-card.selected {
+        border-color: #b8836f;
+        background: linear-gradient(135deg, rgba(212, 160, 136, 0.08), rgba(127, 181, 176, 0.08));
+        box-shadow: 0 10px 30px rgba(180, 140, 110, 0.12);
+      }
+
+      .destination-card.selected::before {
+        opacity: 1;
+      }
+
+      /* Fireworks canvas */
+      .fireworks-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .destination-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #d4a088, #7fb5b0);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .destination-card:hover::before {
+        opacity: 1;
+      }
+
+      .destination-card:hover {
+        border-color: #c4b09c;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(180, 140, 110, 0.1);
+      }
+
+      .destination-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2e2a26;
+        margin-bottom: 0.35rem;
+      }
+
+      .destination-card p {
+        font-size: 0.82rem;
+        color: #9a8b7c;
+        margin-bottom: 0;
+        line-height: 1.5;
+      }
+
+      /* Plan */
+      .plan-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        text-align: center;
+      }
+
+      .plan-item {
+        padding: 1.3rem 1.5rem;
+        border: 1px solid #e2d8cc;
+        border-radius: 14px;
+        background: #fff;
+      }
+
+      .plan-day {
+        font-family: 'Playfair Display', serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #b8836f;
+        margin-bottom: 0.35rem;
+      }
+
+      .plan-detail {
+        color: #6b6158;
+        line-height: 1.7;
+        font-size: 0.92rem;
+      }
+
+      .plan-detail strong {
+        color: #2e2a26;
+        font-weight: 500;
+      }
+
+      /* Activities */
+      .activities {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .activity-tag {
+        padding: 0.4rem 0.9rem;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        font-weight: 400;
+        color: #6b6158;
+        background: linear-gradient(135deg, rgba(212, 160, 136, 0.12), rgba(127, 181, 176, 0.12));
+        border: 1px solid rgba(212, 160, 136, 0.2);
+      }
+
+      /* Airbnb cards */
+      .airbnb-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (min-width: 500px) {
+        .airbnb-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .airbnb-card {
+        display: block;
+        text-decoration: none;
+        border: 1px solid #e2d8cc;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+        transition: all 0.3s;
+      }
+
+      .airbnb-card:hover {
+        border-color: #c4b09c;
+        transform: translateY(-3px);
+        box-shadow: 0 14px 36px rgba(180, 140, 110, 0.12);
+      }
+
+      .airbnb-card img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .airbnb-card-body {
+        padding: 1rem 1rem 1.1rem;
+      }
+
+      .airbnb-card-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #2e2a26;
+        margin-bottom: 0.25rem;
+      }
+
+      .airbnb-card-sub {
+        font-size: 0.78rem;
+        color: #9a8b7c;
+      }
+
+      /* Poster */
+      .poster-section {
+        display: flex;
+        justify-content: center;
+        padding: 3.5rem 1.5rem;
+      }
+
+      .poster-img {
+        max-width: 420px;
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid #e2d8cc;
+        box-shadow: 0 20px 50px rgba(180, 140, 110, 0.1);
+      }
+
+      /* Closing */
+      .closing {
+        text-align: center;
+        padding: 5rem 1.5rem 6rem;
+        background: linear-gradient(160deg, #eee8df 0%, #dce8e8 50%, #f2e6d8 100%);
+      }
+
+      .closing-text {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-weight: 400;
+        font-style: italic;
+        color: #6b6158;
+        max-width: 400px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .closing-sign {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.15rem;
+        margin-top: 2rem;
+        color: #b8836f;
+        display: block;
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(6px); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="hero-content">
+        <p class="subtitle">Happy 20th Birthday</p>
+        <h1 class="title">Kiara</h1>
+        <p class="subtitle" style="margin-top: 1.2rem; margin-bottom: 0;">I love you</p>
+      </div>
+      <a href="#gift" class="scroll-hint" aria-label="Scroll down">&darr;</a>
+    </div>
+
+    <div class="divider" id="gift"></div>
+
+    <div class="section fade-in">
+      <p class="section-label">Your Gift</p>
+      <h2>A Road Trip</h2>
+      <p>Two days on the coast. You pick where we go, I sort the rest.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section fade-in">
+      <p class="section-label">Pick One</p>
+      <h2>Three Destinations</h2>
+      <p>All close to the beach. All good.</p>
+      <div class="destinations">
+        <div class="destination-card">
+          <h3>Dingle</h3>
+          <p>Peninsulas, harbour towns, dolphins</p>
+        </div>
+        <div class="destination-card">
+          <h3>West Cork</h3>
+          <p>Villages, hidden beaches, cliffs</p>
+        </div>
+        <div class="destination-card">
+          <h3>Kerry</h3>
+          <p>Mountains, lakes, endless green</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section fade-in">
+      <p class="section-label">The Plan</p>
+      <h2>Two Nights Away</h2>
+      <div class="plan-grid">
+        <div class="plan-item">
+          <div class="plan-day">Tuesday 2 June</div>
+          <div class="plan-detail">
+            <strong>Leave at midday.</strong> I drive.
+          </div>
+        </div>
+        <div class="plan-item">
+          <div class="plan-day">Tue - Thu</div>
+          <div class="plan-detail">
+            Two nights in an Airbnb near the water. Beach walks, cooking, campfire, swimming, hiking.
+          </div>
+        </div>
+        <div class="plan-item">
+          <div class="plan-day">Thursday 4 June</div>
+          <div class="plan-detail">
+            <strong>Head back at midday.</strong>
+          </div>
+        </div>
+      </div>
+      <div class="activities">
+        <span class="activity-tag">Beach walks</span>
+        <span class="activity-tag">Cooking together</span>
+        <span class="activity-tag">Campfire</span>
+        <span class="activity-tag">Sea swimming</span>
+        <span class="activity-tag">Hiking</span>
+        <span class="activity-tag">Exploring</span>
+        <span class="activity-tag">Sunsets</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section fade-in">
+      <p class="section-label">Where We Stay</p>
+      <h2>The Airbnbs</h2>
+      <p>Here's the kind of place I've been looking at.</p>
+      <div class="airbnb-grid">
+        <a
+          class="airbnb-card"
+          href="https://www.airbnb.ie/rooms/1195037648735109990?adults=2&check_in=2026-06-02&check_out=2026-06-04&search_mode=regular_search&source_impression_id=p3_1774003359_P3LW9by0f2vi_Lnl&previous_page_section_name=1000&federated_search_id=627aec27-a577-4e94-a57b-1cc1703f6b64"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://a0.muscache.com/im/pictures/miso/Hosting-1195037648735109990/original/ededba87-9a5b-4d6d-82a3-dac4cfbb897e.jpeg"
+            alt="Wind In The Willows"
+          />
+          <div class="airbnb-card-body">
+            <div class="airbnb-card-title">Wind In The Willows</div>
+            <div class="airbnb-card-sub">Near Schull, West Cork</div>
+          </div>
+        </a>
+        <a
+          class="airbnb-card"
+          href="https://www.airbnb.ie/rooms/49433942?adults=2&check_in=2026-06-02&check_out=2026-06-04&search_mode=regular_search&source_impression_id=p3_1774003359_P3Q22g5BHvKCCIcV&previous_page_section_name=1000&federated_search_id=627aec27-a577-4e94-a57b-1cc1703f6b64"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://a0.muscache.com/im/pictures/12a185b1-3d6f-408e-aded-a2c6a176a374.jpg"
+            alt="The Little House, The Cove"
+          />
+          <div class="airbnb-card-body">
+            <div class="airbnb-card-title">The Little House</div>
+            <div class="airbnb-card-sub">The Cove, Baltimore</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="poster-section fade-in">
+      <img
+        class="poster-img"
+        src="/road-trip-poster.png"
+        alt="Road Trip - Kiara & Will, May 2026"
+      />
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="closing">
+      <p class="closing-text fade-in">
+        No planning needed from you.
+        <br />Just pick where.
+      </p>
+      <span class="closing-sign fade-in">Love, Will</span>
+    </div>
+
+    <canvas class="fireworks-canvas" id="fireworks"></canvas>
+
+    <script>
+      // Fireworks
+      const canvas = document.getElementById('fireworks') as HTMLCanvasElement
+      const ctx = canvas.getContext('2d')!
+      let particles: { x: number; y: number; vx: number; vy: number; life: number; color: string; size: number }[] = []
+      let animating = false
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      }
+      resizeCanvas()
+      window.addEventListener('resize', resizeCanvas)
+
+      const colors = ['#d4a088', '#7fb5b0', '#b8836f', '#e8c4a8', '#8cc4bf', '#d98a72', '#6ba8a2', '#e6b090', '#c47a62', '#9dd4ce']
+
+      function launch(cx: number, cy: number) {
+        const count = 60
+        for (let i = 0; i < count; i++) {
+          const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3
+          const speed = 2 + Math.random() * 4
+          particles.push({
+            x: cx,
+            y: cy,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            size: 2 + Math.random() * 2,
+          })
+        }
+        if (!animating) {
+          animating = true
+          animate()
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        particles = particles.filter((p) => p.life > 0)
+        for (const p of particles) {
+          p.x += p.vx
+          p.y += p.vy
+          p.vy += 0.06
+          p.vx *= 0.985
+          p.life -= 0.012
+          ctx.globalAlpha = p.life
+          ctx.fillStyle = p.color
+          ctx.beginPath()
+          ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2)
+          ctx.fill()
+        }
+        ctx.globalAlpha = 1
+        if (particles.length > 0) {
+          requestAnimationFrame(animate)
+        } else {
+          animating = false
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+        }
+      }
+
+      function fireworkBurst(card: HTMLElement) {
+        const rect = card.getBoundingClientRect()
+        const cx = rect.left + rect.width / 2
+        const cy = rect.top + rect.height / 2
+        launch(cx, cy)
+        setTimeout(() => launch(cx - 60 + Math.random() * 120, cy - 40), 150)
+        setTimeout(() => launch(cx - 60 + Math.random() * 120, cy - 20), 300)
+      }
+
+      document.querySelectorAll('.destination-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.destination-card').forEach((c) => c.classList.remove('selected'))
+          card.classList.add('selected')
+          fireworkBurst(card as HTMLElement)
+        })
+      })
+
+      // Intersection observer
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible')
+            }
+          })
+        },
+        { threshold: 0.15 }
+      )
+      document.querySelectorAll('.fade-in').forEach((el) => {
+        observer.observe(el)
+      })
+    </script>
+  </body>
+</html>
