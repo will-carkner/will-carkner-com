@@ -1,9 +1,9 @@
-name: Daily Art (X API → JSON)
+name: Daily Art (fxtwitter → JSON)
 
 on:
   schedule:
     - cron: '30 2 */2 * *'
-  workflow_dispatch: # lets you run it manually from the Actions tab
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -19,15 +19,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install dotenv
-
-      # Runs the minimal script that makes ONE X API call and updates public/daily-art.json if needed
       - name: Fetch latest art
-        env:
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }} # add in repo Settings → Secrets
-          X_USER_ID: ${{ secrets.X_USER_ID }} # set to 1320872444236865542
-          X_USER_HANDLE: ArtGuide_db # or store as a repo Variable if you prefer
         run: node .github/scripts/art_scraper.mjs
 
       - name: Commit & push if changed
