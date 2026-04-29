@@ -10,9 +10,23 @@ import { dirname } from 'node:path'
 const HANDLE = process.env.X_USER_HANDLE || 'ArtGuide_db'
 const OUTPUT = process.env.OUTPUT_PATH || 'public/daily-art.json'
 
+async function fetchWithRetry(url, opts = {}, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    const res = await fetch(url, opts)
+    if (res.ok) return res
+    if (res.status === 429 && i < retries - 1) {
+      const delay = 2 ** i * 5_000
+      console.log(`429 rate-limited, retrying in ${delay / 1000}s (attempt ${i + 2}/${retries})`)
+      await new Promise((r) => setTimeout(r, delay))
+      continue
+    }
+    return res
+  }
+}
+
 async function getRecentTweetIds() {
   const url = `https://syndication.twitter.com/srv/timeline-profile/screen-name/${HANDLE}`
-  const res = await fetch(url, {
+  const res = await fetchWithRetry(url, {
     headers: { 'User-Agent': 'Mozilla/5.0 (compatible; bot)' },
   })
   if (!res.ok) throw new Error(`Syndication HTTP ${res.status}`)
@@ -70,7 +84,13 @@ async function saveJSON(obj) {
   await writeFile(OUTPUT, JSON.stringify(obj, null, 2), 'utf8')
 }
 
-const latest = await getLatestPhotoTweet()
+let latest
+try {
+  latest = await getLatestPhotoTweet()
+} catch (err) {
+  console.log(`Failed to fetch tweets: ${err.message} — keeping previous file.`)
+  process.exit(0)
+}
 const prev = await loadPrevious()
 
 if (!latest) {

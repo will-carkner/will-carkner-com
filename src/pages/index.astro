@@ -18,6 +18,10 @@ const lastUpdated =
     ? 'last changed less than an hour ago'
     : `last changed ${diffHours} hour${diffHours === 1 ? '' : 's'} ago`
 
+const artLines = artData.text.split('\n')
+const artArtist = artLines[0]?.trim()
+const artTitle = artLines.slice(1).join(' ').trim()
+
 export const prerender = false
 
 const posts = (await getPosts()).slice(0, 3)
@@ -34,15 +38,15 @@ const posts = (await getPosts()).slice(0, 3)
         >
           <Card class="items-left !border-none !shadow-none">
             <div class="flex-col text-left space-y-4 flex">
-              <div class="flex flex-row space-x-4">
+              <div class="flex flex-row space-x-4 items-center">
                 <img
                   alt="Will Carkner"
                   src="will-c.jpg"
-                  class="w-24 h-auto rounded-lg"
+                  class="w-24 h-24 object-cover rounded-lg"
                 />
-                <div class="flex flex-col justify-end text-left">
-                  <h2>Will</h2>
-                  <h2>Carkner</h2>
+                <div class="flex flex-col text-left">
+                  <h2 class="font-mono">will</h2>
+                  <h2 class="font-mono">carkner</h2>
                 </div>
               </div>
               <p class="text-gray-400 font-mono bold-slate-p text-justify">
@@ -64,29 +68,62 @@ const posts = (await getPosts()).slice(0, 3)
         <!-- Writing -->
         <ArticleDisplay home={true} title="Writing" posts={posts} />
 
-        <!-- Music -->
+        <!-- Records -->
         <Card>
-          <div class="flex flex-row items-center space-x-4 justify-center">
-            <img
-              class="w-20 h-20 hover:scale-110 duration-300 hover:cursor-pointer border border-gray-600 rounded-md"
-              src="dyer-maker.jpg"
-              alt="dyer maker album cover"
-            />
-            <div class="flex flex-col text-left justify-center space-y-2">
-              <!-- <h4 class="mb-1">Music</h4> -->
-              <p class="text-gray-400 font-mono">
-                <b class="text-white">D'yer Mak'er</b> by
-                <a
-                  class="hover:cursor-pointer"
-                  href="https://www.youtube.com/watch?app=desktop&v=xje-1sw3T0s&t=0s"
-                  >Led Zepplin</a
-                >
-              </p>
-              <p class="font-mono text-gray-400 font-bold">
-                my (current) favourite music
-              </p>
-            </div>
+          <div class="flex flex-row flex-wrap gap-3 items-center justify-center max-w-[17rem] mx-auto">
+            {
+              [
+                {
+                  title: 'Led Zeppelin IV',
+                  artist: 'Led Zeppelin',
+                  image: 'records/led-zeppelin-iv.jpg',
+                  wiki: 'https://en.wikipedia.org/wiki/Led_Zeppelin_IV',
+                },
+                {
+                  title: "Can't Stop",
+                  artist: 'Red Hot Chili Peppers',
+                  image: 'records/cant-stop.jpg',
+                  wiki: 'https://en.wikipedia.org/wiki/Can%27t_Stop_(Red_Hot_Chili_Peppers_song)',
+                },
+                {
+                  title: 'Abbey Road',
+                  artist: 'The Beatles',
+                  image: 'records/abbey-road.jpg',
+                  wiki: 'https://en.wikipedia.org/wiki/Abbey_Road',
+                },
+                {
+                  title: 'Romance',
+                  artist: 'Fontaines D.C.',
+                  image: 'records/romance.jpg',
+                  wiki: 'https://en.wikipedia.org/wiki/Romance_(Fontaines_D.C._album)',
+                },
+                {
+                  title: 'Kind of Blue',
+                  artist: 'Miles Davis',
+                  image: 'records/kind-of-blue.jpg',
+                  wiki: 'https://en.wikipedia.org/wiki/Kind_of_Blue',
+                },
+              ].map((record) => (
+                <a href={record.wiki} target="_blank" class="no-underline group/record">
+                  <div class="relative w-16 h-16 sm:w-20 sm:h-20 hover:scale-110 duration-300">
+                    <div class="absolute inset-0 rounded-full bg-gray-900 border-2 border-gray-700 overflow-hidden shadow-lg group-hover/record:animate-spin-slow">
+                      <div class="absolute inset-[4px] rounded-full overflow-hidden">
+                        <img
+                          src={record.image}
+                          alt={`${record.title} by ${record.artist}`}
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div class="absolute inset-0 rounded-full border-[2px] border-gray-800/60" />
+                      <div class="absolute inset-[38%] rounded-full bg-gray-900 border border-gray-600" />
+                      <div class="absolute inset-[44%] rounded-full bg-gray-700" />
+                    </div>
+                  </div>
+                </a>
+              ))
+            }
           </div>
+          <p class="font-mono text-gray-400 font-bold text-sm mt-2">my record collection</p>
         </Card>
 
         <!-- Contact -->
@@ -95,7 +132,7 @@ const posts = (await getPosts()).slice(0, 3)
         >
           <Card class="space-y-2 !border-none !shadow-none">
             <p class="font-mono text-gray-400 bold-slate-p">
-              If any of what you see here seems interesting, I'd <b>love</b> to hear
+              if any of what you see here seems interesting, i'd <b>love</b> to hear
               from you!
             </p>
             <div class="flex flex-row space-x-4">
@@ -136,25 +173,6 @@ const posts = (await getPosts()).slice(0, 3)
             </a>
           </Card>
         </div>
-
-        <!-- Reading -->
-        <Card class="space-y-4">
-          <ul
-            class="text-left font-mono list-disc text-gray-400 bold-slate-p pl-2"
-          >
-            <li>
-              American Prometheus | <b>Kai Bird & Martin J. Sherwin</b>
-            </li>
-            <li>An Astronaut's Guide to Life on Earth | <b>Chris Hadfield</b></li>
-            <li>Plutarch's Lives: Rome | <b>Plutarch</b></li>
-          </ul>
-          <a
-            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
-            href="/blog/reading"
-          >
-            view my notes
-          </a>
-        </Card>
 
         <Card>
           <div class="space-y-4">
@@ -240,10 +258,10 @@ const posts = (await getPosts()).slice(0, 3)
                   class: 'aspect-[3/2]',
                 },
                 {
-                  title: 'Founders Site',
-                  tags: ['Astro', 'Tailwind', 'Client'],
-                  image: 'founders.jpg',
-                  url: 'https://joinfounders.co',
+                  title: 'Carkner Studio',
+                  tags: ['Web Dev', 'Agency'],
+                  image: 'carkner-studio.png',
+                  url: 'https://carkner.studio',
                   class: 'aspect-[3/2]',
                 },
                 {
@@ -253,13 +271,6 @@ const posts = (await getPosts()).slice(0, 3)
                   url: 'https://bloodbox.info',
                 },
                 {
-                  title: 'Helio',
-                  tags: ['SaaS', 'Client', 'NextJS'],
-                  image: 'helio.png',
-                  url: 'https://helio-safety.com',
-                  class: 'aspect-[3/2]',
-                },
-                {
                   title: 'Research',
                   tags: ['Economics', 'Genomics', 'AI'],
                   image: 'research.jpeg',
@@ -267,31 +278,10 @@ const posts = (await getPosts()).slice(0, 3)
                   class: 'aspect-[3/2]',
                 },
                 {
-                  title: 'NDRC Event Site',
-                  tags: ['Landing Page', 'Client'],
-                  image: 'investor.png',
-                  url: 'https://investordemoday.ndrc.ie',
-                  class: 'aspect-[3/2]',
-                },
-                {
-                  title: 'MLTCC Tennis',
-                  tags: ['Landing Page', 'Client'],
-                  image: 'mltcc.jpg',
-                  url: 'https://mltcc.com',
-                  class: 'aspect-[3/2]',
-                },
-                {
                   title: 'BattleBot',
                   tags: ['Hardware', 'Robotics'],
                   image: 'bot.jpeg',
                   url: '',
-                },
-                {
-                  title: 'TCD Hist Club',
-                  tags: ['Landing Page', 'Client'],
-                  image: 'hist-club.png',
-                  url: 'https://tcdhistclub.com',
-                  class: 'aspect-[3/2]',
                 },
               ].map((item, i) => (
                 <div
@@ -434,6 +424,55 @@ const posts = (await getPosts()).slice(0, 3)
           </div>
         </Card>
 
+        <!-- Reading -->
+        <Card class="space-y-4">
+          <div class="relative">
+            <div class="flex flex-row items-end justify-center gap-[2px] h-36 px-2 mb-0">
+              {
+                [
+                  { title: 'American Prometheus', author: 'Kai Bird', color: 'bg-amber-900/80', accent: 'bg-amber-700/40', h: 'h-[8.5rem]', w: 'w-10' },
+                  { title: "Astronaut's Guide", author: 'Chris Hadfield', color: 'bg-slate-700', accent: 'bg-slate-500/40', h: 'h-[8rem]', w: 'w-9' },
+                  { title: "Plutarch's Lives", author: 'Plutarch', color: 'bg-rose-950', accent: 'bg-rose-800/40', h: 'h-[8.8rem]', w: 'w-8' },
+                  { title: 'Sapiens', author: 'Yuval Noah Harari', color: 'bg-teal-900', accent: 'bg-teal-700/40', h: 'h-[8.8rem]', w: 'w-10' },
+                  { title: '0 to 1', author: 'Peter Thiel', color: 'bg-indigo-950', accent: 'bg-indigo-800/40', h: 'h-[7.5rem]', w: 'w-8' },
+                  { title: 'Atomic Habits', author: 'James Clear', color: 'bg-amber-950', accent: 'bg-amber-800/40', h: 'h-[8.6rem]', w: 'w-10' },
+                  { title: 'Long Walk to Freedom', author: 'Nelson Mandela', color: 'bg-emerald-950', accent: 'bg-emerald-800/40', h: 'h-[8.8rem]', w: 'w-9' },
+                  { title: 'Meditations', author: 'Marcus Aurelius', color: 'bg-stone-700', accent: 'bg-stone-500/40', h: 'h-[8.4rem]', w: 'w-8' },
+                  { title: 'Ego is the Enemy', author: 'Ryan Holiday', color: 'bg-orange-950', accent: 'bg-orange-800/40', h: 'h-[8rem]', w: 'w-9' },
+                  { title: 'Digital Minimalism', author: 'Cal Newport', color: 'bg-sky-950', accent: 'bg-sky-800/40', h: 'h-[8.5rem]', w: 'w-8' },
+                ].map((book) => (
+                  <div
+                    class:list={[
+                      book.h, book.w,
+                      'relative group/book shrink-0 hover:-translate-y-2 duration-300 cursor-default',
+                    ]}
+                  >
+                    <div class:list={[book.color, 'absolute inset-0 rounded-r-[3px] rounded-l-[1px] overflow-hidden']}>
+                      <div class:list={[book.accent, 'absolute left-0 top-0 bottom-0 w-[3px]']} />
+                      <div class="absolute top-1 left-0 right-0 h-[1px] bg-white/10" />
+                      <div class="absolute bottom-1 left-0 right-0 h-[1px] bg-white/10" />
+                    </div>
+                    <p class="absolute inset-0 flex items-center justify-center font-mono text-[7px] text-white/60 [writing-mode:vertical-rl] rotate-180 overflow-hidden leading-tight px-[2px]">
+                      {book.title}
+                    </p>
+                    <div class="absolute -top-14 left-1/2 -translate-x-1/2 opacity-0 group-hover/book:opacity-100 transition-opacity duration-200 bg-gray-900 border border-gray-600 rounded-md px-2 py-1 whitespace-nowrap z-50 pointer-events-none">
+                      <p class="text-xs font-mono text-white">{book.title}</p>
+                      <p class="text-xs font-mono text-gray-400">{book.author}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="w-full h-[4px] bg-gradient-to-b from-gray-500 to-gray-700 rounded-sm shadow-md" />
+          </div>
+          <a
+            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
+            href="/blog/reading"
+          >
+            view my notes
+          </a>
+        </Card>
+
         <!-- Quote-->
         <Card>
           <div class="space-y-2">
@@ -535,13 +574,11 @@ const posts = (await getPosts()).slice(0, 3)
             </script>
 
             <div
-              class="flex flex-col items-center justify-center text-center space-y-2"
+              class="flex flex-col items-center justify-center text-center space-y-1"
             >
-              <p
-                class="text-gray-400 font-mono italic whitespace-pre-line"
-                set:html={artData.text}
-              />
-              <p class="text-gray-400 font-mono">{lastUpdated}</p>
+              <p class="text-white font-mono">{artTitle}</p>
+              <p class="text-gray-400 font-mono text-sm">{artArtist}</p>
+              <p class="text-gray-400 font-mono pt-1">{lastUpdated}</p>
             </div>
           </div>
         </Card>
