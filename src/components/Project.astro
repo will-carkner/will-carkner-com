@@ -1,8 +1,11 @@
 ---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+
 interface Props {
   title: string
   tags: string[]
-  image: string
+  image: ImageMetadata
   url: string
   class?: string
 }
@@ -25,8 +28,9 @@ const Wrapper = hasUrl ? 'a' : 'div'
       'flex flex-row items-center duration-300 space-x-4 hover:scale-110',
     ]}
   >
-    <img
+    <Image
       src={image}
+      width={240}
       class:list={['h-24 w-auto border border-gray-600 rounded-lg', className]}
       alt={`${title} project thumbnail`}
       loading="lazy"

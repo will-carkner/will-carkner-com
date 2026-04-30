@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets'
+import roadTripPoster from '../assets/road-trip-poster.jpg'
 export const prerender = true
 ---
 
@@ -497,10 +499,13 @@ export const prerender = true
     <div class="divider"></div>
 
     <div class="poster-section fade-in">
-      <img
+      <Image
         class="poster-img"
-        src="/road-trip-poster.jpg"
+        src={roadTripPoster}
+        widths={[480, 800, 1200]}
+        sizes="(max-width: 768px) 90vw, 720px"
         alt="Road Trip - Kiara & Will, May 2026"
+        loading="lazy"
       />
     </div>
 

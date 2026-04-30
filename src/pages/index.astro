@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 import Section from '../components/Section.astro'
@@ -7,6 +9,29 @@ import { getPosts } from '../utils/funcs'
 import Project from '../components/Project.astro'
 
 import artData from '../../public/daily-art.json'
+
+// Hero avatar
+import willAvatar from '../assets/will-c.jpg'
+
+// Records (64px thumbnails)
+import ledZeppelinIV from '../assets/records/led-zeppelin-iv.jpg'
+import cantStop from '../assets/records/cant-stop.jpg'
+import abbeyRoad from '../assets/records/abbey-road.jpg'
+import romance from '../assets/records/romance.jpg'
+import kindOfBlue from '../assets/records/kind-of-blue.jpg'
+
+// Projects
+import syncraImg from '../assets/projects/syncra.jpg'
+import lumindtImg from '../assets/projects/lumindt.png'
+import carknerStudioImg from '../assets/projects/carkner-studio.png'
+import bloodboxImg from '../assets/projects/bloodbox.jpg'
+import researchImg from '../assets/projects/research.jpeg'
+import botImg from '../assets/projects/bot.jpeg'
+
+// Featured photos on home
+import featBeach from '../assets/cool-photos/beach.jpeg'
+import featCity from '../assets/cool-photos/city.jpeg'
+import featTown from '../assets/cool-photos/town.jpeg'
 
 const cachedDate = new Date(artData.cachedAt)
 const now = new Date()
@@ -23,6 +48,94 @@ const artArtist = artLines[0]?.trim()
 const artTitle = artLines.slice(1).join(' ').trim()
 
 const posts = (await getPosts()).slice(0, 3)
+
+const records: { title: string; artist: string; image: ImageMetadata; wiki: string }[] = [
+  {
+    title: 'Led Zeppelin IV',
+    artist: 'Led Zeppelin',
+    image: ledZeppelinIV,
+    wiki: 'https://en.wikipedia.org/wiki/Led_Zeppelin_IV',
+  },
+  {
+    title: "Can't Stop",
+    artist: 'Red Hot Chili Peppers',
+    image: cantStop,
+    wiki: 'https://en.wikipedia.org/wiki/Can%27t_Stop_(Red_Hot_Chili_Peppers_song)',
+  },
+  {
+    title: 'Abbey Road',
+    artist: 'The Beatles',
+    image: abbeyRoad,
+    wiki: 'https://en.wikipedia.org/wiki/Abbey_Road',
+  },
+  {
+    title: 'Romance',
+    artist: 'Fontaines D.C.',
+    image: romance,
+    wiki: 'https://en.wikipedia.org/wiki/Romance_(Fontaines_D.C._album)',
+  },
+  {
+    title: 'Kind of Blue',
+    artist: 'Miles Davis',
+    image: kindOfBlue,
+    wiki: 'https://en.wikipedia.org/wiki/Kind_of_Blue',
+  },
+]
+
+const projects: {
+  title: string
+  tags: string[]
+  image: ImageMetadata
+  url: string
+  class?: string
+}[] = [
+  {
+    title: 'Syncra',
+    tags: ['IoT', 'Hardware', 'Platform'],
+    image: syncraImg,
+    url: 'https://syncra.ie',
+    class: 'aspect-[3/2]',
+  },
+  {
+    title: 'Lumindt',
+    tags: ['Hardware', 'Energy', 'EE'],
+    image: lumindtImg,
+    url: 'https://lumindt.com',
+    class: 'aspect-[3/2]',
+  },
+  {
+    title: 'Carkner Studio',
+    tags: ['Web Dev', 'Agency'],
+    image: carknerStudioImg,
+    url: 'https://carkner.studio',
+    class: 'aspect-[3/2]',
+  },
+  {
+    title: 'BloodBox',
+    tags: ['Hardware', 'ML', 'MedTech'],
+    image: bloodboxImg,
+    url: 'https://bloodbox.info',
+  },
+  {
+    title: 'Research',
+    tags: ['Economics', 'Genomics', 'AI'],
+    image: researchImg,
+    url: '/blog/research',
+    class: 'aspect-[3/2]',
+  },
+  {
+    title: 'BattleBot',
+    tags: ['Hardware', 'Robotics'],
+    image: botImg,
+    url: '',
+  },
+]
+
+const featuredPhotos: { img: ImageMetadata; alt: string }[] = [
+  { img: featBeach, alt: 'Italian Beach' },
+  { img: featCity, alt: 'Matera' },
+  { img: featTown, alt: 'Italian town' },
+]
 ---
 
 <Layout
@@ -41,9 +154,11 @@ const posts = (await getPosts()).slice(0, 3)
           <Card class="items-left !border-none !shadow-none">
             <div class="flex-col text-left space-y-4 flex">
               <div class="flex flex-row space-x-4 items-center">
-                <img
+                <Image
                   alt="Will Carkner"
-                  src="will-c.jpg"
+                  src={willAvatar}
+                  width={96}
+                  height={96}
                   class="w-24 h-24 object-cover rounded-lg"
                 />
                 <div class="flex flex-col text-left">
@@ -74,45 +189,16 @@ const posts = (await getPosts()).slice(0, 3)
         <Card>
           <div class="flex flex-row flex-wrap gap-3 items-center justify-center max-w-[17rem] mx-auto">
             {
-              [
-                {
-                  title: 'Led Zeppelin IV',
-                  artist: 'Led Zeppelin',
-                  image: 'records/led-zeppelin-iv.jpg',
-                  wiki: 'https://en.wikipedia.org/wiki/Led_Zeppelin_IV',
-                },
-                {
-                  title: "Can't Stop",
-                  artist: 'Red Hot Chili Peppers',
-                  image: 'records/cant-stop.jpg',
-                  wiki: 'https://en.wikipedia.org/wiki/Can%27t_Stop_(Red_Hot_Chili_Peppers_song)',
-                },
-                {
-                  title: 'Abbey Road',
-                  artist: 'The Beatles',
-                  image: 'records/abbey-road.jpg',
-                  wiki: 'https://en.wikipedia.org/wiki/Abbey_Road',
-                },
-                {
-                  title: 'Romance',
-                  artist: 'Fontaines D.C.',
-                  image: 'records/romance.jpg',
-                  wiki: 'https://en.wikipedia.org/wiki/Romance_(Fontaines_D.C._album)',
-                },
-                {
-                  title: 'Kind of Blue',
-                  artist: 'Miles Davis',
-                  image: 'records/kind-of-blue.jpg',
-                  wiki: 'https://en.wikipedia.org/wiki/Kind_of_Blue',
-                },
-              ].map((record) => (
+              records.map((record) => (
                 <a href={record.wiki} target="_blank" rel="noopener noreferrer" class="no-underline group/record">
                   <div class="relative w-16 h-16 sm:w-20 sm:h-20 hover:scale-110 duration-300">
                     <div class="absolute inset-0 rounded-full bg-gray-900 border-2 border-gray-700 overflow-hidden shadow-lg group-hover/record:animate-spin-slow">
                       <div class="absolute inset-[4px] rounded-full overflow-hidden">
-                        <img
+                        <Image
                           src={record.image}
                           alt={`${record.title} by ${record.artist}`}
+                          width={160}
+                          height={160}
                           class="w-full h-full object-cover"
                         />
                       </div>
@@ -249,48 +335,7 @@ const posts = (await getPosts()).slice(0, 3)
           <!-- <h4>Work</h4> -->
           <div class="flex flex-col space-y-4 justify-end">
             {
-              [
-                {
-                  title: 'Syncra',
-                  tags: ['IoT', 'Hardware', 'Platform'],
-                  image: 'syncra.jpg',
-                  url: 'https://syncra.ie',
-                  class: 'aspect-[3/2]',
-                },
-                {
-                  title: 'Lumindt',
-                  tags: ['Hardware', 'Energy', 'EE'],
-                  image: 'lumindt.png',
-                  url: 'https://lumindt.com',
-                  class: 'aspect-[3/2]',
-                },
-                {
-                  title: 'Carkner Studio',
-                  tags: ['Web Dev', 'Agency'],
-                  image: 'carkner-studio.png',
-                  url: 'https://carkner.studio',
-                  class: 'aspect-[3/2]',
-                },
-                {
-                  title: 'BloodBox',
-                  tags: ['Hardware', 'ML', 'MedTech'],
-                  image: 'bloodbox.jpg',
-                  url: 'https://bloodbox.info',
-                },
-                {
-                  title: 'Research',
-                  tags: ['Economics', 'Genomics', 'AI'],
-                  image: 'research.jpeg',
-                  url: '/blog/research',
-                  class: 'aspect-[3/2]',
-                },
-                {
-                  title: 'BattleBot',
-                  tags: ['Hardware', 'Robotics'],
-                  image: 'bot.jpeg',
-                  url: '',
-                },
-              ].map((item, i) => (
+              projects.map((item, i) => (
                 <div
                   id={`project-${i}`}
                   class:list={[i < 3 ? 'visible' : 'hidden']}
@@ -298,7 +343,7 @@ const posts = (await getPosts()).slice(0, 3)
                   <Project
                     title={item.title}
                     tags={item.tags}
-                    image={'projects/' + item.image}
+                    image={item.image}
                     url={item.url}
                     class={item.class}
                   />
@@ -342,24 +387,13 @@ const posts = (await getPosts()).slice(0, 3)
               class="flex flex-row space-x-2 md:space-x-4 items-center justify-center"
             >
               {
-                [
-                  {
-                    img: 'cool-photos/beach.jpeg',
-                    alt: 'Italian Beach',
-                  },
-                  {
-                    img: 'cool-photos/city.jpeg',
-                    alt: 'Matera',
-                  },
-                  {
-                    img: 'cool-photos/town.jpeg',
-                    alt: 'Italian town',
-                  },
-                ].map((item) => (
-                  <img
+                featuredPhotos.map((item) => (
+                  <Image
                     alt={item.alt}
-                    class="w-20 h-30 sm:w-40 sm:h-32 border border-gray-600 rounded-lg"
+                    class="w-20 h-30 sm:w-40 sm:h-32 border border-gray-600 rounded-lg object-cover"
                     src={item.img}
+                    width={320}
+                    height={256}
                   />
                 ))
               }

@@ -1,85 +1,99 @@
 ---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
 import Layout from '../layouts/Layout.astro'
 
+// Bulk-import every photo under src/assets/cool-photos so Astro can
+// optimize them at build time (responsive srcsets + AVIF/WebP).
+const photoModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/cool-photos/**/*.{jpeg,jpg,png,JPEG,JPG,PNG}',
+  { eager: true },
+)
+
+// Resolve a shorthand key (filename or `2025/IMG_xxx.jpeg`) to an ImageMetadata.
+function pic(key: string): ImageMetadata {
+  const match = Object.entries(photoModules).find(([path]) =>
+    path.endsWith(`/cool-photos/${key}`),
+  )
+  if (!match) throw new Error(`photo not found: ${key}`)
+  return match[1].default
+}
+
 // Generate a human-readable alt from a photo's filename.
-// Falls back to a generic year-based description when the filename
-// is just an IMG_#### or UUID pattern.
-function altFrom(path: string, year: string, index: number): string {
-  const file = path.split('/').pop() ?? ''
+function altFrom(key: string, year: string, index: number): string {
+  const file = key.split('/').pop() ?? ''
   const base = file.replace(/\.[a-z]+$/i, '')
   const isGeneric =
     /^IMG[_-]/i.test(base) ||
     /^\d+$/.test(base) ||
     /^[0-9a-f-]{20,}$/i.test(base)
   if (isGeneric) return `Photo ${index + 1} from ${year}`
-  // Replace separators with spaces and capitalize
   const pretty = base.replace(/[-_]+/g, ' ').trim()
   return `${pretty.charAt(0).toUpperCase()}${pretty.slice(1)} (${year})`
 }
 
-type Column = string[]
-type Year = { year: string; columns: Column[] }
+type Year = { year: string; columns: string[][] }
 
 const years: Year[] = [
   {
     year: '2025',
     columns: [
       [
-        '/cool-photos/2025/IMG_1397.jpeg',
-        '/cool-photos/2025/IMG_1388.jpeg',
-        '/cool-photos/2025/IMG_1351.jpeg',
-        '/cool-photos/2025/IMG_1325.jpeg',
-        '/cool-photos/2025/IMG_1319.jpeg',
-        '/cool-photos/2025/IMG_1298.jpeg',
-        '/cool-photos/2025/IMG_1287.jpeg',
-        '/cool-photos/2025/IMG_1281.jpeg',
-        '/cool-photos/2025/IMG_1250.jpeg',
-        '/cool-photos/2025/IMG_1242.jpeg',
-        '/cool-photos/2025/IMG_1197.jpeg',
-        '/cool-photos/2025/IMG_1196.jpeg',
-        '/cool-photos/2025/IMG_1193.jpeg',
+        '2025/IMG_1397.jpeg',
+        '2025/IMG_1388.jpeg',
+        '2025/IMG_1351.jpeg',
+        '2025/IMG_1325.jpeg',
+        '2025/IMG_1319.jpeg',
+        '2025/IMG_1298.jpeg',
+        '2025/IMG_1287.jpeg',
+        '2025/IMG_1281.jpeg',
+        '2025/IMG_1250.jpeg',
+        '2025/IMG_1242.jpeg',
+        '2025/IMG_1197.jpeg',
+        '2025/IMG_1196.jpeg',
+        '2025/IMG_1193.jpeg',
       ],
       [
-        '/cool-photos/2025/IMG_1185.jpeg',
-        '/cool-photos/2025/IMG_1171.jpeg',
-        '/cool-photos/2025/IMG_1162.jpeg',
-        '/cool-photos/2025/IMG_1135.jpeg',
-        '/cool-photos/2025/IMG_1130.jpeg',
-        '/cool-photos/2025/IMG_1126.jpeg',
-        '/cool-photos/2025/IMG_1117.jpeg',
-        '/cool-photos/2025/IMG_1051.jpeg',
-        '/cool-photos/2025/IMG_1026.jpeg',
-        '/cool-photos/2025/IMG_1020.jpeg',
-        '/cool-photos/2025/IMG_1016.jpeg',
-        '/cool-photos/2025/IMG_1010.jpeg',
+        '2025/IMG_1185.jpeg',
+        '2025/IMG_1171.jpeg',
+        '2025/IMG_1162.jpeg',
+        '2025/IMG_1135.jpeg',
+        '2025/IMG_1130.jpeg',
+        '2025/IMG_1126.jpeg',
+        '2025/IMG_1117.jpeg',
+        '2025/IMG_1051.jpeg',
+        '2025/IMG_1026.jpeg',
+        '2025/IMG_1020.jpeg',
+        '2025/IMG_1016.jpeg',
+        '2025/IMG_1010.jpeg',
       ],
       [
-        '/cool-photos/2025/IMG_1008.jpeg',
-        '/cool-photos/2025/IMG_0923.jpeg',
-        '/cool-photos/2025/IMG_0908.jpeg',
-        '/cool-photos/2025/IMG_0887.jpeg',
-        '/cool-photos/2025/IMG_0859.jpeg',
-        '/cool-photos/2025/IMG_0800.jpeg',
-        '/cool-photos/2025/IMG_0868.jpeg',
-        '/cool-photos/2025/IMG_0784.jpeg',
-        '/cool-photos/2025/IMG_0009.jpeg',
-        '/cool-photos/2025/IMG_9932.jpeg',
-        '/cool-photos/2025/IMG_9688.jpeg',
-        '/cool-photos/2025/IMG_9649.jpeg',
+        '2025/IMG_1008.jpeg',
+        '2025/IMG_0923.jpeg',
+        '2025/IMG_0908.jpeg',
+        '2025/IMG_0887.jpeg',
+        '2025/IMG_0859.jpeg',
+        '2025/IMG_0800.jpeg',
+        '2025/IMG_0868.jpeg',
+        '2025/IMG_0784.jpeg',
+        '2025/IMG_0009.jpeg',
+        '2025/IMG_9932.jpeg',
+        '2025/IMG_9688.jpeg',
+        '2025/IMG_9649.jpeg',
       ],
       [
-        '/cool-photos/2025/IMG_9497.jpeg',
-        '/cool-photos/2025/IMG_8942.jpeg',
-        '/cool-photos/2025/IMG_8902.jpeg',
-        '/cool-photos/2025/IMG_8572.jpeg',
-        '/cool-photos/2025/IMG_8472.jpeg',
-        '/cool-photos/2025/IMG_3340.jpeg',
-        '/cool-photos/2025/071265DA-1A8E-4820-984E-AA6BCED39E8D.jpeg',
-        '/cool-photos/2025/991310D2-BEB5-456E-ACD3-8DDDDC47970F.jpeg',
-        '/cool-photos/2025/59f335d2-5e76-4654-8627-eb67247641bf.jpeg',
-        '/cool-photos/2025/AB075D65-11CD-49D2-AFE0-646E395966E7.jpeg',
-        '/cool-photos/2025/af5d2a30-1b6e-456f-9b7a-e21070f8d373.jpeg',
-        '/cool-photos/2025/f87befda-8bb0-4195-9dec-99ec72252767.jpeg',
+        '2025/IMG_9497.jpeg',
+        '2025/IMG_8942.jpeg',
+        '2025/IMG_8902.jpeg',
+        '2025/IMG_8572.jpeg',
+        '2025/IMG_8472.jpeg',
+        '2025/IMG_3340.jpeg',
+        '2025/071265DA-1A8E-4820-984E-AA6BCED39E8D.jpeg',
+        '2025/991310D2-BEB5-456E-ACD3-8DDDDC47970F.jpeg',
+        '2025/59f335d2-5e76-4654-8627-eb67247641bf.jpeg',
+        '2025/AB075D65-11CD-49D2-AFE0-646E395966E7.jpeg',
+        '2025/af5d2a30-1b6e-456f-9b7a-e21070f8d373.jpeg',
+        '2025/f87befda-8bb0-4195-9dec-99ec72252767.jpeg',
       ],
     ],
   },
@@ -87,54 +101,23 @@ const years: Year[] = [
     year: '2024',
     columns: [
       [
-        '/cool-photos/mullaghmore.jpeg',
-        '/cool-photos/math.jpeg',
-        '/cool-photos/brothers.jpeg',
-        '/cool-photos/sandwiches.jpeg',
+        'mullaghmore.jpeg',
+        'math.jpeg',
+        'brothers.jpeg',
+        'sandwiches.jpeg',
       ],
-      [
-        '/cool-photos/bot.jpeg',
-        '/cool-photos/beach-new.jpeg',
-        '/cool-photos/lake.jpeg',
-      ],
-      [
-        '/cool-photos/shoes.jpeg',
-        '/cool-photos/boat.jpeg',
-        '/cool-photos/france.jpeg',
-        '/cool-photos/kiara.jpeg',
-      ],
-      [
-        '/cool-photos/borsht.jpeg',
-        '/cool-photos/oscar.jpeg',
-        '/cool-photos/bridge.jpeg',
-      ],
+      ['bot.jpeg', 'beach-new.jpeg', 'lake.jpeg'],
+      ['shoes.jpeg', 'boat.jpeg', 'france.jpeg', 'kiara.jpeg'],
+      ['borsht.jpeg', 'oscar.jpeg', 'bridge.jpeg'],
     ],
   },
   {
     year: '2023',
     columns: [
-      [
-        '/cool-photos/beach.jpeg',
-        '/cool-photos/vedh-will.jpeg',
-        '/cool-photos/town.jpeg',
-        '/cool-photos/sf.jpeg',
-      ],
-      [
-        '/cool-photos/weird.jpeg',
-        '/cool-photos/dublin.jpeg',
-        '/cool-photos/howth.jpeg',
-      ],
-      [
-        '/cool-photos/will.jpeg',
-        '/cool-photos/food.jpeg',
-        '/cool-photos/tower.jpeg',
-        '/cool-photos/hospital.jpeg',
-      ],
-      [
-        '/cool-photos/spain.jpeg',
-        '/cool-photos/gytis.jpeg',
-        '/cool-photos/italy.jpeg',
-      ],
+      ['beach.jpeg', 'vedh-will.jpeg', 'town.jpeg', 'sf.jpeg'],
+      ['weird.jpeg', 'dublin.jpeg', 'howth.jpeg'],
+      ['will.jpeg', 'food.jpeg', 'tower.jpeg', 'hospital.jpeg'],
+      ['spain.jpeg', 'gytis.jpeg', 'italy.jpeg'],
     ],
   },
 ]
@@ -153,12 +136,14 @@ const years: Year[] = [
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
           {columns.map((images) => (
             <div class="grid gap-4">
-              {images.map((src, i) => (
+              {images.map((key, i) => (
                 <div>
-                  <img
+                  <Image
                     class="h-auto max-w-full rounded-lg"
-                    src={src}
-                    alt={altFrom(src, year, i)}
+                    src={pic(key)}
+                    alt={altFrom(key, year, i)}
+                    widths={[240, 480, 720]}
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     loading={yearIdx === 0 && i < 2 ? 'eager' : 'lazy'}
                     decoding="async"
                   />
