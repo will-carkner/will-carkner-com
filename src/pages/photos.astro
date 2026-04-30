@@ -1,296 +1,173 @@
 ---
 import Layout from '../layouts/Layout.astro'
+
+// Generate a human-readable alt from a photo's filename.
+// Falls back to a generic year-based description when the filename
+// is just an IMG_#### or UUID pattern.
+function altFrom(path: string, year: string, index: number): string {
+  const file = path.split('/').pop() ?? ''
+  const base = file.replace(/\.[a-z]+$/i, '')
+  const isGeneric =
+    /^IMG[_-]/i.test(base) ||
+    /^\d+$/.test(base) ||
+    /^[0-9a-f-]{20,}$/i.test(base)
+  if (isGeneric) return `Photo ${index + 1} from ${year}`
+  // Replace separators with spaces and capitalize
+  const pretty = base.replace(/[-_]+/g, ' ').trim()
+  return `${pretty.charAt(0).toUpperCase()}${pretty.slice(1)} (${year})`
+}
+
+type Column = string[]
+type Year = { year: string; columns: Column[] }
+
+const years: Year[] = [
+  {
+    year: '2025',
+    columns: [
+      [
+        '/cool-photos/2025/IMG_1397.jpeg',
+        '/cool-photos/2025/IMG_1388.jpeg',
+        '/cool-photos/2025/IMG_1351.jpeg',
+        '/cool-photos/2025/IMG_1325.jpeg',
+        '/cool-photos/2025/IMG_1319.jpeg',
+        '/cool-photos/2025/IMG_1298.jpeg',
+        '/cool-photos/2025/IMG_1287.jpeg',
+        '/cool-photos/2025/IMG_1281.jpeg',
+        '/cool-photos/2025/IMG_1250.jpeg',
+        '/cool-photos/2025/IMG_1242.jpeg',
+        '/cool-photos/2025/IMG_1197.jpeg',
+        '/cool-photos/2025/IMG_1196.jpeg',
+        '/cool-photos/2025/IMG_1193.jpeg',
+      ],
+      [
+        '/cool-photos/2025/IMG_1185.jpeg',
+        '/cool-photos/2025/IMG_1171.jpeg',
+        '/cool-photos/2025/IMG_1162.jpeg',
+        '/cool-photos/2025/IMG_1135.jpeg',
+        '/cool-photos/2025/IMG_1130.jpeg',
+        '/cool-photos/2025/IMG_1126.jpeg',
+        '/cool-photos/2025/IMG_1117.jpeg',
+        '/cool-photos/2025/IMG_1051.jpeg',
+        '/cool-photos/2025/IMG_1026.jpeg',
+        '/cool-photos/2025/IMG_1020.jpeg',
+        '/cool-photos/2025/IMG_1016.jpeg',
+        '/cool-photos/2025/IMG_1010.jpeg',
+      ],
+      [
+        '/cool-photos/2025/IMG_1008.jpeg',
+        '/cool-photos/2025/IMG_0923.jpeg',
+        '/cool-photos/2025/IMG_0908.jpeg',
+        '/cool-photos/2025/IMG_0887.jpeg',
+        '/cool-photos/2025/IMG_0859.jpeg',
+        '/cool-photos/2025/IMG_0800.jpeg',
+        '/cool-photos/2025/IMG_0868.jpeg',
+        '/cool-photos/2025/IMG_0784.jpeg',
+        '/cool-photos/2025/IMG_0009.jpeg',
+        '/cool-photos/2025/IMG_9932.jpeg',
+        '/cool-photos/2025/IMG_9688.jpeg',
+        '/cool-photos/2025/IMG_9649.jpeg',
+      ],
+      [
+        '/cool-photos/2025/IMG_9497.jpeg',
+        '/cool-photos/2025/IMG_8942.jpeg',
+        '/cool-photos/2025/IMG_8902.jpeg',
+        '/cool-photos/2025/IMG_8572.jpeg',
+        '/cool-photos/2025/IMG_8472.jpeg',
+        '/cool-photos/2025/IMG_3340.jpeg',
+        '/cool-photos/2025/071265DA-1A8E-4820-984E-AA6BCED39E8D.jpeg',
+        '/cool-photos/2025/991310D2-BEB5-456E-ACD3-8DDDDC47970F.jpeg',
+        '/cool-photos/2025/59f335d2-5e76-4654-8627-eb67247641bf.jpeg',
+        '/cool-photos/2025/AB075D65-11CD-49D2-AFE0-646E395966E7.jpeg',
+        '/cool-photos/2025/af5d2a30-1b6e-456f-9b7a-e21070f8d373.jpeg',
+        '/cool-photos/2025/f87befda-8bb0-4195-9dec-99ec72252767.jpeg',
+      ],
+    ],
+  },
+  {
+    year: '2024',
+    columns: [
+      [
+        '/cool-photos/mullaghmore.jpeg',
+        '/cool-photos/math.jpeg',
+        '/cool-photos/brothers.jpeg',
+        '/cool-photos/sandwiches.jpeg',
+      ],
+      [
+        '/cool-photos/bot.jpeg',
+        '/cool-photos/beach-new.jpeg',
+        '/cool-photos/lake.jpeg',
+      ],
+      [
+        '/cool-photos/shoes.jpeg',
+        '/cool-photos/boat.jpeg',
+        '/cool-photos/france.jpeg',
+        '/cool-photos/kiara.jpeg',
+      ],
+      [
+        '/cool-photos/borsht.jpeg',
+        '/cool-photos/oscar.jpeg',
+        '/cool-photos/bridge.jpeg',
+      ],
+    ],
+  },
+  {
+    year: '2023',
+    columns: [
+      [
+        '/cool-photos/beach.jpeg',
+        '/cool-photos/vedh-will.jpeg',
+        '/cool-photos/town.jpeg',
+        '/cool-photos/sf.jpeg',
+      ],
+      [
+        '/cool-photos/weird.jpeg',
+        '/cool-photos/dublin.jpeg',
+        '/cool-photos/howth.jpeg',
+      ],
+      [
+        '/cool-photos/will.jpeg',
+        '/cool-photos/food.jpeg',
+        '/cool-photos/tower.jpeg',
+        '/cool-photos/hospital.jpeg',
+      ],
+      [
+        '/cool-photos/spain.jpeg',
+        '/cool-photos/gytis.jpeg',
+        '/cool-photos/italy.jpeg',
+      ],
+    ],
+  },
+]
 ---
 
-<Layout show={true} title="Photos">
-  <h2 class="pt-3">2025</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
-    <div class="grid gap-4">
-      {
-        [
-          { image: '/cool-photos/2025/IMG_1397.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1388.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1351.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1325.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1319.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1298.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1287.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1281.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1250.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1242.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1197.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1196.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1193.jpeg', alt: 'Image' },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-4">
-      {
-        [
-          { image: '/cool-photos/2025/IMG_1185.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1171.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1162.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1135.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1130.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1126.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1117.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1051.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1026.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1020.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1016.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_1010.jpeg', alt: 'Image' },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-4">
-      {
-        [
-          { image: '/cool-photos/2025/IMG_1008.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_0923.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_0908.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_0887.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_0859.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_0800.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_0868.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_0784.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_0009.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_9932.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_9688.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_9649.jpeg', alt: 'Image' },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-4">
-      {
-        [
-          { image: '/cool-photos/2025/IMG_9497.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_8942.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_8902.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_8572.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_8472.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/IMG_3340.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/071265DA-1A8E-4820-984E-AA6BCED39E8D.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/991310D2-BEB5-456E-ACD3-8DDDDC47970F.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/59f335d2-5e76-4654-8627-eb67247641bf.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/AB075D65-11CD-49D2-AFE0-646E395966E7.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/af5d2a30-1b6e-456f-9b7a-e21070f8d373.jpeg', alt: 'Image' },
-          { image: '/cool-photos/2025/f87befda-8bb0-4195-9dec-99ec72252767.jpeg', alt: 'Image' },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-  </div>
-  <h2 class="pt-3">2024</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
-    <div class="grid gap-4">
-      {
-        [
-          {
-            image: '/cool-photos/mullaghmore.jpeg',
-            alt: 'Image 1',
-          },
-          {
-            image: '/cool-photos/math.jpeg',
-            alt: 'Image 2',
-          },
-          {
-            image: '/cool-photos/brothers.jpeg',
-            alt: 'Image 3',
-          },
-          {
-            image: '/cool-photos/sandwiches.jpeg',
-            alt: 'Image 4',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-4">
-      {
-        [
-          {
-            image: '/cool-photos/bot.jpeg',
-            alt: 'Image 1',
-          },
-          {
-            image: '/cool-photos/beach-new.jpeg',
-            alt: 'Image 2',
-          },
-          {
-            image: '/cool-photos/lake.jpeg',
-            alt: 'Image 3',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-2">
-      {
-        [
-          {
-            image: '/cool-photos/shoes.jpeg',
-            alt: 'Image 1',
-          },
-          {
-            image: '/cool-photos/boat.jpeg',
-            alt: 'Image 2',
-          },
-          {
-            image: '/cool-photos/france.jpeg',
-            alt: 'Image 3',
-          },
-          {
-            image: '/cool-photos/kiara.jpeg',
-            alt: 'Image 4',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-4">
-      {
-        [
-          {
-            image: '/cool-photos/borsht.jpeg',
-            alt: 'Image 1',
-          },
-          {
-            image: '/cool-photos/oscar.jpeg',
-            alt: 'Image 2',
-          },
-          {
-            image: '/cool-photos/bridge.jpeg',
-            alt: 'Image 3',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-  </div>
-  <h2 class="pt-3">2023</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
-    <div class="grid gap-4">
-      {
-        [
-          {
-            image: '/cool-photos/beach.jpeg',
-            alt: 'Image 1',
-          },
-          {
-            image: '/cool-photos/vedh-will.jpeg',
-            alt: 'Image 2',
-          },
-          {
-            image: '/cool-photos/town.jpeg',
-            alt: 'Image 3',
-          },
-          {
-            image: '/cool-photos/sf.jpeg',
-            alt: 'Image 4',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-4">
-      {
-        [
-          {
-            image: '/cool-photos/weird.jpeg',
-            alt: 'Image 1',
-          },
-          {
-            image: '/cool-photos/dublin.jpeg',
-            alt: 'Image 2',
-          },
-          {
-            image: '/cool-photos/howth.jpeg',
-            alt: 'Image 3',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-2">
-      {
-        [
-          {
-            image: '/cool-photos/will.jpeg',
-            alt: 'Image 1',
-          },
-          {
-            image: '/cool-photos/food.jpeg',
-            alt: 'Image 2',
-          },
-          {
-            image: '/cool-photos/tower.jpeg',
-            alt: 'Image 3',
-          },
-          {
-            image: '/cool-photos/hospital.jpeg',
-            alt: 'Image 4',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-    <div class="grid gap-4">
-      {
-        [
-          {
-            image: '/cool-photos/spain.jpeg',
-            alt: 'Image 1',
-          },
-          {
-            image: '/cool-photos/gytis.jpeg',
-            alt: 'Image 2',
-          },
-          {
-            image: '/cool-photos/italy.jpeg',
-            alt: 'Image 3',
-          },
-        ].map(({ image, alt }) => (
-          <div>
-            <img class="h-auto max-w-full rounded-lg" src={image} alt={alt} />
-          </div>
-        ))
-      }
-    </div>
-  </div>
+<Layout
+  show={true}
+  title="Photos | Will Carkner"
+  description="A collection of photos Will Carkner has taken over the years."
+>
+  <h1 class="sr-only">Photos</h1>
+  {
+    years.map(({ year, columns }, yearIdx) => (
+      <>
+        <h2 class="pt-3">{year}</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
+          {columns.map((images) => (
+            <div class="grid gap-4">
+              {images.map((src, i) => (
+                <div>
+                  <img
+                    class="h-auto max-w-full rounded-lg"
+                    src={src}
+                    alt={altFrom(src, year, i)}
+                    loading={yearIdx === 0 && i < 2 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </>
+    ))
+  }
 </Layout>

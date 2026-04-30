@@ -22,12 +22,14 @@ const artLines = artData.text.split('\n')
 const artArtist = artLines[0]?.trim()
 const artTitle = artLines.slice(1).join(' ').trim()
 
-export const prerender = false
-
 const posts = (await getPosts()).slice(0, 3)
 ---
 
-<Layout title="Will Carkner">
+<Layout
+  title="Will Carkner"
+  description="Will Carkner — 19-year-old engineering student in Dublin building Syncra and thinking about the global energy grid."
+>
+  <h1 class="sr-only">Will Carkner</h1>
   <!-- BODY -->
   <Section>
     <div class="grid w-full grid-cols-1 gap-8 md:flex-row md:flex">
@@ -104,7 +106,7 @@ const posts = (await getPosts()).slice(0, 3)
                   wiki: 'https://en.wikipedia.org/wiki/Kind_of_Blue',
                 },
               ].map((record) => (
-                <a href={record.wiki} target="_blank" class="no-underline group/record">
+                <a href={record.wiki} target="_blank" rel="noopener noreferrer" class="no-underline group/record">
                   <div class="relative w-16 h-16 sm:w-20 sm:h-20 hover:scale-110 duration-300">
                     <div class="absolute inset-0 rounded-full bg-gray-900 border-2 border-gray-700 overflow-hidden shadow-lg group-hover/record:animate-spin-slow">
                       <div class="absolute inset-[4px] rounded-full overflow-hidden">
@@ -158,6 +160,7 @@ const posts = (await getPosts()).slice(0, 3)
                   <a
                     href={item.href}
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="hover:duration-300 font-mono no-underline hover:underline hover:scale-110"
                   >
                     {item.text}
@@ -211,12 +214,15 @@ const posts = (await getPosts()).slice(0, 3)
             </div>
             <div class="flex flex-col space-y-2">
               <p class="text-gray-400 font-mono text-left">- dylan thomas</p>
-              <a
-                class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:cursor-pointer hover:underline"
+              <button
+                type="button"
+                class="text-white font-mono font-bold bg-transparent border-none p-0 text-base text-left w-fit hover:text-sky-400 hover:cursor-pointer hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded"
                 id="full-poem"
+                aria-expanded="false"
+                aria-controls="full-poem-text"
               >
                 view full poem
-              </a>
+              </button>
               <script>
                 const fullPoem = document.getElementById('full-poem')!
                 const fullPoemText = document.getElementById('full-poem-text')!
@@ -225,6 +231,7 @@ const posts = (await getPosts()).slice(0, 3)
                   hidden = !hidden
                   fullPoemText.classList.toggle('hidden', hidden)
                   fullPoemText.classList.toggle('visible', !hidden)
+                  fullPoem.setAttribute('aria-expanded', String(!hidden))
                   fullPoem.innerText = hidden
                     ? 'view full poem'
                     : 'hide full poem'
@@ -274,7 +281,7 @@ const posts = (await getPosts()).slice(0, 3)
                   title: 'Research',
                   tags: ['Economics', 'Genomics', 'AI'],
                   image: 'research.jpeg',
-                  url: 'https://willcarkner.com/blog/research',
+                  url: '/blog/research',
                   class: 'aspect-[3/2]',
                 },
                 {
@@ -300,12 +307,14 @@ const posts = (await getPosts()).slice(0, 3)
             }
           </div>
 
-          <a
-            class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:cursor-pointer hover:underline"
+          <button
+            type="button"
+            class="text-white font-mono font-bold bg-transparent border-none p-0 text-base text-left w-fit hover:text-sky-400 hover:cursor-pointer hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded"
             id="more-projects"
+            aria-expanded="false"
           >
             view all work
-          </a>
+          </button>
           <script>
             const moreProjects = document.getElementById('more-projects')!
             const projects = document.querySelectorAll('[id^="project-"]')
@@ -318,71 +327,13 @@ const posts = (await getPosts()).slice(0, 3)
                 project.classList.toggle('visible', !hidden)
                 project.classList.toggle('hidden', hidden)
               })
+              moreProjects.setAttribute('aria-expanded', String(!hidden))
               moreProjects.innerText = hidden
                 ? 'view all work'
                 : 'view less work'
             })
           </script>
-          <!-- <div class="flex flex-row space-x-4">
-            {
-              [
-                {
-                  title: 'Formal CV',
-                  href: '/cv.pdf',
-                },
-                {
-                  title: 'Current Work',
-                  href: '/blog/current',
-                },
-                {
-                  title: 'Hire Me',
-                  href: '/blog/hire',
-                },
-              ].map((item) => (
-                <a
-                  class="no-underline border hover:scale-110 border-gray-600 px-2 py-1 rounded-lg font-mono"
-                  href={item.href}
-                >
-                  {item.title}
-                </a>
-              ))
-            }
-          </div> -->
         </Card>
-        <!-- CORE IDEAS -->
-        <!-- <Card class="space-y-2">
-          <ul class="flex flex-row space-x-4">
-            {
-              [
-                {
-                  idea: 'Learn',
-                  href: '/blog/learn',
-                },
-                {
-                  idea: 'Build',
-                  href: '/blog/current',
-                },
-                {
-                  idea: 'Impact',
-                  href: '/blog/impact',
-                },
-              ].map((item) => (
-                <li class="flex flex-row">
-                  <a href={item.href}>
-                    <div class="font-mono bold-slate-p">{item.idea}</div>
-                  </a>
-                  {item.idea !== 'Impact' ? <p class="pl-3">|</p> : ''}
-                </li>
-              ))
-            }
-          </ul>
-          <div class="text-gray-400 font-mono bold-slate-p">
-            I aim to <b>constantly learn</b>, <b>build tangible things</b>, and <b
-              >focus on impact</b
-            >.
-          </div>
-        </Card>
- -->
         <!--PHOTOS -->
         <Card>
           <div class="space-y-4">
@@ -511,12 +462,17 @@ const posts = (await getPosts()).slice(0, 3)
 
             <div
               id="art-modal"
-              class="fixed -top-3 left-0 w-screen h-screen bg-black/95 hidden opacity-0 transition-opacity duration-200 items-center justify-center"
+              class="fixed -top-3 left-0 w-screen h-screen bg-black/95 hidden opacity-0 transition-opacity duration-200 items-center justify-center z-50"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="art-modal-title"
+              aria-hidden="true"
             >
+              <h2 id="art-modal-title" class="sr-only">Full-screen artwork</h2>
               <button
                 id="close-art-modal"
-                aria-label="Close"
-                class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl"
+                aria-label="Close full-screen artwork"
+                class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded"
               >
                 ×
               </button>
@@ -531,26 +487,31 @@ const posts = (await getPosts()).slice(0, 3)
               const openBtn = document.getElementById('open-art-modal')!
               const modal = document.getElementById('art-modal')!
               const closeBtn = document.getElementById('close-art-modal')!
+              let lastFocused: HTMLElement | null = null
 
               const openModal = () => {
+                lastFocused = document.activeElement as HTMLElement
                 modal.classList.remove('hidden')
                 modal.classList.add('flex')
-                // ensure transition runs
+                modal.setAttribute('aria-hidden', 'false')
                 requestAnimationFrame(() => {
                   modal.classList.add('opacity-100')
                   modal.classList.remove('opacity-0')
+                  closeBtn.focus()
                 })
                 document.documentElement.classList.add('overflow-hidden')
               }
               const closeModal = () => {
                 modal.classList.add('opacity-0')
                 modal.classList.remove('opacity-100')
-                const onEnd = (e) => {
+                const onEnd = (e: TransitionEvent) => {
                   if (e.target !== modal) return
                   modal.removeEventListener('transitionend', onEnd)
                   modal.classList.add('hidden')
                   modal.classList.remove('flex')
+                  modal.setAttribute('aria-hidden', 'true')
                   document.documentElement.classList.remove('overflow-hidden')
+                  lastFocused?.focus()
                 }
                 modal.addEventListener('transitionend', onEnd)
               }
@@ -563,13 +524,16 @@ const posts = (await getPosts()).slice(0, 3)
                 e.stopPropagation()
                 closeModal()
               })
-              // Close when clicking the backdrop (but not the image)
               modal.addEventListener('click', (e) => {
                 if (e.target === modal) closeModal()
               })
-              // Esc to close
               document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeModal()
+                if (
+                  e.key === 'Escape' &&
+                  !modal.classList.contains('hidden')
+                ) {
+                  closeModal()
+                }
               })
             </script>
 

@@ -7,9 +7,13 @@ import { getPosts } from '../utils/funcs'
 const posts = await getPosts()
 ---
 
-<Layout show={true} title="Blog | Will Carkner">
+<Layout
+  show={true}
+  title="Blog | Will Carkner"
+  description="Essays and notes by Will Carkner on engineering, energy, and building things."
+>
   <Section>
-    <h2>Posts</h2>
+    <h1>Posts</h1>
     <ArticleDisplay title="All Posts" posts={posts} />
     <a
       class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"

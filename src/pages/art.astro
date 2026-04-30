@@ -16,11 +16,15 @@ const entries = artArchive.map((entry) => {
 })
 ---
 
-<Layout show={true} title="Art Archive">
+<Layout
+  show={true}
+  title="Art Archive | Will Carkner"
+  description="An archive of daily art from @ArtGuide_db collected by Will Carkner."
+>
   <div class="max-w-5xl w-full px-4 py-4">
-    <h2 class="pt-3 pb-2">art archive</h2>
+    <h1 class="pt-3 pb-2 text-4xl font-bold sm:text-5xl">art archive</h1>
     <p class="text-gray-400 font-mono mb-8">
-      daily art from <a href="https://x.com/ArtGuide_db" target="_blank">@ArtGuide_db</a>
+      daily art from <a href="https://x.com/ArtGuide_db" target="_blank" rel="noopener noreferrer">@ArtGuide_db</a>
     </p>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
       {
@@ -28,6 +32,7 @@ const entries = artArchive.map((entry) => {
           <a
             href={entry.tweetUrl}
             target="_blank"
+            rel="noopener noreferrer"
             class="no-underline group/art"
           >
             <div class="rounded-xl border-2 border-gray-600 bg-black overflow-hidden hover:border-sky-400 duration-300">

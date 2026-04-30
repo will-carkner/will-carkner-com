@@ -8,9 +8,18 @@ interface Props {
 }
 
 const { title, tags, image, url, class: className } = Astro.props
+const hasUrl = url && url.length > 0
+const isExternal = hasUrl && /^https?:\/\//.test(url)
+
+const Wrapper = hasUrl ? 'a' : 'div'
 ---
 
-<a href={url} target="_blank" class="no-underline w-full">
+<Wrapper
+  href={hasUrl ? url : undefined}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+  class="no-underline w-full block"
+>
   <div
     class:list={[
       'flex flex-row items-center duration-300 space-x-4 hover:scale-110',
@@ -19,7 +28,8 @@ const { title, tags, image, url, class: className } = Astro.props
     <img
       src={image}
       class:list={['h-24 w-auto border border-gray-600 rounded-lg', className]}
-      alt={title + 'image'}
+      alt={`${title} project thumbnail`}
+      loading="lazy"
     />
     <div class="flex flex-col space-y-2 text-left">
       <p class="sm:text-2xl text-xl font-semibold">
@@ -45,4 +55,4 @@ const { title, tags, image, url, class: className } = Astro.props
       </div>
     </div>
   </div>
-</a>
+</Wrapper>

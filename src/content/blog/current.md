@@ -25,4 +25,4 @@ Oliver Burkeman discusses this idea well in [four thousand weeks](https://en.wik
 
 ### Enjoying myself
 
-This time of my life is special. I don't have obligations and that is true in different way than ever before. I'mk going to do my absolute best to enjoy it as much as possible.
+This time of my life is special. I don't have obligations and that is true in different way than ever before. I'm going to do my absolute best to enjoy it as much as possible.

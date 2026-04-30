@@ -1,10 +1,23 @@
 ---
 export interface Props {
   title: string
+  description?: string
+  image?: string
   show?: boolean
+  noindex?: boolean
 }
 
-const { title, show } = Astro.props
+const {
+  title,
+  description = 'Will Carkner — personal site, blog, photos, and projects.',
+  image = '/will-c.jpg',
+  show,
+  noindex = false,
+} = Astro.props
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString()
+const socialImage = new URL(image, Astro.site).toString()
+
 import Nav from '../components/Nav.astro'
 import TopBanner from '../components/TopBanner.astro'
 ---
@@ -17,9 +30,28 @@ import TopBanner from '../components/TopBanner.astro'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:site_name" content="Will Carkner" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
   </head>
   <body class="flex flex-col justify-between items-center">
     <>
