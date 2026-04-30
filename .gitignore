@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 .vscode/
 .vercel/
+
+# agent memory (local only)
+AGENTS.md
+.claude/
