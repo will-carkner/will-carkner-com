@@ -1,22 +1,40 @@
 #!/usr/bin/env node
 /**
- * One-shot image compression for public/ assets.
+ * One-shot image compression.
  * Resizes oversized images and re-encodes at reasonable quality.
- * Run: node scripts/compress-images.mjs
+ *
+ * IMPORTANT: always calls sharp().rotate() before resizing so that EXIF
+ * orientation is baked into the pixel data. Omitting this causes iPhone
+ * photos to render sideways once the EXIF tag is stripped.
+ *
+ * By default compresses `src/assets/` (site images). Pass --public to
+ * compress `public/` (dynamically-managed art archive etc).
+ *
+ * Run: node scripts/compress-images.mjs            # src/assets
+ *      node scripts/compress-images.mjs --public   # public
  */
 import sharp from 'sharp'
 import { readdir, stat, rename, unlink } from 'node:fs/promises'
 import { join, extname, basename, dirname } from 'node:path'
 
-const ROOT = new URL('../public/', import.meta.url).pathname
+const USE_PUBLIC = process.argv.includes('--public')
+const ROOT = new URL(
+  USE_PUBLIC ? '../public/' : '../src/assets/',
+  import.meta.url,
+).pathname
 
-// [glob-ish path, max width, quality, force format or null]
-const TARGETS = [
+// [subdir, max width, quality]. Empty subdir = root-level only (no recursion).
+const TARGETS_ASSETS = [
   { dir: 'projects', maxW: 1200, quality: 82 },
   { dir: 'cool-photos', maxW: 1600, quality: 80 },
   { dir: 'records', maxW: 400, quality: 82 },
-  { dir: '', maxW: 1200, quality: 82, single: true }, // root-level imgs only
+  { dir: '', maxW: 1200, quality: 82, single: true },
 ]
+const TARGETS_PUBLIC = [
+  { dir: 'art-archive', maxW: 1600, quality: 82 },
+  { dir: '', maxW: 1200, quality: 82, single: true },
+]
+const TARGETS = USE_PUBLIC ? TARGETS_PUBLIC : TARGETS_ASSETS
 
 async function walk(dir) {
   const out = []
@@ -33,14 +51,16 @@ const isImg = (p) => /\.(jpe?g|png)$/i.test(p)
 async function processOne(file, maxW, quality) {
   const ext = extname(file).toLowerCase()
   const before = (await stat(file)).size
-  const img = sharp(file)
+  // .rotate() with no args reads the EXIF Orientation tag, applies the
+  // rotation to the pixels, and strips the tag. This is critical for
+  // iPhone photos which often have Orientation=6 (rotate 90° CW).
+  const img = sharp(file).rotate()
   const meta = await img.metadata()
   const targetW = Math.min(meta.width ?? maxW, maxW)
   const resized = img.resize({ width: targetW, withoutEnlargement: true })
 
   const tmp = file + '.tmp'
   if (ext === '.png') {
-    // Convert PNG → JPEG only for big photographic PNGs (>500 KB)
     if (before > 500_000) {
       const jpgTmp = file.replace(/\.png$/i, '.jpg') + '.tmp'
       await resized.jpeg({ quality, mozjpeg: true }).toFile(jpgTmp)
