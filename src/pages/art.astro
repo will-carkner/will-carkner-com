@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro'
+import artArchive from '../../public/art-archive.json'
+
+const entries = artArchive.map((entry) => {
+  const lines = entry.text.split('\n')
+  const artist = lines[0]?.trim()
+  const title = lines
+    .slice(1)
+    .join(' ')
+    .trim()
+    .replace(/https?:\/\/\S+/g, '')
+    .trim()
+  const date = new Date(entry.date)
+  return { ...entry, artist, title, date }
+})
+---
+
+<Layout show={true} title="Art Archive">
+  <div class="max-w-5xl w-full px-4 py-4">
+    <h2 class="pt-3 pb-2">art archive</h2>
+    <p class="text-gray-400 font-mono mb-8">
+      daily art from <a href="https://x.com/ArtGuide_db" target="_blank">@ArtGuide_db</a>
+    </p>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {
+        entries.map((entry) => (
+          <a
+            href={entry.tweetUrl}
+            target="_blank"
+            class="no-underline group/art"
+          >
+            <div class="rounded-xl border-2 border-gray-600 bg-black overflow-hidden hover:border-sky-400 duration-300">
+              <div class="aspect-square overflow-hidden">
+                <img
+                  src={entry.imageUrl}
+                  alt={entry.text}
+                  class="w-full h-full object-cover group-hover/art:scale-105 duration-300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-3 space-y-1">
+                <p class="text-white font-mono text-sm truncate">
+                  {entry.title || entry.text}
+                </p>
+                <p class="text-gray-400 font-mono text-xs truncate">
+                  {entry.artist}
+                </p>
+                <p class="text-gray-500 font-mono text-xs">
+                  {entry.date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })}
+                </p>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
