@@ -25,33 +25,27 @@ const Wrapper = hasUrl ? 'a' : 'div'
 >
   <div
     class:list={[
-      'flex flex-row items-center duration-300 space-x-4 hover:scale-110',
+      'flex flex-row items-center gap-3 sm:gap-4 duration-300 sm:hover:scale-[1.03]',
     ]}
   >
     <Image
       src={image}
       width={240}
-      class:list={['h-24 w-auto border border-gray-600 rounded-lg', className]}
+      class:list={[
+        'h-16 sm:h-24 w-auto shrink-0 border border-gray-600 rounded-lg',
+        className,
+      ]}
       alt={`${title} project thumbnail`}
       loading="lazy"
     />
-    <div class="flex flex-col space-y-2 text-left">
-      <p class="sm:text-2xl text-xl font-semibold">
+    <div class="flex min-w-0 flex-col space-y-2 text-left">
+      <p class="text-lg sm:text-2xl font-semibold break-words">
         {title}
       </p>
-      <div
-        class="flex flex-wrap xs:flex-nowrap xs:flex-row xs:space-y-0 items-center justify-start space-x-2"
-      >
+      <div class="flex flex-wrap items-center justify-start gap-2">
         {
           tags.map((tag) => (
-            <span
-              class:list={[
-                'bg-slate-600 w-fit bg-opacity-50 text-xs shadow-lg rounded-md px-2 py-1 text-white',
-                tags.indexOf(tag) === tags.length - 1
-                  ? 'mt-2 xs:mt-0 -translate-x-2 xs:translate-x-0'
-                  : '',
-              ]}
-            >
+            <span class="bg-slate-600 w-fit bg-opacity-50 text-xs shadow-lg rounded-md px-2 py-1 text-white">
               {tag}
             </span>
           ))

@@ -11,11 +11,11 @@ const { title, pubDate, updatedDate } = Astro.props
 
 <Layout show={true} title={title}>
   <Section class="!mt-8">
-    <div class="space-y-8 max-w-4xl mx-auto">
+    <div class="w-full space-y-8 max-w-4xl mx-auto">
       <div class="text-center space-y-4">
-        <h1 class="text-4xl md:text-5xl font-bold text-white">{title}</h1>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white">{title}</h1>
         <div
-          class="flex flex-row items-center justify-center space-x-4 text-sm"
+          class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-sm"
         >
           <p class="font-mono text-gray-400">
             Published <FormattedDate date={pubDate} />
@@ -23,7 +23,7 @@ const { title, pubDate, updatedDate } = Astro.props
           {
             updatedDate && (
               <>
-                <p class="font-mono text-gray-400"> | </p>
+                <p class="hidden sm:block font-mono text-gray-400"> | </p>
                 <p class="font-mono text-gray-400">
                   Updated <FormattedDate date={updatedDate} />
                 </p>

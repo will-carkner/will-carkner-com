@@ -133,7 +133,7 @@ const years: Year[] = [
     years.map(({ year, columns }, yearIdx) => (
       <>
         <h2 class="pt-3">{year}</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl py-4">
+        <div class="grid w-full grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl px-4 py-4">
           {columns.map((images) => (
             <div class="grid gap-4">
               {images.map((key, i) => (
