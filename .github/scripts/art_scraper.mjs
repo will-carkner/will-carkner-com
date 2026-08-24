@@ -1,6 +1,5 @@
 // Fetches the latest photo tweet from ArtGuide_db using free public APIs (no auth).
-// Step 1: Get recent tweet IDs from Twitter syndication embed.
-// Step 2: Resolve each via fxtwitter until we find one with a photo.
+// Uses X's public profile, then syndication, then Wikimedia's featured image.
 // Writes public/daily-art.json.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
@@ -48,7 +47,14 @@ async function fetchWithRetry(url, opts = {}, retries = 3) {
   }
 }
 
-async function getRecentTweetIds() {
+function newestFirst(ids) {
+  return [...new Set(ids)].sort((a, b) => {
+    if (a === b) return 0
+    return BigInt(a) > BigInt(b) ? -1 : 1
+  })
+}
+
+async function getSyndicationTweetIds() {
   const url = `https://syndication.twitter.com/srv/timeline-profile/screen-name/${HANDLE}`
   const res = await fetchWithRetry(url, {
     headers: { 'User-Agent': 'Mozilla/5.0 (compatible; bot)' },
@@ -56,7 +62,38 @@ async function getRecentTweetIds() {
   if (!res.ok) throw new Error(`Syndication HTTP ${res.status}`)
   const html = await res.text()
   const ids = [...html.matchAll(/\/status\/(\d+)/g)].map((m) => m[1])
-  return [...new Set(ids)]
+  return newestFirst(ids)
+}
+
+async function getProfileTweetIds() {
+  const res = await fetchWithRetry(`https://x.com/${HANDLE}`, {
+    headers: {
+      'User-Agent':
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/140 Safari/537.36',
+      Accept: 'text/html',
+    },
+  })
+  if (!res.ok) throw new Error(`X profile HTTP ${res.status}`)
+
+  const html = await res.text()
+  const escapedHandle = HANDLE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const statusPattern = new RegExp(`/${escapedHandle}/status/(\\d+)`, 'gi')
+  const ids = [...html.matchAll(statusPattern)].map((match) => match[1])
+  return newestFirst(ids)
+}
+
+async function getRecentTweetIds() {
+  try {
+    const ids = await getProfileTweetIds()
+    if (ids.length > 0) return ids
+    console.log('Public X profile returned no tweet IDs, trying syndication')
+  } catch (err) {
+    console.log(`Public X profile failed: ${err.message} — trying syndication`)
+  }
+
+  const ids = await getSyndicationTweetIds()
+  if (ids.length === 0) throw new Error('Syndication returned no tweet IDs')
+  return ids
 }
 
 async function getTweetData(tweetId) {
@@ -65,6 +102,12 @@ async function getTweetData(tweetId) {
   const data = await res.json()
   const tweet = data.tweet
   if (!tweet) return null
+  if (
+    tweet.author?.screen_name &&
+    tweet.author.screen_name.toLowerCase() !== HANDLE.toLowerCase()
+  ) {
+    return null
+  }
 
   const photo = tweet.media?.photos?.[0]
   if (!photo) return null
@@ -94,6 +137,37 @@ async function getLatestPhotoTweet() {
   return null
 }
 
+async function getWikimediaFeaturedArtwork() {
+  const date = new Date().toISOString().slice(0, 10)
+  const [year, month, day] = date.split('-')
+  const res = await fetchWithRetry(
+    `https://api.wikimedia.org/feed/v1/wikipedia/en/featured/${year}/${month}/${day}`,
+    { headers: { 'User-Agent': 'willcarkner.com art updater' } },
+  )
+  if (!res.ok) throw new Error(`Wikimedia HTTP ${res.status}`)
+
+  const image = (await res.json()).image
+  const photoUrl = image?.thumbnail?.source || image?.image?.source
+  const sourceUrl = image?.file_page
+  if (!photoUrl || !sourceUrl) throw new Error('Wikimedia returned no featured image')
+
+  const title =
+    image.structured?.captions?.en ||
+    image.description?.text ||
+    image.title.replace(/^File:/, '').replace(/\.[^.]+$/, '')
+  const author = image.artist?.text || 'Wikimedia Commons'
+
+  return {
+    id: sourceUrl,
+    archiveId: image.wb_entity_id || `wikimedia-${date}`,
+    text: `${author}\n${title}`.toLowerCase(),
+    created_at: `${date}T00:00:00.000Z`,
+    photoUrl,
+    sourceUrl,
+    author,
+  }
+}
+
 async function loadPrevious() {
   if (!existsSync(OUTPUT)) return null
   try {
@@ -112,23 +186,27 @@ let latest
 try {
   latest = await getLatestPhotoTweet()
 } catch (err) {
-  console.log(`Failed to fetch tweets: ${err.message} — keeping previous file.`)
-  process.exit(0)
+  console.log(`Failed to fetch tweets: ${err.message}`)
 }
 const prev = await loadPrevious()
 
 if (!latest) {
-  console.log('No photo tweet found — keeping previous file.')
-  process.exit(0)
+  console.log('No photo tweet found — trying Wikimedia featured image of the day')
+  try {
+    latest = await getWikimediaFeaturedArtwork()
+  } catch (err) {
+    console.log(`Failed to fetch fallback artwork: ${err.message} — keeping previous file.`)
+    process.exit(0)
+  }
 }
 
 const newPayload = {
-  id: `https://x.com/${HANDLE}/status/${latest.tweetId}`,
+  id: latest.id || `https://x.com/${HANDLE}/status/${latest.tweetId}`,
   text: latest.text,
   imageUrl: latest.photoUrl,
-  tweetUrl: `https://x.com/${HANDLE}/status/${latest.tweetId}`,
+  tweetUrl: latest.sourceUrl || `https://x.com/${HANDLE}/status/${latest.tweetId}`,
   date: latest.created_at,
-  author: HANDLE,
+  author: latest.author || HANDLE,
   cachedAt: new Date().toISOString(),
 }
 
@@ -141,9 +219,9 @@ await saveJSON(newPayload)
 console.log('Wrote:', OUTPUT, newPayload.tweetUrl, newPayload.imageUrl)
 
 // Download image locally and append to archive
-const tweetId = latest.tweetId
+const artworkId = latest.archiveId || latest.tweetId
 const ext = extname(new URL(latest.photoUrl).pathname) || '.jpg'
-const localFilename = `${tweetId}${ext}`
+const localFilename = `${artworkId}${ext}`
 const localPath = `${ART_DIR}/${localFilename}`
 
 let localImageUrl = newPayload.imageUrl
