@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import type { ImageMetadata } from 'astro'
-import Layout from '../layouts/Layout.astro'
+import Simple from '../layouts/Simple.astro'
 
 // Bulk-import every photo under src/assets/cool-photos so Astro can
 // optimize them at build time (responsive srcsets + AVIF/WebP).
@@ -36,6 +36,46 @@ type Year = { year: string; columns: string[][] }
 
 const years: Year[] = [
   {
+    year: '2026',
+    columns: [
+      [
+        '2026/235E2F72-4817-461D-BBB1-7E4F9575C99C.jpeg',
+        '2026/B13182B4-8E20-4BEF-9E7C-FC784AE82F4F.jpeg',
+        '2026/65FE05A2-44A7-4AAD-B9FA-A908220378C2.jpeg',
+        '2026/F89735B8-D51C-475E-961C-B0E845A7BD3A.jpeg',
+        '2026/EDE02A6A-A1E7-4B7F-ADAC-C39C2D8037AB.jpeg',
+        '2026/48657D6D-55C3-4F96-ACB3-DED9D24BCCA7.jpeg',
+        '2026/1894E5DB-2014-460B-A15D-C68B31F76AA6.jpeg',
+      ],
+      [
+        '2026/70F5D06C-F72A-4A74-A24F-8D6AA62BA56D.jpeg',
+        '2026/94CD7E23-C34E-44D6-9B95-6992F4EA8DF9.jpeg',
+        '2026/AFF1DB72-E326-4ABE-9B85-B416BEDD4E10.jpeg',
+        '2026/4A9B6F46-1B0D-4941-8A76-D471E29904AA.jpeg',
+        '2026/24E41948-BBBD-4169-A3AB-B7A01C32D295.jpeg',
+        '2026/5F0E9B00-4ECF-4071-AE90-657A34CE896D.jpeg',
+      ],
+      [
+        '2026/BF0F4EA5-9227-427D-9C46-DD283B2A5706.jpeg',
+        '2026/EEADDE2D-CC44-4662-A0D0-C83ECF18ADB8.jpeg',
+        '2026/79FABAEE-3B50-43D7-BB8A-B55FCE0EAEDC.jpeg',
+        '2026/1B4EF718-AFEB-4AEE-86B9-5540BEF70C00.jpeg',
+        '2026/65C92036-EFE6-40B2-9465-2D3AB1B93C01.jpeg',
+        '2026/7B12CD3C-3CD4-4E83-939A-AF7385E1E070.jpeg',
+        '2026/CF506BF2-6CA9-408C-BCEE-515A3FA1F377.jpeg',
+      ],
+      [
+        '2026/A3278AB0-ECFF-49F6-9CDD-D34C0848ADD4.jpeg',
+        '2026/2A01321C-A5BE-4D04-827D-A9FE49BF6636.jpeg',
+        '2026/08FA6A93-05ED-4987-A74C-0448E782F4A0.jpeg',
+        '2026/8AD8BBAC-1A2C-428E-84CC-CE3EF5D8426B.jpeg',
+        '2026/85F995B0-6BF8-4805-B6D5-529A6B8C1590.jpeg',
+        '2026/C0CFC2FA-379C-495D-A578-EEF92D5127A1.jpeg',
+        '2026/3CE6023F-3122-4A75-8D02-7127259056FB.jpeg',
+      ],
+    ],
+  },
+  {
     year: '2025',
     columns: [
       [
@@ -49,7 +89,6 @@ const years: Year[] = [
         '2025/IMG_1281.jpeg',
         '2025/IMG_1250.jpeg',
         '2025/IMG_1242.jpeg',
-        '2025/IMG_1197.jpeg',
         '2025/IMG_1196.jpeg',
         '2025/IMG_1193.jpeg',
       ],
@@ -82,7 +121,6 @@ const years: Year[] = [
         '2025/IMG_9649.jpeg',
       ],
       [
-        '2025/IMG_9497.jpeg',
         '2025/IMG_8942.jpeg',
         '2025/IMG_8902.jpeg',
         '2025/IMG_8572.jpeg',
@@ -123,36 +161,70 @@ const years: Year[] = [
 ]
 ---
 
-<Layout
-  show={true}
-  title="Photos | Will Carkner"
-  description="A collection of photos Will Carkner has taken over the years."
->
-  <h1 class="sr-only">Photos</h1>
+<Simple title="photos — will carkner" description="photos by will carkner" gallery>
+  <h1>photos</h1>
   {
     years.map(({ year, columns }, yearIdx) => (
-      <>
-        <h2 class="pt-3">{year}</h2>
-        <div class="grid w-full grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl px-4 py-4">
+      <section>
+        <h2>{year}</h2>
+        <div class="grid">
           {columns.map((images) => (
-            <div class="grid gap-4">
+            <div class="col">
               {images.map((key, i) => (
-                <div>
-                  <Image
-                    class="h-auto max-w-full rounded-lg"
-                    src={pic(key)}
-                    alt={altFrom(key, year, i)}
-                    widths={[240, 480, 720]}
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    loading={yearIdx === 0 && i < 2 ? 'eager' : 'lazy'}
-                    decoding="async"
-                  />
-                </div>
+                <Image
+                  src={pic(key)}
+                  alt={altFrom(key, year, i)}
+                  widths={[240, 480, 720]}
+                  sizes="(max-width: 768px) 50vw, 240px"
+                  loading={yearIdx === 0 && i < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
               ))}
             </div>
           ))}
         </div>
-      </>
+      </section>
     ))
   }
-</Layout>
+</Simple>
+
+<style>
+  h1,
+  h2 {
+    font-weight: 400;
+    margin: 0;
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.75rem;
+  }
+  section {
+    margin-bottom: 3rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    align-items: start;
+  }
+  .col {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

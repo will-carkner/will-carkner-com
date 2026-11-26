@@ -1,23 +1,59 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Section from '../components/Section.astro'
-import ArticleDisplay from '../components/ArticleDisplay.astro'
+import Simple from '../layouts/Simple.astro'
 import { getPosts } from '../utils/funcs'
 
 const posts = await getPosts()
+
+const formatDate = (date: Date) =>
+  date
+    .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    .toLowerCase()
 ---
 
-<Layout
-  show={true}
-  title="Blog | Will Carkner"
-  description="Essays and notes by Will Carkner on engineering, energy, and building things."
->
-  <Section>
-    <h1>Posts</h1>
-    <ArticleDisplay title="All Posts" posts={posts} />
-    <a
-      class="text-white font-mono font-bold no-underline hover:text-sky-400 text-base hover:underline"
-      href="/blog/rss.xml">view RSS</a
-    >
-  </Section>
-</Layout>
+<Simple title="blog — will carkner" description="writing by will carkner">
+  <div class="lower">
+    <h1>blog</h1>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Simple>
+
+<style>
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 2rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.35rem 0;
+  }
+  li a {
+    color: #fff;
+  }
+  li a:hover {
+    color: #888;
+  }
+  time {
+    color: #555;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+</style>

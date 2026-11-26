@@ -1,202 +1,160 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import FormattedDate from '../components/FormattedDate.astro'
-import Section from '../components/Section.astro'
-import Layout from '../layouts/Layout.astro'
+import Simple from './Simple.astro'
 
 type Props = CollectionEntry<'blog'>['data']
 
 const { title, pubDate, updatedDate } = Astro.props
+
+const formatDate = (date: Date) =>
+  date
+    .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    .toLowerCase()
 ---
 
-<Layout show={true} title={title}>
-  <Section class="!mt-8">
-    <div class="w-full space-y-8 max-w-4xl mx-auto">
-      <div class="text-center space-y-4">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white">{title}</h1>
-        <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-sm"
-        >
-          <p class="font-mono text-gray-400">
-            Published <FormattedDate date={pubDate} />
-          </p>
-          {
-            updatedDate && (
-              <>
-                <p class="hidden sm:block font-mono text-gray-400"> | </p>
-                <p class="font-mono text-gray-400">
-                  Updated <FormattedDate date={updatedDate} />
-                </p>
-              </>
-            )
-          }
-        </div>
-      </div>
+<Simple title={`${title.toLowerCase()} — will carkner`} wide back={{ label: 'blog', href: '/blog' }}>
+  <header class="lower">
+    <h1>{title}</h1>
+    <p class="meta">
+      <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+      {updatedDate && <span> · updated {formatDate(updatedDate)}</span>}
+    </p>
+  </header>
 
-      <article class="blog-content">
-        <slot />
-      </article>
-    </div>
-  </Section>
+  <article class="prose">
+    <slot />
+  </article>
+</Simple>
 
-  <style is:global>
-    .blog-content {
-      @apply text-left space-y-6;
-      font-family:
-        system-ui,
-        -apple-system,
-        sans-serif;
-      line-height: 1.6;
+<style>
+  header {
+    margin-bottom: 2.5rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+  }
+  .meta {
+    color: #555;
+    font-size: 0.85rem;
+    margin: 0;
+  }
+</style>
 
-      /* Headings */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        @apply text-white font-bold mt-8 mb-4 first:mt-0;
-      }
-
-      h1 {
-        @apply text-3xl md:text-4xl;
-      }
-      h2 {
-        @apply text-2xl md:text-3xl;
-        @apply border-b border-gray-700 pb-2 mb-6;
-      }
-      h3 {
-        @apply text-xl md:text-2xl;
-      }
-      h4 {
-        @apply text-lg md:text-xl;
-      }
-      h5 {
-        @apply text-base md:text-lg;
-      }
-      h6 {
-        @apply text-sm md:text-base;
-      }
-
-      /* Paragraphs */
-      p {
-        @apply text-gray-400 text-base md:text-lg leading-relaxed mb-4;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
-      }
-
-      /* Text emphasis */
-      strong,
-      b {
-        @apply text-slate-300 font-semibold;
-      }
-
-      em,
-      i {
-        @apply text-slate-300 italic;
-      }
-
-      /* Links */
-      a {
-        @apply text-sky-400 hover:text-sky-300 underline decoration-sky-400/60;
-        @apply transition-colors duration-200;
-      }
-
-      /* Lists */
-      ul,
-      ol {
-        @apply space-y-2 mb-6 text-gray-400;
-      }
-
-      ul {
-        @apply list-disc pl-6;
-      }
-
-      ol {
-        @apply list-decimal pl-6;
-      }
-
-      li {
-        @apply text-base md:text-lg leading-relaxed;
-      }
-
-      li::marker {
-        @apply text-sky-400;
-      }
-
-      /* Nested lists */
-      ul ul,
-      ol ol,
-      ul ol,
-      ol ul {
-        @apply mt-2 mb-2;
-      }
-
-      /* Code */
-      code {
-        @apply bg-slate-800 text-sky-300 px-2 py-1 rounded text-sm font-mono;
-        @apply border border-slate-700;
-      }
-
-      pre {
-        @apply bg-slate-900 border border-slate-700 rounded-lg p-4 mb-6;
-        @apply overflow-x-auto text-sm;
-      }
-
-      pre code {
-        @apply bg-transparent border-0 p-0 text-gray-300;
-      }
-
-      /* Blockquotes */
-      blockquote {
-        @apply border-l-4 border-sky-400 pl-6 py-2 my-6;
-        @apply text-gray-300 italic bg-slate-900/20 rounded-r;
-      }
-
-      /* Tables */
-      table {
-        @apply w-full border-collapse border border-slate-700 rounded-lg mb-6;
-        @apply overflow-hidden;
-      }
-
-      th {
-        @apply bg-slate-800 text-white font-semibold px-4 py-3 text-left;
-        @apply border-b border-slate-700;
-      }
-
-      td {
-        @apply text-gray-400 px-4 py-3 border-b border-slate-700/50;
-      }
-
-      tr:last-child td {
-        @apply border-b-0;
-      }
-
-      tr:hover {
-        @apply bg-slate-800/30;
-      }
-
-      /* Images */
-      img {
-        @apply rounded-lg max-w-full h-auto mb-6;
-        @apply shadow-lg border border-slate-700/50;
-      }
-
-      /* Horizontal rule */
-      hr {
-        @apply border-slate-700 my-8;
-      }
-
-      /* First/last element spacing */
-      > *:first-child {
-        @apply !mt-0;
-      }
-
-      > *:last-child {
-        @apply !mb-0;
-      }
-    }
-  </style>
-</Layout>
+<style is:global>
+  .prose {
+    color: #ccc;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .prose > :first-child {
+    margin-top: 0;
+  }
+  .prose p,
+  .prose ul,
+  .prose ol,
+  .prose blockquote,
+  .prose pre,
+  .prose table {
+    margin: 0 0 1.25rem;
+  }
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 2.5rem 0 0.75rem;
+  }
+  .prose h2 {
+    font-size: 1.2rem;
+  }
+  .prose h3 {
+    font-size: 1.05rem;
+  }
+  .prose h4 {
+    font-size: 1rem;
+    color: #ccc;
+  }
+  .prose strong,
+  .prose b {
+    color: #fff;
+    font-weight: 600;
+  }
+  .prose a {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: #555;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover {
+    text-decoration-color: #fff;
+  }
+  .prose ul,
+  .prose ol {
+    padding-left: 1.25rem;
+  }
+  .prose li {
+    margin-bottom: 0.4rem;
+  }
+  .prose li::marker {
+    color: #555;
+  }
+  .prose blockquote {
+    border-left: 2px solid #333;
+    padding-left: 1rem;
+    margin-left: 0;
+    color: #999;
+    font-style: italic;
+  }
+  .prose code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em;
+    background: #111;
+    padding: 0.15em 0.35em;
+    border-radius: 4px;
+  }
+  .prose pre {
+    background: #0d0d0d;
+    border: 1px solid #1f1f1f;
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .prose pre code {
+    background: none;
+    padding: 0;
+  }
+  .prose img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 0.5rem 0;
+  }
+  .prose hr {
+    border: 0;
+    border-top: 1px solid #222;
+    margin: 2.5rem 0;
+  }
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .prose th,
+  .prose td {
+    text-align: left;
+    padding: 0.5rem 0.75rem 0.5rem 0;
+    border-bottom: 1px solid #1f1f1f;
+  }
+  .prose th {
+    color: #fff;
+    font-weight: 500;
+  }
+</style>
