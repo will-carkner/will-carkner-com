@@ -3,7 +3,13 @@ import Simple from '../layouts/Simple.astro'
 
 const happyThings = [
   "eating food when i'm really hungry",
-'climbing, hiking, rowing', 'my family (mom, dad, and harry)', 'making progress on provenmetal', 'finding good deals at thrift stores']
+  'climbing, hiking, rowing',
+  'my family (mom, dad, and harry)',
+  'making progress on provenmetal',
+  'finding good deals at thrift stores',
+]
+
+const sadThings = ['how slow we build']
 
 const links = [
   { label: 'photos', href: '/photos' },
@@ -18,6 +24,10 @@ const links = [
     <p>things that make me happy:</p>
     <ul>
       {happyThings.map((thing) => <li>{thing}</li>)}
+    </ul>
+    <p class="next">things that make me sad:</p>
+    <ul>
+      {sadThings.map((thing) => <li>{thing}</li>)}
     </ul>
     <nav>
       {links.map((link) => <a href={link.href}>{link.label}</a>)}
@@ -41,6 +51,9 @@ const links = [
   }
   li {
     margin: 0 0 0.25rem;
+  }
+  .next {
+    margin-top: 2rem;
   }
   nav {
     display: flex;
